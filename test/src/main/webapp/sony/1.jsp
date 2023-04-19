@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-우리팀 화이팅!!.
+우리팀 화이팅!!..
 </body>
 </html>
