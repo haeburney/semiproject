@@ -1,10 +1,10 @@
 package detail;
 
-//detail (userId, movienum, wish(찜목록 0,1로 구분), star(int)) // 0 : 찜, 1: 찜 취소(default)
+//detail (userId, movieNum, wish(찜목록 0,1로 구분), star(int)) // 0 : 찜, 1: 찜 취소(default)
 
 public class DetailVo {
 	private String userId;
-	private int movienum;
+	private int movieNum;
 	private String wish;
 	private int star;
 
@@ -12,10 +12,10 @@ public class DetailVo {
 
 	}
 
-	public DetailVo(String userId, int movienum, String wish, int star) {
+	public DetailVo(String userId, int movieNum, String wish, int star) {
 		super();
 		this.userId = userId;
-		this.movienum = movienum;
+		this.movieNum = movieNum;
 		this.wish = wish;
 		this.star = star;
 	}
@@ -28,12 +28,12 @@ public class DetailVo {
 		this.userId = userId;
 	}
 
-	public int getMovienum() {
-		return movienum;
+	public int getmovieNum() {
+		return movieNum;
 	}
 
-	public void setMovienum(int movienum) {
-		this.movienum = movienum;
+	public void setmovieNum(int movieNum) {
+		this.movieNum = movieNum;
 	}
 
 	public String getWish() {
@@ -54,7 +54,7 @@ public class DetailVo {
 
 	@Override
 	public String toString() {
-		return "DetailVo [userId=" + userId + ", movienum=" + movienum + ", wish=" + wish + ", star=" + star + "]";
+		return "DetailVo [userId=" + userId + ", movieNum=" + movieNum + ", wish=" + wish + ", star=" + star + "]";
 	}
 
 }
