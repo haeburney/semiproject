@@ -21,7 +21,7 @@ public class DetailDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserId());
-			pstmt.setInt(2, vo.getMovienum());
+			pstmt.setInt(2, vo.getmovieNum());
 			pstmt.setString(3, vo.getWish());
 			pstmt.setInt(4, vo.getStar());
 			
@@ -45,11 +45,10 @@ public class DetailDao {
 	public ArrayList<DetailVo> starList(DetailVo vo){
 		Connection conn = DBConn.conn();
 		ArrayList<DetailVo> list = new ArrayList<>();
-		String sql = "select movienum, star  from detail where userid=?";
+		String sql = "select movienum, star  from detail where userId=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getStar());
-			pstmt.setString(2, vo.getUserId());
+			pstmt.setString(1, vo.getUserId());
 			ResultSet rs =pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -100,7 +99,7 @@ public class DetailDao {
 	public double avgStar (int movieNum) {
 		double avg=0;
 		Connection conn = DBConn.conn();
-		String sql = "select avg(star) from detail where movienum=? group by movienum=?";
+		String sql = "select avg(star) from detail where movieNum=? group by movieNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, movieNum);
@@ -128,12 +127,12 @@ public class DetailDao {
 	// 3-1. 특정 영화의 찜 수정하기
 	public void updateLike(DetailVo vo) {
 		Connection conn = DBConn.conn();
-		String sql = "update detail set wish=? where userid=? and movienum=?";
+		String sql = "update detail set wish=? where userId=? and movieNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getWish());
 			pstmt.setString(2, vo.getUserId());
-			pstmt.setInt(3, vo.getMovienum());
+			pstmt.setInt(3, vo.getmovieNum());
 			
 			int check = pstmt.executeUpdate();
 			System.out.println(check + "줄 Detail 찜 update");
@@ -153,12 +152,12 @@ public class DetailDao {
 	// 3-2. 특정 영화의 별점 수정하기
 	public void updateStar(DetailVo vo) {
 		Connection conn = DBConn.conn();
-		String sql = "update detail set star=? where userid=? and movienum=?";
+		String sql = "update detail set star=? where userId=? and movieNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getStar());
 			pstmt.setString(2, vo.getUserId());
-			pstmt.setInt(3, vo.getMovienum());
+			pstmt.setInt(3, vo.getmovieNum());
 			
 			int check = pstmt.executeUpdate();
 			System.out.println(check + "줄 Detail 수정 update");
