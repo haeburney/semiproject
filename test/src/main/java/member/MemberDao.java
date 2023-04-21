@@ -24,8 +24,8 @@ public class MemberDao {
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getNickname());
 
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 추가되었다");
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,8 +48,9 @@ public class MemberDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
-			ResultSet rs = pstmt.executeQuery();// select 실행
-			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
 				vo = new MemberVo(rs.getString(1), rs.getString(2), rs.getString(3));
 			}
 		} catch (SQLException e) {
@@ -76,8 +77,8 @@ public class MemberDao {
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getNickname());
 			
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 수정됨");
+			 pstmt.executeUpdate();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,8 +100,9 @@ public class MemberDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 삭제됨");
+			
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
