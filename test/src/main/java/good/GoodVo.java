@@ -5,6 +5,7 @@ public class GoodVo {
 	private String userId;
 	
 	public GoodVo() {}
+	
 	public GoodVo(int num, String userId) {
 		super();
 		this.num = num;

@@ -13,13 +13,13 @@ public class GoodService {
 	}
 	
 	//삭제(id 기준)
-	public void delNum(int num) {
-		dao.delete(num);
+	public void delNum(String userId) {
+		dao.delete(userId);
 	}
 	
 	//삭제(글 번호 기준)
-	public void delUserId(String userId) {
-		dao.delete2(userId);
+	public void delUserId(int num) {
+		dao.delete2(num);
 	}
 
 }

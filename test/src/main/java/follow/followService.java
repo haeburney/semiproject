@@ -26,8 +26,8 @@ public class followService {
 	}
 	
 	// 내가 팔로우한 사람 숫자 좀 세어줘 근데 이거 없어도 될 것 같기도 하고 ..... 핸들러에서 count로 구현을 그렇게 하면 될 것 같음 
-	public void countAll (String userId) {
-		dao.countF(userId);
+	public int countAll (String userId) {
+		return dao.countF(userId);
 	}
 	
 

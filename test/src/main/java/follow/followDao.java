@@ -16,7 +16,6 @@ public class followDao {
 		dbconn = DBConnect.getInstance();
 	}
 	
-	
 	// 팔로우 했을 때 데이터베이스에 넣기 
 	public void insert (followVo vo) {
 		Connection conn = dbconn.conn();
@@ -88,7 +87,8 @@ public class followDao {
 				list.add(new followVo (rs.getString(1), rs.getString(2))); 
 			}
 			
-			pstmt.executeUpdate();			
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,17 +102,22 @@ public class followDao {
 		}	
 		return list;
 	}
-	
-	
+		
 	//특정 아이디의 팔로우 수를 보여줘 
-	public void countF (String userId) {
+	public int countF (String userId) {
 		Connection conn = dbconn.conn();
 		String sql = "select count(followedId) from follow where userId=?";
+		int folnum=0;
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, userId);
+			
+			ResultSet rs =  pstmt.executeQuery();
+			
+			if (rs.next()) {
+				 folnum = rs.getInt(1);
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -125,7 +130,7 @@ public class followDao {
 				e.printStackTrace();
 			}
 		}
-		
+		return folnum;
 	}
 
 }

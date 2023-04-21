@@ -24,6 +24,7 @@ public class GoodDao {
 
 			int num = pstmt.executeUpdate();
 			System.out.println(num + " 줄이 추가되었다");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,14 +39,16 @@ public class GoodDao {
 	}
 	
 	//삭제(id 기준)
-	public void delete(int num) {
+	public void delete(String userId) {
 		Connection conn = dbconn.conn();
 		String sql = "delete from good where userid=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			int x = pstmt.executeUpdate();
-			System.out.println(x + " 줄이 삭제됨");
+			
+			pstmt.setString(1, userId);
+			
+			 pstmt.executeUpdate();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,14 +64,16 @@ public class GoodDao {
 	
 			
 	//삭제(글 번호 기준)
-	public void delete2(String userId) {
+	public void delete2(int num) {
 		Connection conn = dbconn.conn();
 		String sql = "delete from good where num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 삭제됨");
+			
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
