@@ -1,29 +1,31 @@
 package comments;
 
+import java.sql.Date;
+
 public class CommentsVo {
 
 	private double num;			// pk
 	private double movieNum;	// 영화 정보 api 로부터 받아온 아이디값
 	private String userId;		// fk, references member
 	private String comments;	// varString2(4000)
-	private String w_date;		// DB 타입 : date
+	private Date w_Date;		// DB 타입 : date
 	private double rate = 0;	// 좋아요 체크 (insert 시 무조건 0 값으로 삽입)
 	private String spoiler = "1";	// 스포일러 댓글인지 아닌지 구분
 	
 	
 	public CommentsVo() {
-		super();
+		
 	}
 
 
-	public CommentsVo(double num, double movieNum, String userId, String comments, String w_date, double rate,
+	public CommentsVo(double num, double movieNum, String userId, String comments, Date w_Date, double rate,
 			String spoiler) {
 		super();
 		this.num = num;
 		this.movieNum = movieNum;
 		this.userId = userId;
 		this.comments = comments;
-		this.w_date = w_date;
+		this.w_Date = w_Date;
 		this.rate = rate;
 		this.spoiler = spoiler;
 	}
@@ -69,13 +71,13 @@ public class CommentsVo {
 	}
 
 
-	public String getw_date() {
-		return w_date;
+	public Date getW_Date() {
+		return w_Date;
 	}
 
 
-	public void setw_date(String w_date) {
-		this.w_date = w_date;
+	public void setW_Date(Date w_Date) {
+		this.w_Date = w_Date;
 	}
 
 
@@ -101,10 +103,10 @@ public class CommentsVo {
 
 	@Override
 	public String toString() {
-		return "CommentsVO [num=" + num + ", movieNum=" + movieNum + ", userId=" + userId + ", comments=" + comments
-				+ ", w_date=" + w_date + ", rate=" + rate + ", spoiler=" + spoiler + "]";
+		return "CommentsVo [num=" + num + ", movieNum=" + movieNum + ", userId=" + userId + ", comments=" + comments
+				+ ", w_Date=" + w_Date + ", rate=" + rate + ", spoiler=" + spoiler + "]";
 	}
+
 	
-	
-	
+
 }

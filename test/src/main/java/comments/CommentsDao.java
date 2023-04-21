@@ -25,16 +25,16 @@ public class CommentsDao {
 		String sql = "insert into comments values (seq_comments.nextVal, ?, ?, ?, ?, ?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			//pstmt.setDouble(1, vo.getNum());
+			
 			pstmt.setDouble(1, vo.getMovieNum());
 			pstmt.setString(2, vo.getUserId());
 			pstmt.setString(3, vo.getComments());
-			pstmt.setString(4, vo.getw_date());
+			pstmt.setDate(4, vo.getW_Date());
 			pstmt.setDouble(5, vo.getRate());
 			pstmt.setString(6, vo.getSpoiler());
 
-			int num = pstmt.executeUpdate();
-			System.out.println("insert 결과 : " + num);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -62,7 +62,7 @@ public class CommentsDao {
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
 				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getDouble(6), rs.getString(7)));
+						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class CommentsDao {
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
 				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getDouble(6), rs.getString(7)));
+						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -112,20 +112,27 @@ public class CommentsDao {
 	 * @return
 	 */
 	public ArrayList<CommentsVo> showAllCommentsByDate(double movieId) {
+		
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
+		
 		String sql = "select * from comment where movieNum = ? order by date desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
-			ResultSet rs = pstmt.executeQuery();// select 실행
-			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
 				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getDouble(6), rs.getString(7)));
+						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
 			}
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		} finally {
 			try {
 				conn.close();
@@ -145,12 +152,13 @@ public class CommentsDao {
 		String sql = "update comments set comments=? where userId=? and movieNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, vo.getComments());
 			pstmt.setString(2, vo.getUserId());
 			pstmt.setDouble(3, vo.getMovieNum());
 
-			int num = pstmt.executeUpdate();
-			System.out.println("update 결과 : " + num);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -171,11 +179,12 @@ public class CommentsDao {
 		String sql = "delete from comment where movieNum=? and userId=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setDouble(1, vo.getMovieNum());
 			pstmt.setString(2, vo.getUserId());
 
-			int num = pstmt.executeUpdate();
-			System.out.println("delete 결과 : " + num);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

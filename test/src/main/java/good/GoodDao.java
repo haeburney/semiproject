@@ -22,8 +22,8 @@ public class GoodDao {
 			pstmt.setInt(1, vo.getNum());
 			pstmt.setString(2, vo.getUserId());
 
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 추가되었다");
+			pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -62,7 +62,6 @@ public class GoodDao {
 		}
 	}
 	
-			
 	//삭제(글 번호 기준)
 	public void delete2(int num) {
 		Connection conn = dbconn.conn();
