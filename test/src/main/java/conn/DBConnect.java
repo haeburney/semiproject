@@ -21,7 +21,7 @@ public class DBConnect {
 			Class.forName("oracle.jdbc.OracleDriver");
 			
 			//세션수립
-			return DriverManager.getConnection(url, "hr", "hr"); //hr:아이디,비밀번호
+			return DriverManager.getConnection(url, "SEMI_ADMIN", "SEMI_ADMIN"); //hr:아이디,비밀번호
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
