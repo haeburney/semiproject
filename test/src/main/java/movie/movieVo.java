@@ -10,6 +10,10 @@ public class movieVo {
 		
 	}
 	
+	   public movieVo(String video_path) {
+		   super();
+		      this.video_path = video_path;
+	   }
 
 	public movieVo(String id, String poster_path, String title, String video_path) {
 		super();

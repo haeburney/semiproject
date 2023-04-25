@@ -19,7 +19,7 @@ public class CommentsService {
 	}
 	
 	/**
-	 * 내가 쓴 모든 코멘트 달기
+	 * 내가 쓴 모든 코멘트 보여주기
 	 * @param userId
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class CommentsService {
 	 * @return
 	 */
 	public ArrayList<CommentsVo> showAllCommentsByRate(double movieId) {
-		return dao.showAllCommetnsByRate(movieId);
+		return dao.showAllCommentsByRate(movieId);
 	}
 	
 	/**
@@ -43,6 +43,15 @@ public class CommentsService {
 	 */
 	public ArrayList<CommentsVo> showAllCommentsByDate(double movieId) {
 		return dao.showAllCommentsByDate(movieId);
+	}
+	
+	/**
+	 * 한 영화에 대한 모든 코멘트를 스포일러를 기준으로 보여주기
+	 * @param movieId
+	 * @return
+	 */
+	public ArrayList<CommentsVo> showAllCommentsBySpoiler(double movieId) {
+		return dao.showAllCommentsBySpoiler(movieId);
 	}
 	
 	/**
