@@ -16,24 +16,24 @@ padding-top:80px;
 
 /* 캐러셀 안 img 크기 */
 .carousel-item img{ 
-   max-width: 20%;
-   height: 450px;
-   object-fit: cover;
-   margin: auto;   
+ 	width: 1000px;
+	height: 500px;
+	object-fit: contain;
+	margin: auto;	
 }
 
 /* 캐러셀 틀 크기 */
-@media (min-width: 1200px){
-   .carousel-item img{
-   width: 1200px;
-   hegith: 500px;   
-   }
+@media (min-width: 1500px){
+	.carousel-item img{
+	width: 1200px;
+	hegith: 500px;	
+	}
 }
 
 /* 캐러셀 배경색 */
 /* 좌/우 버튼색상을 변경하고 싶었으나, 이미지 파일이라 색상변경이 안되네요*/
 .carousel-inner{
-   background: black;
+	background: black;
 }
 
 </style>
@@ -41,8 +41,7 @@ padding-top:80px;
 </head>
 <body>
 <!-- 메뉴 상당바 출력 -->
-<%@include file="/main/nav.jsp" %>
-<h3>메인페이지입니다.</h3>
+<h6>메인페이지입니다.</h6>
 
 <!-- 캐러셀 -->
 <!--  ${status.index == 0 ? 'active' : ''}: 첫 번째 이미지에 대해서는 자동 슬라이드가 시작되도록 하는 역할 -->
@@ -51,7 +50,7 @@ padding-top:80px;
   <c:forEach var="vo" items="${populerlist }" varStatus="status">
     <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
       <a href="${pageContext.request.contextPath }/submain/populer.do?id=${vo.id }">
-      <img src="https://image.tmdb.org/t/p/w300${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
       </a>
     </div>
     </c:forEach>
