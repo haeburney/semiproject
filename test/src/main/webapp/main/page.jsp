@@ -41,7 +41,6 @@ padding-top:80px;
 </head>
 <body>
 <!-- 메뉴 상당바 출력 -->
-<%@include file="/main/nav.jsp" %>
 <h6>메인페이지입니다.</h6>
 
 <!-- 캐러셀 -->
