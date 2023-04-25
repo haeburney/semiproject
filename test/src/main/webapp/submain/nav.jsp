@@ -29,7 +29,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark"
 		style="background-color: black;" aria-label="Fifth navbar example">
 		<div class="container-fluid">
-			<img class="logo" src="${pageContext.request.contextPath}/image/pop.png">
+			<img class="logo" src="${pageContext.request.contextPath}/image/logo.png">
 			<div class="logo_name_area" align="left" ><span class="logo_name">조각별</span></div>
 
 

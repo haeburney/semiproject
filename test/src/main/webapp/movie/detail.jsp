@@ -38,7 +38,18 @@
 
 <div class="container"> 
         <span class="item item1"> 기본정보 </span> 
-		<span class="item item2">별점 </span> 
+        
+		
+		<span class="item item2">별 
+	
+		</span> 
+			
+		
+		
+		
+		
+		
+		
 		<span class=" item item3"> 하트</span> 
 		<span class="item item4"> 우리평점 </span>
 		<span class="item item5">남의평점 </span> 
