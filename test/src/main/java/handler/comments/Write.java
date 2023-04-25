@@ -31,7 +31,7 @@ public class Write implements Handler {
 			request.setAttribute("vos", vos);
 			
 			
-			return "/폴더명/영화디테일.jsp";
+			return "/submain/nav.jsp";
 		} else { // POST 방식 (내가 쓴 코멘트 DB 에 저장)
 			
 		}
