@@ -8,11 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
 <title>메인페이지</title>
 <style>
-body{
-padding-top:80px;
-}
 
 /* 캐러셀 안 img 크기 */
 .carousel-item img{ 
@@ -38,11 +38,18 @@ padding-top:80px;
 
 </style>
 
+<script>
+var page = []
+var i = Math.floor((Math.random()*))
+
+</script>
+
 </head>
 <body>
+<h3>메인페이지</h3>
 <!-- 메뉴 상당바 출력 -->
-<h6>메인페이지입니다.</h6>
 
+<input type="button" value="테마변경" onclick="change_page();">
 <!-- 캐러셀 -->
 <!--  ${status.index == 0 ? 'active' : ''}: 첫 번째 이미지에 대해서는 자동 슬라이드가 시작되도록 하는 역할 -->
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -54,7 +61,25 @@ padding-top:80px;
       </a>
     </div>
     </c:forEach>
+    
+    <c:forEach var="vo" items="${upcominglist }" varStatus="status">
+    <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
+      <a href="${pageContext.request.contextPath }/submain/upcoming.do?id=${vo.id }">
+      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+      </a>
+    </div>
+    </c:forEach>
+    
+    <c:forEach var="vo" items="${topratelist }" varStatus="status">
+    <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
+      <a href="${pageContext.request.contextPath }/submain/toprate.do?id=${vo.id }">
+      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+      </a>
+    </div>
+    </c:forEach>
+    
   </div>
+  
   
   <!--   좌/우 버튼에 대한 코드로 추정됨 -->
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
