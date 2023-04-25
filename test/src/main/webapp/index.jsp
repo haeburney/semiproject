@@ -13,7 +13,9 @@
 <a href="${pageContext.request.contextPath }/moive/detail.do">영화 디테일</a><br/>
 <a href="${pageContext.request.contextPath }/member/mypage.do">마이페이지</a><br/>
 <a href="${pageContext.request.contextPath }/comments/write.do">로그인</a><br/>
-<a href="${pageContext.request.contextPath }/submain/page.do">서브메인</a><br/>
+<a href="${pageContext.request.contextPath }/submain/populer.do">서브메인(인기순)</a><br/>
+<a href="${pageContext.request.contextPath }/submain/toprate.do">서브메인(평점순)</a><br/>
+<a href="${pageContext.request.contextPath }/submain/upcoming.do">서브메인(개봉예정작)</a><br/>
 <a href="${pageContext.request.contextPath }/comments/write.do">코멘트</a><br/>
 
 </body>
