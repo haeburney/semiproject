@@ -15,16 +15,54 @@
     color: white;
     
   }
-.navbar-dark .bi-search{
+.navbar-dark .bi-search {
     color: black;
 }
 
-.find{
-	margin-left : -40px;
+.logo_name_area {
+	margin-top: 10px;	
 }
 
-.icon {
-	margin-right: 70px;
+.logo {
+	height: 50px;
+	width: 50px;
+	margin-left: 20px;
+}
+
+.logo_name {
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'KOTRA_BOLD-Bold';
+	font-size : 1.5em;
+	color : white;
+   	margin-left: 15px;
+}
+
+.search_area {
+	position: relative;
+	display: flex; 
+	align-items: center;
+	padding-right: 0px;
+	z-index: 2;
+	padding-right: 20px;
+}
+
+.iptfind {
+	text-align: right;
+	width: 200px;
+}
+
+.icon_area {
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+
+.bi .bi-search .fs-3 .icon {
+	right: 0;
 }
 
 .logo {
@@ -70,7 +108,7 @@ color : white;
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  transform: scale(0.8);
+  transform: srgb(0, 0, 0);
   background-color: gray;
   transition: left 250ms linear;
 }
@@ -81,8 +119,8 @@ color : white;
 }
 
 [type="checkbox"]#logoutBtn:checked {
-  background-color: #F4FA58;
-  border-color: #F4FA58;
+  background-color: #FADE6D;
+  border-color: #FADE6D;
 }
 
 [type="checkbox"]#logoutBtn:disabled {
@@ -106,7 +144,7 @@ color : white;
 }
 
 [type="checkbox"]#logoutBtn:enabled:hover {
-  box-shadow: 0 0 0 max(2px, 0.2em) lightgray;
+  box-shadow: 0 0 0 max(2px, 0.2em) black;
 }
 
 [type="checkbox"]#logoutBtn::before {
@@ -118,5 +156,6 @@ color : white;
   border-radius: 50%;
   transform: scale(0.8);
   background-color: gray;
+  border-color: black;
   transition: left 250ms linear;
 }
