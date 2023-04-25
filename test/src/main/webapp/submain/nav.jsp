@@ -45,7 +45,7 @@
 
 				<!--     검색하기 -->
 				<div class="search_area" align="right">
-					<input class="form-control iptfind" type="search" width="200px"
+					<input class="form-control iptfind" type="search"
 						placeholder="작가, 감독으로 찾기" maxlength="8" aria-label="Search"> 
 
 					<div class="icon_area">
