@@ -79,10 +79,22 @@
 /* 		display : flex;  화면 크기에 따라 크기가 달라지게 하는 것*/
 	}
 	
+	#pop_background {
+		position : fixed;
+		width : 100%;
+		height : 1000px;
+		top : 0px;
+		left : 0px;
+		display : none;
+		background-color : #000;
+		opacity : 0.8;
+	}
+	
 </style>
 </head>
 <center>
 <body>
+	
 	<div id="pop">
 	<div id="a"><img src="/test/image/logo4.png" width="90"></div>
 ${msg }

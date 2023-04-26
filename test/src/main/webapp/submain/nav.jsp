@@ -28,7 +28,7 @@
  			//location.href="${pageContext.request.contextPath}/member/login.do";
  		} else {
  			// 버튼 끄면 로그아웃창으로 넘어가기 
- 			//location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
+ 			location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
  		}
  	}
  	
