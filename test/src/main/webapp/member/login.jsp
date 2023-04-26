@@ -13,7 +13,7 @@
     	font-style: normal;
 	}
 	
-	body{
+	body {
 	 background-color : black;
 	 color : white;
 	}
