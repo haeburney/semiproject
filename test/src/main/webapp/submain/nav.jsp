@@ -91,8 +91,11 @@
 									here</a></li>
 						</ul></li>
 
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="bi bi-person-circle fs-3"></i></a></li>
+					<li class="nav-item" id="personCircle">
+						<a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.do?userId=${sessionScope.userId}">
+						<i class="bi bi-person-circle fs-3"></i>
+						</a>
+					</li>
 
 					<label id="logoutLabel"> <input class="ipt_logout" role="switch"
 						type="checkbox" id="logoutBtn" name="logoutBtn"
