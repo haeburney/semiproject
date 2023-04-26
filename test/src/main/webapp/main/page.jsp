@@ -59,6 +59,7 @@ var i = Math.floor((Math.random()*3))
 
 </head>
 <body>
+<jsp : include page="/member/login.jsp"/>
 <jsp:include page="../submain/nav.jsp" flush="ture"/>
 
 <h3>메인페이지</h3>
