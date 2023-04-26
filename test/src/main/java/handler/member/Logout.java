@@ -15,7 +15,7 @@ public class Logout implements Handler {
 		HttpSession sc = request.getSession();
 		sc.invalidate();
 		System.out.println("Logout userId :"+userId);
-		return "redirect:/submain/populer.jsp";
+		return "redirect:/submain/populer.do";
 	}
 
 }
