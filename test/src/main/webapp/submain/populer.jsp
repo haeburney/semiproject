@@ -16,86 +16,60 @@
 	
 </script>
 <link rel="stylesheet" href="/submain/reset.css">
+<link rel="stylesheet" href="/submain/navcss.css">
 
 <style>
+
+.card-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card img{
+	height: 26rem;
+	object-fit: cover;
+}
+
+.list {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
 .layout{
-  width: 1800px;
-  height: 100vh;
-  margin: auto;
-}
-.poster{
-  width: 300px;
-  height: 450px;
-  margin: auto;
-}
-.layout_row{
-  width: 1700px;
-  margin: auto;
-  height: 556.22px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* 이미지 사이 간격 유지 */
-}
-.movie_wrapper{
-  display: flex;
-  flex-direction: column;
-}
-.movie_info{
-  float: left;
-  margin-right: 30px;
-}
-.more{
-width: 120px;
-padding: 8px 15px;
-margin: 10px auto;
+	background-color: black;
 }
 
- .container{ 
-             flex-basis:  25%; 
-             flex : 0; 
-             margin: 8px; 
-             border:1px solid rgb(252, 252, 252); 
-             padding: 8px; 
-             cursor: pointer; 
-             box-sizing: border-box; 
-         } 
-/* .container :hover { 
- 			background:rgba(0,0,0,0.8);  
- 			backdrop-filter: blur(5px);} 
- }*/ 
- 
- #pop_background {
-		position : fixed;
-		width : 100%;
-		height : 1000px;
-		top : 0px;
-		left : 0px;
-		display : none;
-		background-color : #000;
-		opacity : 0.8;
-	}
+
 </style>
-
-<title>서브메인(인기순)</title>
 </head>
 <body id=pop_background>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
-<p>인기순</p>
-<div class="layout_row">
-<c:forEach var="vo" items="${movielist }">
-<div class="container">
-	<div class="movie_wrapper">
-	<a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-	<img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="poster">
-	</a>
-	<div class="movie_info">
-	<h4>${vo.title }</h4>
-	</div>
-	</div>		
-	</div>
-</c:forEach>
+
+<h2>인기순</h2>
+
+<div class ="text-overflow">
+<div class="layout">
+<div class="list">
+<div class="row row-cols-md-2 row-cols-lg-4 g-4">
+  <c:forEach var="vo" items="${movielist }">
+    <div class="col">
+      <div class="card">
+        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
+          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="개봉예정작">
+        </a>
+        <div class="card-body">
+          <p class="card-text">${vo.title }</p>
+        </div>
+      </div>
+    </div>
+  </c:forEach>
+</div>
+</div>
+</div>
 </div>
 
 <c:if test="not empty">

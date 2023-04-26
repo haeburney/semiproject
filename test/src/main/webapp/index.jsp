@@ -16,6 +16,9 @@
 	<a href="${pageContext.request.contextPath }/submain/toprate.do">서브메인(평점순)</a><br/>
 	<a href="${pageContext.request.contextPath }/submain/upcoming.do">서브메인(개봉예정작)</a><br/>
 	<a href="${pageContext.request.contextPath }/comments/write.do">코멘트</a><br/>
+	
+	<a href="${pageContext.request.contextPath }/main/page2.jsp">연습메인</a><br/>
+
 
 </body>
 </html>
