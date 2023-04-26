@@ -1,5 +1,7 @@
 package handler.member;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,24 +14,30 @@ public class Join implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		System.out.println("여기에 왔니?");
 		String view = "";
 
 		if (request.getMethod().equals("GET")) {
 			request.setAttribute("view", "/member/join.jsp");
-			view = "/메인페이지로 이동";
+			view = "/submain/populer.jsp";
 		} else {
-			System.out.println("여기는..?");
+			try {
+				request.setCharacterEncoding("utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=utf-8");
+			
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
 			String nickname = request.getParameter("nickname");
 			System.out.println("userid :"+userId+" / password :"+password+" / nickname :"+nickname);
 			MemberService service = new MemberService();
-			service.join(new MemberVo(userId, password, nickname));
-			view = "redirect:/메인페이지로 이동";
+			service.join(new MemberVo(userId, password, nickname, ""));
+			view = "redirect:/submain/populer.jsp";
 		}
 
 		return view;
 	}
-
 }

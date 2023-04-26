@@ -103,10 +103,40 @@ public class followDao {
 		return list;
 	}
 		
-	//특정 아이디의 팔로우 수를 보여줘 
-	public int countF (String userId) {
+	//특정 아이디의 팔로잉 수를 보여줘 
+	public int countU (String userId) {
 		Connection conn = dbconn.conn();
 		String sql = "select count(followedId) from follow where userId=?";
+		int folnum=0;
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			ResultSet rs =  pstmt.executeQuery();
+			
+			if (rs.next()) {
+				 folnum = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return folnum;
+	}
+	
+	// 특정아이디의 팔로워수
+	public int countF (String userId) {
+		Connection conn = dbconn.conn();
+		String sql = "select count(userId) from follow where followedId=?";
 		int folnum=0;
 		
 		try {

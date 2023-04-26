@@ -80,5 +80,14 @@ margin: 10px auto;
 </c:forEach>
 </div>
 
+<c:if test="not empty">
+	${sessionScope.userId}
+</c:if>
+
+<!-- 로그인/회원가입 페이지창 -->
+<c:if test="${not empty view}">
+	<jsp:include page="${view }"/>
+</c:if>
+
 </body>
 </html>
