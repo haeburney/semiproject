@@ -7,14 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-	$(document).ready(function(){
-		$("#pop_background").css("display", "none");
-		
-		$("body").css("overflow", "hidden");
-	});
-	
-</script>
 <link rel="stylesheet" href="/submain/reset.css">
 
 <style>
@@ -63,22 +55,11 @@ margin: 10px auto;
  			background:rgba(0,0,0,0.8);  
  			backdrop-filter: blur(5px);} 
  }*/ 
- 
- #pop_background {
-		position : fixed;
-		width : 100%;
-		height : 1000px;
-		top : 0px;
-		left : 0px;
-		display : none;
-		background-color : #000;
-		opacity : 0.8;
-	}
 </style>
 
 <title>서브메인(인기순)</title>
 </head>
-<body id=pop_background>
+<body>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 

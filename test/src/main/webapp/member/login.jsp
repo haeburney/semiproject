@@ -5,15 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#close').click(function(){
-			$('#pop').hide();
-		});
-	});
-</script>
 <style type="text/css">
 	@font-face {
     	font-family: 'SUIT-Regular';
@@ -79,13 +71,10 @@
 		border-radius:10px;
 /* 		display : flex;  화면 크기에 따라 크기가 달라지게 하는 것*/
 	}
-	
-	
 </style>
 </head>
 <center>
 <body>
-	<div id="pop_background"></div>
 	<div id="pop">
 	
 	<div id="a"><img src="/test/image/logo4.png" width="90"></div>
