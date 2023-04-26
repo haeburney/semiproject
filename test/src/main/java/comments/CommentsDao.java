@@ -10,7 +10,7 @@ import conn.DBConnect;
 
 public class CommentsDao {
 
-	DBConnect dbconn;
+	private DBConnect dbconn;
 
 	public CommentsDao() {
 		dbconn = DBConnect.getInstance();
@@ -22,16 +22,15 @@ public class CommentsDao {
 	 */
 	public void insert(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into comments values (seq_comments.nextVal, ?, ?, ?, ?, ?,?)";
+		String sql = "insert into comments(NUM, MOVIENUM, USERID, COMMENTS, W_DATE, RATE, SPOILER) values (seq_comments.nextVal, ?, ?, ?, sysdate, ?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setDouble(1, vo.getMovieNum());
 			pstmt.setString(2, vo.getUserId());
 			pstmt.setString(3, vo.getComments());
-			pstmt.setDate(4, vo.getW_Date());
-			pstmt.setDouble(5, vo.getRate());
-			pstmt.setString(6, vo.getSpoiler());
+			pstmt.setDouble(4, vo.getRate());
+			pstmt.setString(5, vo.getSpoiler());
 
 			pstmt.executeUpdate();
 			
@@ -117,7 +116,7 @@ public class CommentsDao {
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comments where movieNum = ? and spoiler = 1 order by date desc";
+		String sql = "select * from comments where movieNum = ? and spoiler = 1 order by w_date desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
@@ -154,7 +153,7 @@ public class CommentsDao {
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comments where movieNum = ? and spoiler = 0 order by date desc";
+		String sql = "select * from comments where movieNum = ? and spoiler = 0 order by w_date desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
