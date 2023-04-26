@@ -16,13 +16,13 @@ public class DetailService {
 	
 	// 2. select
 	// 2-1. 특정 아이디의 movienum과 star(별점) 불러오기
-	public ArrayList<DetailVo> getStarList(DetailVo vo){
-		return dao.starList(vo);
+	public ArrayList<DetailVo> getStarList(String userId){
+		return dao.starList(userId);
 	}
 	
 	// 2-2. 특정 아이디의 찜한 movienum 불러오기
-	public ArrayList<DetailVo> getLikeList(String bb){
-		return dao.likeList(bb);
+	public ArrayList<DetailVo> getWishList(String bb){
+		return dao.WishList(bb);
 	}
 	
 	// 2-3. 특정 영화의 평균 별점 불러오기
@@ -32,12 +32,12 @@ public class DetailService {
 	
 	// 3. update
 	// 3-1. 특정 영화의 찜 수정하기
-	public void updateLike(DetailVo vo) {
-		dao.updateLike(vo);
+	public void updateWish(DetailVo vo) {
+		dao.updateWish(vo);
 	}
 	
 	// 3-2. 특정 영화의 별점 수정하기
 	public void updateStar(DetailVo vo) {
-		dao.updateLike(vo);
+		dao.updateStar(vo);
 	}
 }

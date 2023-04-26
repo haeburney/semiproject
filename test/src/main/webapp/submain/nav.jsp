@@ -19,7 +19,31 @@
 	integrity="sha512-qEan5nS02+Q5oN58dmG9N9Z4f4MT4yaNzFw/iRkRJzMA8+CDGt90E3l3J9Pm+Z8lCGYIda3Cw0V7dA8W8Kvztg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+<script>
+	function lBtn(){
+ 		let flag=document.getElementById("logoutBtn").checked
+ 		if(flag){
+ 			// 버튼 키면 로그인창으로 넘어가기 
+ 			location.href="${pageContext.request.contextPath}/member/login.do";
+ 		} else {
+ 			// 버튼 끄면 로그아웃창으로 넘어가기 
+ 			location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
+ 		}
+ 	}
+ 	
+ 	window.onload = function(){
+ 		let userId = "${sessionScope.userId}";
+ 		console.log("userId :"+userId);
+ 		if(userId.length > 0){
+ 			console.log("로그인을 하려고 하거나 된 상태?");
+ 			document.getElementById("logoutBtn").checked=true;
+ 		} else {
+ 			console.log("로그인 안 된 상태");
+ 			document.getElementById("logoutBtn").checked=false;
+ 			document.getElementById("personCircle").style="display:none";
+ 		}
+ 	}
+</script>
 
 </head>
 
@@ -29,7 +53,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark"
 		style="background-color: black;" aria-label="Fifth navbar example">
 		<div class="container-fluid">
-			<img class="logo" src="${pageContext.request.contextPath}/image/pop.png">
+			<img class="logo" src="${pageContext.request.contextPath}/image/logo.png">
 			<div class="logo_name_area" align="left" ><span class="logo_name">조각별</span></div>
 
 
@@ -45,7 +69,7 @@
 
 				<!--     검색하기 -->
 				<div class="search_area" align="right">
-					<input class="form-control iptfind" type="search" width="200px"
+					<input class="form-control iptfind" type="search"
 						placeholder="작가, 감독으로 찾기" maxlength="8" aria-label="Search"> 
 
 					<div class="icon_area">
@@ -72,14 +96,14 @@
 
 					<label id="logoutLabel"> <input class="ipt_logout" role="switch"
 						type="checkbox" id="logoutBtn" name="logoutBtn"
-						onclick="logoutBtn()" ></input>
+						onclick="lBtn()" />
 					</label>
-
 				</ul>
 
 			</div>
 		</div>
 	</nav>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
