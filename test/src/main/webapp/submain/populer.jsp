@@ -7,7 +7,14 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script>
+	$(document).ready(function(){
+		$("#pop_background").css("display", "none");
+		
+		$("body").css("overflow", "hidden");
+	});
+	
+</script>
 <link rel="stylesheet" href="/submain/reset.css">
 <link rel="stylesheet" href="/submain/navcss.css">
 
@@ -34,13 +41,10 @@
 	background-color: black;
 }
 
-h2{
-	color: pink;
-	background-color: black;
-}
+
 </style>
 </head>
-<body>
+<body id=pop_background>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
@@ -67,6 +71,15 @@ h2{
 </div>
 </div>
 </div>
+
+<c:if test="not empty">
+	${sessionScope.userId}
+</c:if>
+
+<!-- 로그인/회원가입 페이지창 -->
+<c:if test="${not empty view}">
+	<jsp:include page="${view }"/>
+</c:if>
 
 </body>
 </html>
