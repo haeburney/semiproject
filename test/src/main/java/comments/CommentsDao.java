@@ -55,7 +55,7 @@ public class CommentsDao {
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
-		String sql = "select * from comment where userId=?";
+		String sql = "select * from comments where userId=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
@@ -85,7 +85,7 @@ public class CommentsDao {
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
-		String sql = "select * from comment where movieNum = ? and spoiler = 1  order by rate desc";
+		String sql = "select * from comments where movieNum = ? and spoiler = 1  order by rate desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
@@ -117,7 +117,7 @@ public class CommentsDao {
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comment where movieNum = ? and spoiler = 1 order by date desc";
+		String sql = "select * from comments where movieNum = ? and spoiler = 1 order by date desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
@@ -154,7 +154,7 @@ public class CommentsDao {
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comment where movieNum = ? and spoiler = 0 order by date desc";
+		String sql = "select * from comments where movieNum = ? and spoiler = 0 order by date desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, movieId);
@@ -214,7 +214,7 @@ public class CommentsDao {
 	 */
 	public void delete(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "delete from comment where movieNum=? and userId=?";
+		String sql = "delete from comments where movieNum=? and userId=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			

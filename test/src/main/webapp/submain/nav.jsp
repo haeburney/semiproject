@@ -19,7 +19,31 @@
 	integrity="sha512-qEan5nS02+Q5oN58dmG9N9Z4f4MT4yaNzFw/iRkRJzMA8+CDGt90E3l3J9Pm+Z8lCGYIda3Cw0V7dA8W8Kvztg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+<script>
+	function lBtn(){
+ 		let flag=document.getElementById("logoutBtn").checked
+ 		if(flag){
+ 			// 버튼 키면 로그인창으로 넘어가기 
+ 			location.href="${pageContext.request.contextPath}/member/login.do";
+ 		} else {
+ 			// 버튼 끄면 로그아웃창으로 넘어가기 
+ 			location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
+ 		}
+ 	}
+ 	
+ 	window.onload = function(){
+ 		let userId = "${sessionScope.userId}";
+ 		console.log("userId :"+userId);
+ 		if(userId.length > 0){
+ 			console.log("로그인을 하려고 하거나 된 상태?");
+ 			document.getElementById("logoutBtn").checked=true;
+ 		} else {
+ 			console.log("로그인 안 된 상태");
+ 			document.getElementById("logoutBtn").checked=false;
+ 			document.getElementById("personCircle").style="display:none";
+ 		}
+ 	}
+</script>
 
 </head>
 
@@ -72,9 +96,8 @@
 
 					<label id="logoutLabel"> <input class="ipt_logout" role="switch"
 						type="checkbox" id="logoutBtn" name="logoutBtn"
-						onclick="logoutBtn()" ></input>
+						onclick="lBtn()" />
 					</label>
-
 				</ul>
 
 			</div>
