@@ -8,10 +8,25 @@
 <title>Insert title here</title>
 <style>
 #spanPwd, #spanId{
-color : blue;
+color : #FFDD55;
 }
-</style>
 
+#password, #checkpwd{
+	outline: 0;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px solid gray;
+	width: 170px;
+	height: 24px;
+	background-color: black;
+	color: white;
+	margin-bottom : 5px;
+}
+
+
+</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginJoinCss.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
 
@@ -28,34 +43,6 @@ $(document).ready(function(){
 	});
 });
 
-function idJoin(){
-	var pattern = /\s/g;
-	// 공백 검사를 해주는 정규표현식
-	let userId = joinInfo.userId.value;
-	let password = joinInfo.password.value;
-	let checkpwd = joinInfo.checkpwd.value;
-	let nickname = joinInfo.nickname.value;
-
-	let form = document.joinInfo;
-	form.method='POST';
-	form.action="${pageContext.request.contextPath}/member/join.do";
-	
-	if(password != checkpwd){
-		alert("비밀번호가 일치하지 않습니다.");
-	} else if (userId.length==0){
-		alert("아이디를 입력해주세요");
-	} else if (password.length==0){
-		alert("비밀번호를 입력해주세요");
-	} else if(nickname.length==0){
-		alert("닉네임을 입력해주세요");
-	}
-	
-	if(userId.match(pattern) || password.match(pattern)){
-		alert("공백을 없애주세요.");
-	} else {
-		form.submit();
-	}
-}
 
 
 function idcheck(){
@@ -84,21 +71,21 @@ function idcheck(){
 </script>
 </head>
 <body>
-	<h4>재연이 언니가 만든 로그인 jsp에서 회원가입 버튼을 누르면 여기로 올 수 있게</h4>
-	
+	<div id="pop">
 	<form name="joinInfo" action="${pageContext.request.contextPath }/member/join.do" action="post">
-		<div>아이디 <span id="spanId"></span></div>
-		<input type="text" name="userId" placeholder="아이디 입력">
-		<input type="button" value="중복 확인" onclick="idcheck()">
-		<div>비밀번호 <span id="spanPwd"></span></div>
-		<input type="password" name="password" id="password" placeholder="비밀번호 입력">
-		<div>비밀번호 확인</div>
-		<input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인">
-		<div>닉네임</div>
-		<input type="text" name="nickname" placeholder="닉네임 입력">
-		<input type="button" value="가입완료" onclick="idJoin()">
-		<input type="button" value="가입취소" onclick="location.href='영화메인페이지로이동'"> 
+		<div id="a"><img src="/test/image/logo4.png" width="90"></div>
+		<div><span id="spanId"></span></div>
+		<input id="c" type="text" name="userId" placeholder="아이디 입력">
+		<div><input  class="button"  type="button" value="중복 확인" onclick="idcheck()"></div>
+		<div ><span id="spanPwd"></span></div>
+		<div><input type="password" name="password" id="password" placeholder="비밀번호 입력"></div>
+		
+		<div><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인"></div>
+		
+		<div><input id="c" type="text" name="nickname" placeholder="닉네임 입력"></div>
+		<input class="button"  id="d" type="button" value="가입완료" onclick="idJoin()">
+		<img src="../image/close.png" style="width:30px" onclick="closeX()">
 	</form>
-
+	</div>
 </body>
 </html>
