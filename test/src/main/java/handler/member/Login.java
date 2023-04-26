@@ -17,8 +17,9 @@ public class Login implements Handler {
 		String msg = "/submain/populer.jsp";  
 		
 		if(request.getMethod().equals("GET")) {  
-			request.setAttribute("view", "/member/login.jsp");  
-			Allview = "/submain/populer.do"; 
+			//request.setAttribute("view", "/member/login.jsp");  
+			//Allview = "/submain/populer.do"; 
+			return "/member/login.jsp";
 			
 		} else { 
 			String userId = request.getParameter("userId");  

@@ -18,12 +18,26 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
 	integrity="sha512-qEan5nS02+Q5oN58dmG9N9Z4f4MT4yaNzFw/iRkRJzMA8+CDGt90E3l3J9Pm+Z8lCGYIda3Cw0V7dA8W8Kvztg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+	
 	function lBtn(){
  		let flag=document.getElementById("logoutBtn").checked
  		if(flag){
- 			let win = window.open("${pageContext.request.contextPath }/member/login.jsp", 'win', 'top=100, botton=100')
+ 			$.ajax({
+ 				type : "GET",
+ 				url : "${pageContext.request.contextPath}/member/login.do",
+ 				dataType : "text",
+ 				error : function(){
+ 					console.log("에러");
+ 				},
+ 				success : function(data){
+ 					console.log(data);
+ 					$("#popUp").html(data);
+ 				}
+ 			})
+ 			
+ 			//let win = window.open("${pageContext.request.contextPath }/member/login.jsp", 'win', 'top=100, botton=100')
  			// 버튼 키면 로그인창으로 넘어가기 
  			//location.href="${pageContext.request.contextPath}/member/login.do";
  		} else {
@@ -92,8 +106,11 @@
 									here</a></li>
 						</ul></li>
 
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="bi bi-person-circle fs-3"></i></a></li>
+					<li class="nav-item" id="personCircle">
+						<a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.do?userId=${sessionScope.userId}">
+						<i class="bi bi-person-circle fs-3"></i>
+						</a>
+					</li>
 
 					<label id="logoutLabel"> <input class="ipt_logout" role="switch"
 						type="checkbox" id="logoutBtn" name="logoutBtn"
@@ -105,6 +122,7 @@
 		</div>
 	</nav>
 
+	<div id="popUp"></div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
