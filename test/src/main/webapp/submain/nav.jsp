@@ -23,11 +23,12 @@
 	function lBtn(){
  		let flag=document.getElementById("logoutBtn").checked
  		if(flag){
+ 			let win = window.open("${pageContext.request.contextPath }/member/login.jsp", 'win', 'top=100, botton=100')
  			// 버튼 키면 로그인창으로 넘어가기 
- 			location.href="${pageContext.request.contextPath}/member/login.do";
+ 			//location.href="${pageContext.request.contextPath}/member/login.do";
  		} else {
  			// 버튼 끄면 로그아웃창으로 넘어가기 
- 			location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
+ 			//location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
  		}
  	}
  	
@@ -106,6 +107,7 @@
 			</div>
 		</div>
 	</nav>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

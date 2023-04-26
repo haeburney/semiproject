@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#close').click(function(){
+			$('#pop').hide();
+		});
+	});
+</script>
 <style type="text/css">
 	@font-face {
     	font-family: 'SUIT-Regular';
@@ -13,7 +21,7 @@
     	font-style: normal;
 	}
 	
-	body{
+	body {
 	 background-color : black;
 	 color : white;
 	}
@@ -44,10 +52,6 @@
 		margin-bottom : 20px;
 	}
 	
-	#d {
-		margin-right : 30px;
-	}
-	
 	.button {
 		font-family: 'SUIT-Regular';
 		font-weight : 700;
@@ -57,12 +61,29 @@
 		color : white;
 		border : 0;
 		outline : 0;
+		top : 300px;
+	}
+
+	#pop {
+ 		width : 300px; 
+ 		height : 400px; 
+ 		margin-left : -100px;
+ 		margin-top : -150px;
+ 		left : 50%;
+ 		top : 50%;
+		background : #3d3d3d;
+		color : #fff;
+ 		position : absolute; 
+ 		text-align : center; 
+		border-radius:10px;
+/* 		display : flex;  화면 크기에 따라 크기가 달라지게 하는 것*/
 	}
 	
 </style>
 </head>
 <center>
 <body>
+	<div id="pop">
 	<div id="a"><img src="/test/image/logo4.png" width="90"></div>
 ${msg }
 	<form action="${pageContext.request.contextPath }/member/login.do" method="post">
@@ -72,10 +93,11 @@ ${msg }
 	<span id="d">
 	<a href="${pageContext.request.contextPath }/member/main/page.do"><input type="submit" class="button" value="로그인"></a>
 	</span>
-	<span><input type="button" class="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath }/member/join.do'"></span>
+	<span id="e"><input type="button" class="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath }/member/join.do'"></span>
 	</div>
 	</form>
 	</table>
+	</div>
 </body>
 </center>
 </html>
