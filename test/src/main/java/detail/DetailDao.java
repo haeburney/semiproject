@@ -17,7 +17,7 @@ public class DetailDao {
 	// 1. 추가
 	public void insert(DetailVo vo) {
 		Connection conn = DBConn.conn();
-		String sql = "insert into detail values(?, ?, ?, ?)";
+		String sql = "insert into detail values(?, ?, ?, ?, seq_detail.nextVal)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserId());
@@ -41,18 +41,18 @@ public class DetailDao {
 	}
 
 	// 2. select
-	// 2-1. 특정 아이디의 movienum과 star(별점) 불러오기
-	public ArrayList<DetailVo> starList(DetailVo vo){
+	// 2-1. 특정 아이디의 DetailVo 불러오기
+	public ArrayList<DetailVo> starList(String userId){
 		Connection conn = DBConn.conn();
 		ArrayList<DetailVo> list = new ArrayList<>();
-		String sql = "select movienum, star  from detail where userId=?";
+		String sql = "select * from detail where userId=? order by num desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getUserId());
+			pstmt.setString(1, userId);
 			ResultSet rs =pstmt.executeQuery();
 			
 			while(rs.next()) {
-				list.add(new DetailVo(rs.getString(1), rs.getInt(2),rs.getString(3), rs.getInt(4)));
+				list.add(new DetailVo(rs.getString(1), rs.getInt(2),rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,18 +68,18 @@ public class DetailDao {
 		return list;
 	}
 	
-	// 2-2. 특정 아이디의 찜한 movienum 불러오기
-	public ArrayList<DetailVo> likeList(String userId){
+	// 2-2. 특정 아이디의 찜한 DetailVo 불러오기
+	public ArrayList<DetailVo> WishList(String userId){
 		Connection conn = DBConn.conn();
 		ArrayList<DetailVo> list = new ArrayList<>();
-		String sql = "select movienum  from detail where wish=0 and userid=?";
+		String sql = "select * from detail where wish=0 and userid=? order by num desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,userId);
 			ResultSet rs =pstmt.executeQuery();
 			
 			while(rs.next()) {
-				list.add(new DetailVo(rs.getString(1), rs.getInt(2),rs.getString(3), rs.getInt(4)));
+				list.add(new DetailVo(rs.getString(1), rs.getInt(2),rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -125,7 +125,7 @@ public class DetailDao {
 
 	// 3. update
 	// 3-1. 특정 영화의 찜 수정하기
-	public void updateLike(DetailVo vo) {
+	public void updateWish(DetailVo vo) {
 		Connection conn = DBConn.conn();
 		String sql = "update detail set wish=? where userId=? and movieNum=?";
 		try {

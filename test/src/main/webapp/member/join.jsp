@@ -30,6 +30,7 @@ $(document).ready(function(){
 
 function idJoin(){
 	var pattern = /\s/g;
+	// 공백 검사를 해주는 정규표현식
 	let userId = joinInfo.userId.value;
 	let password = joinInfo.password.value;
 	let checkpwd = joinInfo.checkpwd.value;
@@ -85,7 +86,7 @@ function idcheck(){
 <body>
 	<h4>재연이 언니가 만든 로그인 jsp에서 회원가입 버튼을 누르면 여기로 올 수 있게</h4>
 	
-	<form name="joinInfo" id="jj" action="${pageContext.request.contextPath }/member/join.do" action="post">
+	<form name="joinInfo" action="${pageContext.request.contextPath }/member/join.do" action="post">
 		<div>아이디 <span id="spanId"></span></div>
 		<input type="text" name="userId" placeholder="아이디 입력">
 		<input type="button" value="중복 확인" onclick="idcheck()">
@@ -96,8 +97,7 @@ function idcheck(){
 		<div>닉네임</div>
 		<input type="text" name="nickname" placeholder="닉네임 입력">
 		<input type="button" value="가입완료" onclick="idJoin()">
-		<input type="button" value="가입취소" id="cancel" onclick="cancel()">
-		
+		<input type="button" value="가입취소" onclick="location.href='영화메인페이지로이동'"> 
 	</form>
 
 </body>

@@ -119,8 +119,8 @@ public class DispatcherServlet extends HttpServlet {
 				
 				if(view.startsWith("redirect")) {  //받은 뷰페이지 경로가, redirect로 실행된다면
 					String[] path = view.split(":");  //view.split(":")한 값을 path배열에 넣어라
+					System.out.println(request.getContextPath() + path[1]);
 					response.sendRedirect(request.getContextPath() + path[1]);
-					
 				} else if (view.startsWith("responsebody")) {
 					String[] path = view.split("/");
 					response.getWriter().append(path[1]);  //출력 : {flag:true} 이런 형태로 출력됨

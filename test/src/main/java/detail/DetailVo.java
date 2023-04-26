@@ -7,17 +7,19 @@ public class DetailVo {
 	private int movieNum;
 	private String wish;
 	private int star;
+	private int num;
 
 	public DetailVo() {
 
 	}
 
-	public DetailVo(String userId, int movieNum, String wish, int star) {
+	public DetailVo(String userId, int movieNum, String wish, int star, int num) {
 		super();
 		this.userId = userId;
 		this.movieNum = movieNum;
 		this.wish = wish;
 		this.star = star;
+		this.num = num;
 	}
 
 	public String getUserId() {
@@ -52,9 +54,18 @@ public class DetailVo {
 		this.star = star;
 	}
 
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 	@Override
 	public String toString() {
-		return "DetailVo [userId=" + userId + ", movieNum=" + movieNum + ", wish=" + wish + ", star=" + star + "]";
+		return "DetailVo [num=" + num + ", userId=" + userId + ", movieNum=" + movieNum + ", wish=" + wish + ", star="
+				+ star + "]";
 	}
 
 }

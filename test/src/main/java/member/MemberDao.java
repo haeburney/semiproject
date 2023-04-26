@@ -17,12 +17,13 @@ public class MemberDao {
 	// 가입
 	public void insert(MemberVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into member values (?, ?, ?)";
+		String sql = "insert into member values (?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserId());
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getNickname());
+			pstmt.setString(4, vo.getIntroLine());
 
 			pstmt.executeUpdate();
 
@@ -50,7 +51,7 @@ public class MemberDao {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				vo = new MemberVo(rs.getString(1), rs.getString(2), rs.getString(3));
+				vo = new MemberVo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -113,5 +114,30 @@ public class MemberDao {
 			}
 		}
 	}
+	
+	// 한 줄 소개 insert
+		public void lineInsert(String userId, String Line) {
+			Connection conn = dbconn.conn();
+			String sql = "update set member introLine=? where userId=?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, Line);
+				pstmt.setString(2, userId);
+				
+				int check = pstmt.executeUpdate();
+				System.out.println(check + "줄 한 줄 소개 insert");
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 
 }
