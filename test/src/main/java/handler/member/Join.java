@@ -17,8 +17,9 @@ public class Join implements Handler {
 		String view = "";
 
 		if (request.getMethod().equals("GET")) {
-			request.setAttribute("view", "/member/join.jsp");
-			view = "/submain/populer.jsp";
+			//request.setAttribute("view", "/member/join.jsp");
+			//view = "/submain/populer.jsp";
+			return "/member/join.jsp";
 		} else {
 			try {
 				request.setCharacterEncoding("utf-8");
@@ -35,7 +36,7 @@ public class Join implements Handler {
 			System.out.println("userid :"+userId+" / password :"+password+" / nickname :"+nickname);
 			MemberService service = new MemberService();
 			service.join(new MemberVo(userId, password, nickname, ""));
-			view = "redirect:/submain/populer.jsp";
+			view = "/member/login.jsp";
 		}
 
 		return view;
