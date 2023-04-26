@@ -5,15 +5,64 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <title>서브메인(개봉예정작)</title>
+<style>
+
+.card-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card img{
+	height: 26rem;
+	object-fit: cover;
+}
+
+.list {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
+.layout{
+	background-color: black;
+}
+
+h2{
+	color: pink;
+	background-color: black;
+}
+</style>
 </head>
 <body>
-<p>개봉예정작</p>
-<c:forEach var="vo" items="${upcominglist }">
-<a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-<img src="https://image.tmdb.org/t/p/w500${vo.poster_path}">
-</a>
-<h4>${vo.title }</h4>
-</c:forEach>
+<!-- 메뉴 상당바 출력 -->
+<%@include file="/submain/nav.jsp" %>
+
+
+<h2>개봉예정작</h2>
+
+<div class="layout">
+<div class="list">
+<div class="row row-cols-md-2 row-cols-lg-4 g-4">
+  <c:forEach var="vo" items="${upcominglist }">
+    <div class="col">
+      <div class="card">
+        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
+          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="개봉예정작">
+        </a>
+        <div class="card-body">
+          <p class="card-text">${vo.title }</p>
+        </div>
+      </div>
+    </div>
+  </c:forEach>
+</div>
+</div>
+</div>
+
+
 </body>
 </html>
