@@ -14,6 +14,11 @@
     	font-style: normal;
 	}
 	
+	body {
+		background-color : black;
+		color : white;
+	}
+	
 	#bye {
 		font-family: 'KOTRA_BOLD-Bold';
 	}
