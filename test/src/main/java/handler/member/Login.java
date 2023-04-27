@@ -33,7 +33,7 @@ public class Login implements Handler {
 				return msg;
 			}
 		}
-		return Allview;  
+		return "/main/page.do";  
 		
 	}
 

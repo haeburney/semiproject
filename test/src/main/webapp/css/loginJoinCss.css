@@ -73,3 +73,7 @@ input::-webkit-input-placeholder {
 	border-radius: 10px;
 	/* 		display : flex;  화면 크기에 따라 크기가 달라지게 하는 것*/
 }
+
+#log {
+	color : blue;
+}
