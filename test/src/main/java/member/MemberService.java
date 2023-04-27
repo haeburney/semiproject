@@ -31,4 +31,9 @@ public class MemberService {
 	public void lineInsert(String userId, String introLine) {
 		dao.lineInsert(userId, introLine);
 	}
+	
+	//한줄소개 없애기
+	public void lineDel(String userId) {
+		dao.lineDel(userId);
+	}
 }
