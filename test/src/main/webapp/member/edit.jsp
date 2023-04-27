@@ -21,6 +21,7 @@
 	}
 	#out{
 		float : right;
+		margin-right:160px;
 	}
 	#box{
 		border : solid 1px black;
@@ -46,32 +47,26 @@
 /* } */
 
 </style>
-<script>
 
-
-</script>
 </head>
 <body>
-	<div class="overlay">
 		<div id="box">
 			<h2>정보 수정</h2>
 
-<%-- 	<form action="${pageContext.request.contextPath }/member/edit.do?userId=${sessionScope.userId}" method="post"> --%>
-			<form action="${pageContext.request.contextPath }/member/edit.do" method="post">
+ 			<form action="${pageContext.request.contextPath }/member/edit.do?userId=${sessionScope.userId}" method="post">
 				<div>
-					id 수정 <input name="userId" placeholder="${vo.userId }">
+					비밀번호 수정 <input id="pwd" name="pwd" placeholder="${vo.userId }">
 				</div>
 				<div>
-					닉네임 수정 <input name="nickname" placeholder="${vo.nickname }">
+					닉네임 수정 &nbsp; <input id="nickName" name="nickname" placeholder="${vo.nickname }">
 				</div>
 				<input type="submit" value="수정하기">
-				<input type="button" value="취소하기" onclick="location.href='${pageContext.request.contextPath }/member/mypage.do?userId=${sessionScope.userId }'">
+				<input type="button" value="취소하기" onclick="">
 			</form>
 		</div>
 
 	
-	<a id="out" href="${pageContext.request.contextPath }/member/out.do?${sessionScope.userId}">탈퇴하기</a>
-	</div>
+	<a id="out" href="${pageContext.request.contextPath }/member/out.do?userId=${sessionScope.userId}">탈퇴하기</a>
 
 </body>
 </html>

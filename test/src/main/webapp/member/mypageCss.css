@@ -27,7 +27,7 @@
 #linesParent {
 	display: flex;
 	justify-content: center;
-	margin-bottom : 5%;
+	margin-bottom : 5px;
 }
 
 #addLine {
@@ -84,4 +84,10 @@
 #overlay.is-open {
   opacity: 1;
   visibility: visible;
+}
+
+img{
+	width :80px;
+	margin-left:20px;
+	margin-right:20px;
 }
