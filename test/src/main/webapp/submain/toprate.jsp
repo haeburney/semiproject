@@ -10,10 +10,20 @@
 <title>평점순</title>
 <style>
 
+.card {
+  border: none;
+}
+
 .card-text {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	color: white;
+	text-align: center;
+}
+
+.card-body{
+	background-color: black;
 }
 
 .card img{

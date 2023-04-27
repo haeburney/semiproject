@@ -17,6 +17,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	
 }
 
 .card img{
@@ -39,6 +40,38 @@ h2{
 	background-color: black;
 }
 </style>
+
+<!-- 다음페이지 -->
+<script type="text/javascript">
+let num = 1;
+function next(){
+	num++;
+	//비동기요청 객체 생성
+	xhttp = new XMLHttpRequest();
+	
+	//비동기 요청 응답이 왔을때 자동 실행될 핸들러 등록
+	xhttp.onload = function(){
+		let val = xhttp.responseText;
+		let arr = JSON.parse(val);
+		let html = '';
+		for(let obj of arr){
+			html += obj.content+"(writer:"+obj.writer+")<br/>" //댓글내용과 작성자누구인가
+		}
+		let div = document.getElementById("r_"+num);
+		div.innerHTML = html;
+	}
+	
+	//작성값(?) 요청전송에 보낼 param(작성값(?))
+	alert(num);
+	let param = "?next=" + num;
+	
+	//요청 전송방식, 서버페이지 url 설정. get방식인 경우 url뒤에 파라메타 붙임
+	xhttp.open("GET", "${pageContext.request.contextPath}/submain/nextpopuler.do" + param);
+	
+	//요청보냄
+	xhttp.send();
+}
+</script>
 </head>
 <body>
 <!-- 메뉴 상당바 출력 -->
@@ -67,6 +100,9 @@ h2{
 </div>
 </div>
 </div>
+
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?next="+2><input type="button" value="다음페이지"></a>
+
 
 </body>
 </html>
