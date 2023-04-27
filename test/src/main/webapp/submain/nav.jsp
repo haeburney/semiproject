@@ -24,6 +24,7 @@
 		document.getElementById("popUp").remove();
 		document.getElementById("logoutBtn").checked=false;
 		console.log("하이~");
+		//document.getElementById("hmm").style.opacity = "1";
 	}
 	
 	function lBtn(){
@@ -32,6 +33,11 @@
  		let popUp = document.createElement("div");
  		popUp.setAttribute("id","popUp");
  		document.querySelector("#popUpParent").append(popUp);
+ 		
+ 		//document.getElementById("hmm").style.backgroundColor = "rgba( 255, 255, 255, 0.5 )";
+ 		//document.getElementById("popUp").style.opacity = "1";
+ 		//background-color: rgba( 255, 255, 255, 0.5 );
+ 		//document.getElementById("box").style.opacity = "0.3";
  		
  		if(flag){
  			$.ajax({

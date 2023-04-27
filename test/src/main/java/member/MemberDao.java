@@ -118,7 +118,7 @@ public class MemberDao {
 	// 한 줄 소개 insert
 		public void lineInsert(String userId, String Line) {
 			Connection conn = dbconn.conn();
-			String sql = "update set member introLine=? where userId=?";
+			String sql = "update member set introLine=? where userId=?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, Line);
@@ -139,5 +139,31 @@ public class MemberDao {
 				}
 			}
 		}
+		
+		// 한 줄 소개 delete
+		public void lineDel(String userId) {
+			Connection conn = dbconn.conn();
+			String sql = "update member set introLine=? where userId=?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, null);
+				pstmt.setString(2, userId);
+				
+				int check = pstmt.executeUpdate();
+				System.out.println(check + "줄 한 줄 소개 지우기");
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 
 }

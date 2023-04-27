@@ -8,11 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginJoinCss.css">
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('#close').click(function(){
-			$('#pop').hide();
-		});
-	});
+	
 	
 </script>
 

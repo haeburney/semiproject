@@ -35,6 +35,8 @@
 	
 <script type="text/javascript">
 	function del() {
+		console.log("찐비번 : ${m.password}");
+		console.log("내가입력한 비번 : "+f.password.value);
 		if('${m.password }'== f.password.value){
 			f.submit();
 			
