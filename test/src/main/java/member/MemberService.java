@@ -26,4 +26,9 @@ public class MemberService {
 	public void delMember(String userId) {
 		dao.delete(userId);
 	}
+	
+	//한줄소개 넣기
+	public void lineInsert(String userId, String introLine) {
+		dao.lineInsert(userId, introLine);
+	}
 }

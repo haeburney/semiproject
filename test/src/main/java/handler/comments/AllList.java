@@ -20,11 +20,11 @@ public class AllList implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
-		double movieNum = Double.parseDouble(request.getParameter("movieNum"));
+		//double movieNum = Double.parseDouble(request.getParameter("movieNum"));
 		// 이 전 페이지(디테일)에서 클릭하면, 무비아이디를 갖고 갈거다. .do?movieNum=아이디
 		ArrayList<CommentsVo> vos = new ArrayList<CommentsVo>();
 		CommentsService service = new CommentsService();
-		vos = service.showAllCommentsByDate(movieNum);
+		vos = service.showAllCommentsByDate(1);
 		
 		request.setAttribute("vos", vos);
 		
