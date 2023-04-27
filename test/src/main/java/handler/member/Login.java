@@ -14,6 +14,7 @@ public class Login implements Handler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
 		String Allview = "";
+		String msg = "아이디/비밀번호가 올바르지 않습니다.";
 		
 		if(request.getMethod().equals("GET")) {  
 			return "/member/login.jsp";
@@ -28,6 +29,8 @@ public class Login implements Handler {
 			if(vo != null && password.equals(vo.getPassword())) {
 				HttpSession session = request.getSession();   
 				session.setAttribute("userId", userId);
+			} else if(vo != null) {
+				return msg;
 			}
 		}
 		return Allview;  

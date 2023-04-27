@@ -20,13 +20,13 @@
 <body>
    <div id="pop">
       <div id="a"><img src="/test/image/logo4.png" width="140"></div>
-      <form action="${pageContext.request.contextPath }/member/login.do" method="post">
+      <form action="${pageContext.request.contextPath }/member/join.do" method="post">
          <div><input id="b" type="text" name="userId" placeholder="아이디"></div>
          <div><input id="c" type="password" name="password" placeholder="비밀번호"></div>
          <div>
          <a href="${pageContext.request.contextPath }/member/main/page.do">
-         <input id="d" type="submit" class="button" value="로그인"></a>
-         <input id="e" type="button" class="button" value="회원가입" onclick="joinDo()">
+         <input id="d" type="button" class="button" value="로그인" onclick="loginDo()"></a>
+         <input id="e" type="submit" class="button" value="회원가입" onclick="joinDo()">
          </div>
       	 <div id="f">
       	 <img src="../image/close.png" style="width:30px" onclick="frameclose()">
