@@ -33,8 +33,8 @@ public class Edit implements Handler {
 			MemberVo vo = service.getMember(userId);
 			request.setAttribute("vo", vo);
 			System.out.println("Edit의 GET");
-			return "/member/mypage.jsp";
-
+			//return "/member/mypage.jsp";
+			return "/member/edit.jsp";
 		} else {
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
@@ -43,7 +43,7 @@ public class Edit implements Handler {
 
 			service.editMyInfo(new MemberVo(userId, password, nickname, ""));
 			request.setAttribute("view", "/member/edit.do?userId=" + userId);
-			return "/member/mypage.jsp";
+			return "/member/mypage.do";
 		}
 
 		//return "메인페이지로 이동";

@@ -102,19 +102,19 @@ public class mypage implements Handler {
 
 			// 별점 리스트
 			ArrayList<DetailVo> starList = detailService.getStarList(userId);
-			request.setAttribute("starList", starList);
+			//request.setAttribute("starList", starList);
 			ArrayList<movieVo> starImageList = new ArrayList<movieVo>();
 			
 			size = 0;
-			if (detailList.size() <= max) {
-				size = detailList.size();
+			if (starList.size() <= max) {
+				size = starList.size();
 			} else {
 				size = max;
 			}
 
 			for (int i = 0; i < size; i++) {
 				//String movieNum = "502356";
-				String movieNum = Integer.toString(detailList.get(i).getmovieNum());
+				String movieNum = Integer.toString(starList.get(i).getmovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
 							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
@@ -152,15 +152,15 @@ public class mypage implements Handler {
 			ArrayList<movieVo> commentsImageList = new ArrayList<movieVo>();
 			
 			size = 0;
-			if (detailList.size() <= max) {
-				size = detailList.size();
+			if (commentsList.size() <= max) {
+				size = commentsList.size();
 			} else {
 				size = max;
 			}
 
 			for (int i = 0; i < size; i++) {
-				// String movieNum = "502356";
-				String movieNum = Integer.toString(detailList.get(i).getmovieNum());
+				 //String movieNum = "502356";
+				 String movieNum = String.valueOf(commentsList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
 							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");

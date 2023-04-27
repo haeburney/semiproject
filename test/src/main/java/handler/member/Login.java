@@ -35,7 +35,7 @@ public class Login implements Handler {
 				session.setAttribute("userId", userId);
 				System.out.println("로그인이 되었어요");
 			}
-			Allview = "/submain/populer.do";
+			Allview = "redirect:/submain/populer.do";
 		}
 		return Allview;  
 		

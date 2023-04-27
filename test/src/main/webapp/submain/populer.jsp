@@ -7,68 +7,77 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-	$(document).ready(function(){
-		$("#pop_background").css("display", "none");
-		
-		$("body").css("overflow", "hidden");
-	});
-	
-</script>
 <link rel="stylesheet" href="/submain/reset.css">
-<link rel="stylesheet" href="/submain/navcss.css">
-
 <style>
-
-.card-text {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.card img{
-	height: 26rem;
-	object-fit: cover;
-}
-
-.list {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 1200px;
-}
-
 .layout{
-	background-color: black;
+  width: 1800px;
+  height: 100vh;
+  margin: auto;
+}
+.poster{
+  width: 300px;
+  height: 450px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.layout_row{
+  width: 1700px;
+  margin: auto;
+  height: 556.22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* 이미지 사이 간격 유지 */
+}
+.movie_wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.movie_info{
+  float: left;
+  margin-right: 30px;
+}
+.more{
+width: 120px;
+padding: 8px 15px;
+margin: 10px auto;
 }
 
+.container{
+            flex-basis:  25%;
+            flex : 0;
+            margin: 8px;
+            border:1px solid rgb(252, 252, 252);
+            padding: 8px;
+            cursor: pointer;
+            box-sizing: border-box;
 
+        }
 </style>
+
+<title>서브메인(인기순)</title>
 </head>
-<body id=pop_background>
+<body>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
+<div id="hmm">
+<!-- 영화 리스트 출력 -->
 
-<h2>인기순</h2>
-
-<div class ="text-overflow">
 <div class="layout">
-<div class="list">
-<div class="row row-cols-md-2 row-cols-lg-4 g-4">
-  <c:forEach var="vo" items="${movielist }">
-    <div class="col">
-      <div class="card">
-        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="개봉예정작">
-        </a>
-        <div class="card-body">
-          <p class="card-text">${vo.title }</p>
-        </div>
-      </div>
-    </div>
-  </c:forEach>
-</div>
-</div>
+<p>인기순</p>
+<div class="layout_row">
+<c:forEach var="vo" items="${movielist }">
+<div class="container">
+	<div class="movie_wrapper">
+	<a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
+	<img src="https://image.tmdb.org/t/p/w300${vo.poster_path}" class="poster">
+	</a>
+	<div class="movie_info">
+	<h4>${vo.title }</h4>
+	</div>
+	</div>		
+	</div>
+</c:forEach>
 </div>
 </div>
 
@@ -80,6 +89,7 @@
 <c:if test="${not empty view}">
 	<jsp:include page="${view }"/>
 </c:if>
+</div>
 
 </body>
 </html>
