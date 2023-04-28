@@ -188,7 +188,7 @@ function Trailer(movieId) {
 <!-- 코멘트 자리@ -->
 <div class="tmp_bottom">
 <div class="left" ><a href = "${pageContext.request.contextPath}/comments/write.do">코멘트쓰러가기</a></div>
-<div class="right"><a href = "${pageContext.request.contextPath}/comments/allList.do">다른코멘트보러가기</a></div>
+<div class="right"><a href = "${pageContext.request.contextPath}/comments/allList.do?userId=${sessionScope.userId}&movieNum=${movieId}">다른코멘트보러가기</a></div>
 </div>
 
 	<script
