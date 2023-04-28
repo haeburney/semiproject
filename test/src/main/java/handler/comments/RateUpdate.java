@@ -7,23 +7,25 @@ import comments.CommentsService;
 import comments.CommentsVo;
 import handler.Handler;
 
-public class Del implements Handler {
+public class RateUpdate implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
-		if(request.getMethod().equals("GET")){ // 링크 클릭시 -> 코멘트 폼을 보여줘야된다.
+		if(request.getMethod().equals("GET")){
 			return "";
-		} else {
+		} else { // POST
 			
-			int movieNum = Integer.parseInt(request.getParameter("movieNum"));
 			String userId = request.getParameter("userId");
+			int movieNum = Integer.parseInt(request.getParameter("movieNum"));
+			int rate = Integer.parseInt(request.getParameter("rate"));
 			
 			CommentsService service = new CommentsService();
 			CommentsVo vo = new CommentsVo();
-			vo.setMovieNum(movieNum);
 			vo.setUserId(userId);
+			vo.setMovieNum(movieNum);
+			vo.setRate(rate);
 			
-			service.delete(vo);
+			service.setRate(vo);
 			
 			return "/comment/commentList.jsp";
 		}

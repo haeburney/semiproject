@@ -26,10 +26,10 @@ public class CommentsDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setDouble(1, vo.getMovieNum());
+			pstmt.setInt(1, vo.getMovieNum());
 			pstmt.setString(2, vo.getUserId());
 			pstmt.setString(3, vo.getComments());
-			pstmt.setDouble(4, vo.getRate());
+			pstmt.setInt(4, vo.getRate());
 			pstmt.setString(5, vo.getSpoiler());
 
 			pstmt.executeUpdate();
@@ -52,16 +52,14 @@ public class CommentsDao {
 	 */
 	public ArrayList<CommentsVo> showMyComments(String userId) {
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
-		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
-		String sql = "select * from comments where userId=?";
+		String sql = "SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.USERID = ? ORDER BY B.W_DATE DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			ResultSet rs = pstmt.executeQuery();// select 실행
-			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
-				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
+			while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+				commentsList.add(new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,24 +72,54 @@ public class CommentsDao {
 		}
 		return commentsList;
 	}
+	
+	/**
+	 * 특정 영화에 대해 내가 쓴 코멘트 보기
+	 *  - 스포일러 컬럼에 0이 조회될 경우, 스포일러임
+	 *  -> 가리기 필요
+	 * @param movieId
+	 * @return
+	 */
+	public CommentsVo showMyComment(double movieId, String userId) {
+		CommentsVo vo = null;
+		Connection conn = dbconn.conn();
+		String sql = "SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.MOVIENUM = ? AND B.USERID = ? ORDER BY B.W_DATE DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(1, movieId);
+			pstmt.setString(2, userId);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo = new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return vo;
+	}
 
 	/**
 	 *  특정 영화에 대한 모든 코멘트를 찜목록 저장 수(좋아요 수)를 기준으로 정렬하여 보여주기 (스포일러 제외, 1: 스포일러 아님, 0: 스포일러)
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsByRate(double movieId) {
+	public ArrayList<CommentsVo> showAllCommentsByRate(int movieId, String userId) {
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
-		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
-		String sql = "select * from comments where movieNum = ? and spoiler = 1  order by rate desc";
+		String sql = "SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.SPOILER = 1 AND B.MOVIENUM = ? AND B.USERID NOT IN (?) ORDER BY B.RATE DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setDouble(1, movieId);
+			pstmt.setInt(1, movieId);
+			pstmt.setString(2, userId);
 			ResultSet rs = pstmt.executeQuery();// select 실행
-			if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
-				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
+			while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+				commentsList.add(new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,22 +138,22 @@ public class CommentsDao {
 	 * @param movieId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsByDate(double movieId) {
+	public ArrayList<CommentsVo> showAllCommentsByDate(int movieId, String userId) {
 		
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comments where movieNum = ? and spoiler = 1 order by w_date desc";
+		String sql = "SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.SPOILER = 1 AND B.MOVIENUM = ? AND B.USERID NOT IN (?) ORDER BY B.W_DATE DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setDouble(1, movieId);
+			pstmt.setInt(1, movieId);
+			pstmt.setString(2, userId);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
-				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
+			while (rs.next()) {
+				commentsList.add(new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8)));
 			}
 			
 		} catch (SQLException e) {
@@ -147,22 +175,22 @@ public class CommentsDao {
 	 * @param movieId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsBySpoiler(double movieId) {
+	public ArrayList<CommentsVo> showAllCommentsBySpoiler(int movieId, String userId) {
 		
 		ArrayList<CommentsVo> commentsList = new ArrayList<CommentsVo>();
 		CommentsVo vo = null;
 		Connection conn = dbconn.conn();
 		
-		String sql = "select * from comments where movieNum = ? and spoiler = 0 order by w_date desc";
+		String sql = "SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.SPOILER = 0 AND B.MOVIENUM = ? AND B.USERID NOT IN (?) ORDER BY B.W_DATE DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setDouble(1, movieId);
+			pstmt.setInt(1, movieId);
+			pstmt.setString(2, userId);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
-				commentsList.add(new CommentsVo(rs.getDouble(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
-						rs.getDate(5), rs.getDouble(6), rs.getString(7)));
+			while (rs.next()) {
+				commentsList.add(new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8)));
 			}
 			
 		} catch (SQLException e) {
@@ -183,16 +211,64 @@ public class CommentsDao {
 	 * 내가 남긴 특정 영화에 대한 코멘트 수정 (spoiler 0: 스포일러 있음, 1: 스포일러 없음)
 	 * @param vo
 	 */
-	public void update(CommentsVo vo) {
+	public CommentsVo update(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "update comments set comments=? , spoiler = ? where userId=? and movieNum=?";
+		CommentsVo vo2 = new CommentsVo();
+		String sql = "update comments set comments=?, spoiler = ? where userId=? and movieNum=? and num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, vo.getComments());
 			pstmt.setString(2, vo.getSpoiler());
 			pstmt.setString(3, vo.getUserId());
-			pstmt.setDouble(4, vo.getMovieNum());
+			pstmt.setInt(4, vo.getMovieNum());
+			pstmt.setInt(5, vo.getNum());
+			
+			pstmt.executeUpdate();
+			
+			String selSql = "select A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER from member A, comments B where B.userId=? and B.movieNum=? and num=?";
+			pstmt = conn.prepareStatement(selSql);
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setInt(2, vo.getMovieNum());
+			pstmt.setInt(3, vo.getNum());
+			
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo2.setUserId(rs.getString(1));
+				vo2.setUserName(rs.getString(2));
+				vo2.setNum(rs.getInt(3));
+				vo2.setMovieNum(rs.getInt(4));
+				vo2.setComments(rs.getString(5));
+				vo2.setW_Date(rs.getDate(6));
+				vo2.setRate(rs.getInt(7));
+				vo2.setSpoiler(rs.getString(8));
+			}
+			return vo2;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return vo2;
+	}
+	
+	/**
+	 * 특정 영화에 대해 내가 작성한 코멘트 삭제
+	 * @param vo
+	 */
+	public void delete(CommentsVo vo) {
+		Connection conn = dbconn.conn();
+		String sql = "delete from comments where movieNum=? and userId=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vo.getMovieNum());
+			pstmt.setString(2, vo.getUserId());
 
 			pstmt.executeUpdate();
 			
@@ -207,27 +283,23 @@ public class CommentsDao {
 		}
 	}
 	
-	/**
-	 * 특정 영화에 대해 내가 작성한 코멘트 삭제
-	 * @param vo
-	 */
-	public void delete(CommentsVo vo) {
+	public void setRate(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "delete from comments where movieNum=? and userId=?";
+		String sql = "UPDATE COMMENTS SET RATE = ? WHERE MOVIENUM = ? AND USERID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setDouble(1, vo.getMovieNum());
-			pstmt.setString(2, vo.getUserId());
-
-			pstmt.executeUpdate();
+			pstmt.setInt(1, vo.getRate());
+			pstmt.setInt(2, vo.getMovieNum());
+			pstmt.setString(3, vo.getUserId());
 			
-		} catch (SQLException e) {
+			pstmt.executeUpdate();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				conn.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
