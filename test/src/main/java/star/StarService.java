@@ -25,4 +25,8 @@ public class StarService {
 		dao.updateStar(vo);
 	}
 	
+	public void starNum(String userId, int movieNum) {
+		dao.getStarNum(userId, movieNum);
+	}
+	
 }

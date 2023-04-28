@@ -25,6 +25,10 @@ public class wishService {
 		return dao.WishList(userId);
 	}
 
+	//찜 했니 안했
+	  public boolean checkwish(wishVo vo) {
+	      return dao.select(vo);
+	   }
 
 }
 

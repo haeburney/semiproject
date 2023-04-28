@@ -31,9 +31,14 @@ public class DetailService {
 	}
 	
 	// 3. update
-	// 3-1. 특정 영화의 찜 수정하기
-	public void updateWish(DetailVo vo) {
-		dao.updateWish(vo);
+	// 3-1. 특정 영화의 찜했으면 0으로 만들기 
+	public void updateWish(String userId, int movieId) {
+		dao.updateWish(userId, movieId);
+	}
+	
+	//특정 영화 찜 취소 하면 1로 바꾸기 
+	public void delWish(DetailVo vo) {
+		dao.delWish(vo);
 	}
 	
 	// 3-2. 특정 영화의 별점 수정하기

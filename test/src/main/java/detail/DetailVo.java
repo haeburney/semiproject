@@ -21,6 +21,13 @@ public class DetailVo {
 		this.star = star;
 		this.num = num;
 	}
+	
+	public DetailVo(String userId, int movieNum, String wish) {
+		this.userId = userId;
+		this.movieNum = movieNum;
+		this.wish = wish;
+		
+	}
 
 	public String getUserId() {
 		return userId;

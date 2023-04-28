@@ -122,4 +122,36 @@ public class StarDao {
 			}
 		}
 	}
+	
+	//별 몇점 주었나? 사용자가 영화에 별을 몇점을 주었나? 
+	public int getStarNum (String userId, int movieNum) {
+		
+		Connection conn = DBConn.conn();
+		String sql = "select star from star where userId=? and movieNum=?";
+		try {
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userId);
+			pstmt.setInt(2,movieNum);
+			
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1); 
+			}
+	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+		
 }

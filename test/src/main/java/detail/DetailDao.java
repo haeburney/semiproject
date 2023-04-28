@@ -39,6 +39,8 @@ public class DetailDao {
 			}
 		}
 	}
+	
+
 
 	// 2. select
 	// 2-1. 특정 아이디의 DetailVo 불러오기
@@ -125,17 +127,41 @@ public class DetailDao {
 
 	// 3. update
 	// 3-1. 특정 영화의 찜 수정하기
-	public void updateWish(DetailVo vo) {
+	public void updateWish(String userId, int movieId) {
 		Connection conn = DBConn.conn();
-		String sql = "update detail set wish=? where userId=? and movieNum=?";
+		String sql = "update detail set wish=0 where userId=? and movieNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getWish());
-			pstmt.setString(2, vo.getUserId());
-			pstmt.setInt(3, vo.getmovieNum());
+		
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, movieId);
 			
-			int check = pstmt.executeUpdate();
-			System.out.println(check + "줄 Detail 찜 update");
+			 pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void delWish(DetailVo vo) {
+		Connection conn = DBConn.conn();
+		String sql = "update detail set wish=1 where userId=? and movieNum=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setInt(2, vo.getmovieNum());
+			
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

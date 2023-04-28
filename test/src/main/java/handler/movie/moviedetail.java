@@ -18,51 +18,113 @@ import org.json.simple.parser.ParseException;
 
 import handler.Handler;
 import movie.movieVo;
+import wish.wishService;
+import wish.wishVo;
 
 public class moviedetail implements Handler {
 
-    @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) {
+	@Override
+	public String process(HttpServletRequest request, HttpServletResponse response) {
+		
+		String movieId = request.getParameter("id");
+		int movienum = Integer.parseInt(request.getParameter("id"));
 
-        String id = request.getParameter("id");
+		URL url;
 
-        URL url;
-        try {
-            url = new URL("https://api.themoviedb.org/3/movie/" + id
-                    + "/videos?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
+		try {
 
-            URLConnection conn = url.openConnection();
+			url = new URL("https://api.themoviedb.org/3/movie/" + movieId
+					+ "?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
 
-            InputStream is = conn.getInputStream();
+			URLConnection conn = url.openConnection();
+			InputStream is = conn.getInputStream();
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
 
-            JSONParser parser = new JSONParser();
+			String overview = (String) obj.get("overview");
+			
+			int runtime = Integer.valueOf(obj.get("runtime").toString());
 
-            JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
-            
-            JSONArray arr = (JSONArray) obj.get("results");
+			String title = (String) obj.get("title");
+			String tagline = (String) obj.get("tagline");
 
-            // 배열
-            ArrayList<movieVo> list = new ArrayList<>();
+			Double d = (Double) obj.get("vote_average");
+			String formatted = String.format("%.2f", d);
+			float vote_average = Float.parseFloat(formatted);
 
-            for (int i = 0; i < 1; i++) {
-                JSONObject o = (JSONObject) arr.get(i);
-                String key = (String) o.get("key");
-                list.add(new movieVo(key));
-            }
+			JSONArray arr = (JSONArray) obj.get("genres");
+			ArrayList<String> name = new ArrayList<>();
 
-            request.setAttribute("key", list);
+			for (int i = 0; i < arr.size(); i++) {
+				JSONObject o = (JSONObject) arr.get(i);
+				name.add((String) o.get("name"));
+			}
 
-            is.close();
+		wishService wservice = new wishService(); 		
+		boolean a = wservice.checkwish(new wishVo(0,"${sessionScope.loginId}",movienum)); 
+			
+			request.setAttribute("name", name); // 장르
+			request.setAttribute("overview", overview); // 요약
+			request.setAttribute("runtime", runtime); // 상영시간
+			request.setAttribute("title", title); // 제목
+			request.setAttribute("tagline", tagline); // 태그라인
+			request.setAttribute("vote_average", vote_average); // 평점
+			request.setAttribute("movieId", movieId);
+			
+			request.setAttribute("flag", a);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+			is.close();
+			
+			getimg(request, response, movieId);
+			
 
-        return "/movie/detail.jsp";
-    }
+		
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/movie/RDetail.jsp";
+
+	}
+
+	public void getimg(HttpServletRequest request, HttpServletResponse response, String movieId) {
+
+		URL url;
+
+		try {
+			url = new URL(
+					"https://api.themoviedb.org/3/movie/" + movieId + "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6");
+
+			URLConnection conn = url.openConnection();
+			InputStream is = conn.getInputStream();
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
+
+			JSONArray arr = (JSONArray) obj.get("posters");
+
+			JSONObject o = (JSONObject) arr.get(0);
+			String file_path = (String) o.get("file_path");
+
+			request.setAttribute("file_path", file_path); // 이미지 포스터 주소
+			is.close();
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

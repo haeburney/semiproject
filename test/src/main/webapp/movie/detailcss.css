@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body {
+html, body {
 	padding-top: 0px;
 	background-color: black;
 }
@@ -10,65 +10,153 @@ body {
 	border-radius: 0.8rem
 }
 
+/* 포스터 겹치기*/
+.postermini{ position: absolute; top: 30%; width: 100%; }
+
+
 .container {
   display: grid;
-  grid-template-columns: repeat(12, 110px);
-  grid-template-rows: repeat(4, 30px);
+  background-color : black;
+  grid-template-columns: repeat(5, 110px);
+  grid-template-rows: repeat(3, 30px);
   column-gap: 10px;
-	row-gap: 10px;
+  row-gap: 10px;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  text-align: center;
+  color : white;
+   margin: 0px;
 }
 
-.item1 {
-  grid-row: 1/5;
-  grid-column: 1/3;
-    border: 1px solid black;
+/* 별점주기 */
+.star-rating {
+  display: absoulte;
+  flex-direction: row-reverse;
+  font-size:2.1em;
+  justify-content:space-around;
+  padding:0em;
+  text-align:center;
+  width:10em;
+  margin : 0px;
 }
 
-.item2 {
-  grid-row: 1/3; 
-  grid-column: 3/6;
-    border: 1px solid black;
+
+.star-rating input {
+  display:none;
 }
 
-.item3 {
-  grid-row: 3/5;
-  grid-column: 3/4;
-    border: 1px solid black;
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
 }
 
-.item4 {
-  grid-row: 3/4;
-  grid-column: 4/6;
-    border: 1px solid black;
-}
-.item5 {
-  grid-row: 4/5;
-  grid-column: 4/6;
-    border: 1px solid black;
-}
-.item6 {
-  grid-row: 1/5;
-  grid-column: 6/10;
-    border: 1px solid black;
-}
-.item7 {
-  grid-row: 1/5;
-  grid-column: 10/12;
-    border: 1px solid black;
+.star-rating :checked ~ label {
+  color:#fc0;
 }
 
-.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
-.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
 
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-       .rate { display: inline-block;border: 0;margin-right: 15px;}
-.rate > input {display: none;}
-.rate > label {float: right;color: #ddd}
-.rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
-.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
-.rate input:checked ~ label, 
-.rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  } 
-.rate input:checked + .rate label:hover,
-.rate input input:checked ~ label:hover,
-.rate input:checked ~ .rate label:hover ~ label,  
-.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
+
+/* 찜하기 */
+
+a{
+  text-decoration:none; color:inherit; cursor: pointer;
+}
+ .right_area .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+/*     하트위치 조정 */
+    width: calc(100vw * (100 / 1920));
+    height: calc(100vw * (100 / 1920));
+
+/*     border-radius: 50%; */
+/*     border: solid 2px #eaeaea; */
+    background-color: #fff;
+}
+
+/* 하트 크기 조절 */
+.icon.heart img{
+    width: calc(100vw * (50 / 1920));
+    height: calc(100vw * (50 / 1920));
+}
+
+.icon.heart.fas{
+  color:red
+}
+.heart{
+    transform-origin: center;
+}
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }
+
+/* 인포메이션 */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 실제 팝업창 */
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 560px;
+  height: 500px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/*팝업뜨고 그 보드 조절 */
+.popup .popuptext::after {
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555;
+}
+
+/* 보여주고 안보여주고 시간초 줘서 스르륵  */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* 팝업애니메이션 불투명도 조절하는 코드 */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

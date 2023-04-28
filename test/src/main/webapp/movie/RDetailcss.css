@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 찜하기 */
+
+a{
+  text-decoration:none; color:white; cursor: pointer;
+}
+
+
+.icon .heart{
+		margin-left : 100px;
+	    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+/*     하트위치 조정 */
+    width: calc(100vw * (100 / 1920));
+    height: calc(100vw * (100/ 1920));
+
+/*     border-radius: 50%; */
+/*     border: solid 2px #eaeaea; */
+    background-color: #fff;
+	
+}
+
+/* 하트 크기 조절 */
+.icon.heart img{
+    width: calc(100vw * (45 / 1920));
+    height: calc(100vw * (45 / 1920));
+}
+
+.icon.heart.fas{
+  color:red
+}
+.heart{
+    transform-origin: center;
+}
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }
+  
+/*  사진이랑 기본 정보 조절 */
+  .container {
+
+	position: relative;
+	display: flex; 
+	align-items: left;
+	float : left;
+}
+.tmp_img {
+	margin-top : 20px;
+	width: 330px;
+	height: 450px;
+}
+.tmp_area {
+	padding-left : 50px;
+	width: 50%;
+	border: 1px solid red;
+	margin-top: 200px;
+}
+ 
+ 
+ /* 별점주기 */
+.star-rating {
+  display: inline-block;
+  
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  
+  /*거꾸로 별점 다시잡기*/
+  display: inline-block;
+  direction: rtl;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ddd;
+  font-size: 2rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+  color: #FFD700;
+}
+
+.star-rating input:checked ~ label {
+  color: #FFD700;
+} 

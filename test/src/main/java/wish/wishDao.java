@@ -95,5 +95,37 @@ public class wishDao {
 			}
 			return list;
 		}
+		
+		//찜 했나 안했나?
+		public boolean select (wishVo vo) {
+		      
+		      Connection conn = dbconn.conn();
+		      String sql ="select * from wish where userId=? and movieNum=?";
+		      
+		      try {
+		         PreparedStatement pstmt = conn.prepareStatement(sql);
+		         
+		         pstmt.setString(1, vo.getUserId());
+		         pstmt.setInt(2, vo.getMovieNum());
+		         
+		         ResultSet rs = pstmt.executeQuery();
+		         if(rs.next()) {
+		            return true;
+		         }
+		         
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      } finally {
+		         try {
+		            conn.close();
+		         } catch (SQLException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		         }
+		      }
+		      return false;
+		   }
+		
 
 }
