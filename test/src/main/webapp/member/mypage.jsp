@@ -55,17 +55,15 @@
 				</span>
 				<span id="fCount">
 					<c:if test="${not empty uCount }">
-					<span>팔로잉수 ${uCount }&nbsp;&nbsp;</span>
+					<span id="myFollowing" onclick="following()">팔로잉수 ${uCount }&nbsp;&nbsp;</span>
 					</c:if>
 				<c:if test="${not empty fCount }">
 					<span>팔로워수 ${fCount }</span>
 				</c:if>
 				</span>
 				<span>
-<!-- 					설정 이미지 -->
-					<a href="${pageContext.request.contextPath }/member/edit.do?useriId=${sessionScope.userId}">
-					<img src="../image/option.png" style="width:25px">
-					</a>
+				
+<!-- 					설정 이미지 -->	
 					<img src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
 
 				</span>
@@ -73,9 +71,9 @@
 			<hr/>
 				<div>
 					찜목록
-					<a href="#"><img class="plustImg" src="../image/plus.png"></a>
-					<c:if test="${not empty detailImageList }">
-						<c:forEach var="li" items="${detailImageList }">
+					<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					<c:if test="${not empty wishImageList }">
+						<c:forEach var="li" items="${wishImageList }">
 							
 							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
 						</c:forEach>
@@ -108,12 +106,6 @@
 		</div>
 	</div>
 	
-	<!-- 설정버튼 누르면 -->
-	<div id="option">
-	<c:if test="${not empty edit}">
-		<jsp:include page="${edit }"/>
-	</c:if>
-	</div>
 	
 	<script>
 	
@@ -213,6 +205,10 @@
 				console.log("에러 :"+status);
 			}
 		});
+	}
+	
+	function following(){
+		console.log("팔로잉클릭");
 	}
 	
 
