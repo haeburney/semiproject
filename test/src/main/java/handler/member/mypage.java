@@ -18,21 +18,26 @@ import org.json.simple.parser.ParseException;
 
 import comments.CommentsService;
 import comments.CommentsVo;
-import detail.DetailService;
-import detail.DetailVo;
 import follow.followService;
 import handler.Handler;
 import member.MemberService;
 import member.MemberVo;
 import movie.movieVo;
+import star.StarService;
+import star.StarVo;
+import wish.wishService;
+import wish.wishVo;
 
-public class Mypage implements Handler {
+public class mypage implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		if (request.getMethod().equals("GET")) {
 			String userId = request.getParameter("userId");
+			
+			StarService starService = new StarService();
+			wishService wService = new wishService();
 
 			// 한 줄 소개
 			MemberService memberService = new MemberService();
@@ -47,22 +52,21 @@ public class Mypage implements Handler {
 			request.setAttribute("uCount", uCount);
 
 			// 찜 리스트
-			DetailService detailService = new DetailService();
-			ArrayList<DetailVo> detailList = detailService.getWishList(userId);
-			request.setAttribute("detailList", detailList); // 어라 이거 필요없어보이는데 과거의 나야 왜 이렇게 써놨니 
-			ArrayList<movieVo> detailImageList = new ArrayList<movieVo>();
+			
+			ArrayList<wishVo> wishList = wService.getWishList(userId);
+			ArrayList<movieVo> wishImageList = new ArrayList<movieVo>();
+			
 
 			int max = 6; // 한 줄에 총 보여질 개수
 			int size = 0;
-			if (detailList.size() <= max) {
-				size = detailList.size();
+			if (wishList.size() <= max) {
+				size = wishList.size();
 			} else {
 				size = max;
 			}
 
 			for (int i = 0; i < size; i++) {
-				//String movieNum = "502356";
-				String movieNum = Integer.toString(detailList.get(i).getmovieNum());
+				String movieNum = Integer.toString(wishList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
 							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
@@ -82,7 +86,7 @@ public class Mypage implements Handler {
 						// 그 랜덤번째 인덱스에 있는 포스터 이미지를 가져오기 
 						
 						String filePath = "https://image.tmdb.org/t/p/original" + posterPath;
-						detailImageList.add(new movieVo(movieNum, filePath, "", "")); 
+						wishImageList.add(new movieVo(movieNum, filePath, "", "")); 
 					}					
 					
 				} catch (MalformedURLException e) {
@@ -96,13 +100,12 @@ public class Mypage implements Handler {
 					e.printStackTrace();
 				}
 			}
-			request.setAttribute("detailImageList", detailImageList);
+			request.setAttribute("wishImageList", wishImageList);
 			// 여기
 
 
 			// 별점 리스트
-			ArrayList<DetailVo> starList = detailService.getStarList(userId);
-			//request.setAttribute("starList", starList);
+			ArrayList<StarVo> starList = starService.getStarList(userId);  
 			ArrayList<movieVo> starImageList = new ArrayList<movieVo>();
 			
 			size = 0;
@@ -113,8 +116,7 @@ public class Mypage implements Handler {
 			}
 
 			for (int i = 0; i < size; i++) {
-				//String movieNum = "502356";
-				String movieNum = Integer.toString(starList.get(i).getmovieNum());
+				String movieNum = Integer.toString(starList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
 							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
@@ -159,7 +161,6 @@ public class Mypage implements Handler {
 			}
 
 			for (int i = 0; i < size; i++) {
-				 //String movieNum = "502356";
 				 String movieNum = String.valueOf(commentsList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
