@@ -184,11 +184,15 @@
 						<i class="bi bi-person-circle fs-3"></i>
 						</a>
 					</li>
+					<li class="nav_item">
+						<div class="btn_toggle">
+						<label id="logoutLabel"> <input class="ipt_logout" role="switch"
+							type="checkbox" id="logoutBtn" name="logoutBtn" 
+							onclick="lBtn()" />
+						</label>
+						</div>
+					</li>
 
-					<label id="logoutLabel"> <input class="ipt_logout" role="switch"
-						type="checkbox" id="logoutBtn" name="logoutBtn"
-						onclick="lBtn()" />
-					</label>
 				</ul>
 
 			</div>
