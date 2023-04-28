@@ -16,8 +16,8 @@ public class wishService {
 	}
 	
 	//찜 삭제
-	public void delwish(String userId) {
-		dao.delwish(userId);
+	public void delwish(String userId, int movieNum) {
+		dao.delwish(userId, movieNum);
 	}
 	
 	//찜 리스트 뽑기 

@@ -19,7 +19,7 @@ public class wishDao {
 		//찜하면 0으로 추가 
 		public void insert (wishVo vo) {
 			Connection conn = dbconn.conn();
-			String sql = "insert into wish values(seq_wish_num.nextVal,?, ?, 0)";
+			String sql = "insert into wish values(seq_wish_num.nextVal,?, ?)";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, vo.getUserId());
@@ -41,16 +41,17 @@ public class wishDao {
 		
 		
 		//찜 취소 하면 
-		public void delwish (String userId) {
+		public void delwish (String userId, int movieNum) {
 			
 			Connection conn = dbconn.conn();
 			
-			String sql = "delete from wish where userid=?";
+			String sql = "delete from wish where userid=? and movieNum=?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, userId);
+				pstmt.setInt(2,movieNum);
 
-				pstmt.executeUpdate();
+				int check=pstmt.executeUpdate();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -69,7 +70,7 @@ public class wishDao {
 		public ArrayList<wishVo> WishList(String userId){
 			Connection conn = dbconn.conn();
 			ArrayList<wishVo> list = new ArrayList<>();
-			String sql = "select * from wish where wish=0 and userid=? order by num desc";
+			String sql = "select * from wish where userid=? order by num desc";
 			
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -79,7 +80,7 @@ public class wishDao {
 				
 				while(rs.next()) {
 					
-					list.add(new wishVo(rs.getInt(1),rs.getString(2), rs.getInt(3),rs.getString(4)));
+					list.add(new wishVo(rs.getInt(1),rs.getString(2), rs.getInt(3)));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
