@@ -110,10 +110,12 @@
   </div>
 </span>
 
-<script> 
+<script type="text/javascript">
 
-$(function(){
-
+$(document).ready(function() {
+     var inputValue = $("input[name='testInput']:checked").val();
+     alert(inputValue);
+});
 </script>
 
 
