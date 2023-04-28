@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conn.DBConnect;
-import detail.DetailVo;
 
 public class wishDao {
 

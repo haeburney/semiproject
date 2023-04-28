@@ -3,7 +3,7 @@ package handler.detail;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import detail.DetailVo;
+
 import handler.Handler;
 import wish.wishService;
 

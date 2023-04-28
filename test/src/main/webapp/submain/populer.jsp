@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-<link rel="stylesheet" href="/submain/reset.css">
-
-<style>
-=======
 
 <link rel="stylesheet" href="/submain/reset.css">
 <link rel="stylesheet" href="/submain/navcss.css">
@@ -36,57 +31,10 @@
 	max-width: 1200px;
 }
 
->>>>>>> origin/sonhw
 .layout{
-  width: 1800px;
-  height: 100vh;
-  margin: auto;
-}
-.poster{
-  width: 300px;
-  height: 450px;
-  margin: auto;
-}
-.layout_row{
-  width: 1700px;
-  margin: auto;
-  height: 556.22px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* 이미지 사이 간격 유지 */
-}
-.movie_wrapper{
-  display: flex;
-  flex-direction: column;
-}
-.movie_info{
-  float: left;
-  margin-right: 30px;
-}
-.more{
-width: 120px;
-padding: 8px 15px;
-margin: 10px auto;
+	background-color: black;
 }
 
-<<<<<<< HEAD
- .container{ 
-             flex-basis:  25%; 
-             flex : 0; 
-             margin: 8px; 
-             border:1px solid rgb(252, 252, 252); 
-             padding: 8px; 
-             cursor: pointer; 
-             box-sizing: border-box; 
-         } 
-/* .container :hover { 
- 			background:rgba(0,0,0,0.8);  
- 			backdrop-filter: blur(5px);} 
- }*/ 
-</style>
-
-<title>서브메인(인기순)</title>
-=======
 h2{
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
 	color: white;
@@ -185,38 +133,11 @@ function next(){
 }
 </script> -->
 
->>>>>>> origin/sonhw
 </head>
 <body>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
-<<<<<<< HEAD
-<p>인기순</p>
-<div class="layout_row">
-<c:forEach var="vo" items="${movielist }">
-<div class="container">
-	<div class="movie_wrapper">
-	<a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-	<img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="poster">
-	</a>
-	<div class="movie_info">
-	<h4>${vo.title }</h4>
-	</div>
-	</div>		
-	</div>
-</c:forEach>
-</div>
-
-<c:if test="not empty">
-	${sessionScope.userId}
-</c:if>
-
-<!-- 로그인/회원가입 페이지창 -->
-<c:if test="${not empty view}">
-	<jsp:include page="${view }"/>
-</c:if>
-=======
 <div class="bgcolor">
 <div class="title">
 <h2>인기순</h2>
@@ -239,7 +160,6 @@ function next(){
 </div>
 <a href="${pageContext.request.contextPath}/submain/populer.do?num=${prev}"><input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지"></a>
 <a href="${pageContext.request.contextPath}/submain/populer.do?num=${next}"><input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"></a>
->>>>>>> origin/sonhw
 
 </body>
 </html>
