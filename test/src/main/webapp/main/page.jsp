@@ -1,112 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<title>찐메인</title>
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../submain/navcss.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-	integrity="sha512-qEan5nS02+Q5oN58dmG9N9Z4f4MT4yaNzFw/iRkRJzMA8+CDGt90E3l3J9Pm+Z8lCGYIda3Cw0V7dA8W8Kvztg=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
-<title>메인페이지</title>
 <style>
+.d-block{
+	height: 635px;
+}
+
+.carousel-item{
+	background-color: black;
+	width: 100%;
+    height: 100%;
+}
 
 /* 캐러셀 안 img 크기 */
 .carousel-item img{ 
- 	width: 1000px;
-	height: 500px;
-	object-fit: contain;
+ 	max-width: 100%;
+ 	max-height: 700px;
 	margin: auto;	
 }
 
-/* 캐러셀 틀 크기 */
-@media (min-width: 1500px){
-	.carousel-item img{
-	width: 1200px;
-	hegith: 500px;	
-	}
-}
-
-/* 캐러셀 배경색 */
-/* 좌/우 버튼색상을 변경하고 싶었으나, 이미지 파일이라 색상변경이 안되네요*/
-.carousel-inner{
-	background: black;
+.carousel-control-prev, .carousel-control-next	{
+	width:10%;
+	background-color: black;
 }
 
 </style>
 
-<script>
-var page = []
-var i = Math.floor((Math.random()*3))
-
-</script>
-
 </head>
 <body>
-<jsp : include page="/member/login.jsp"/>
-<jsp:include page="../submain/nav.jsp" flush="ture"/>
+<%@include file="/submain/nav.jsp" %>
 
-<h3>메인페이지</h3>
-<!-- 메뉴 상당바 출력 -->
-
-<input type="button" value="테마변경" onclick="change_page();">
-<!-- 캐러셀 -->
-<!--  ${status.index == 0 ? 'active' : ''}: 첫 번째 이미지에 대해서는 자동 슬라이드가 시작되도록 하는 역할 -->
-<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
   <div class="carousel-inner">
-  <c:forEach var="vo" items="${populerlist }" varStatus="status">
-    <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
-      <a href="${pageContext.request.contextPath }/submain/populer.do?id=${vo.id }">
-      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+    <div class="carousel-item active">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
+      <img src="https://img.youtube.com/vi/qEVUtrk8_B4/maxresdefault.jpg" class="d-block" alt="존윅(인기순)">
       </a>
+      <div class="carousel-caption d-none d-md-block">
+        <p>인기순입니다.</p>
+      </div>
     </div>
-    </c:forEach>
-    
-    <c:forEach var="vo" items="${upcominglist }" varStatus="status">
-    <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
-      <a href="${pageContext.request.contextPath }/submain/upcoming.do?id=${vo.id }">
-      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+    <div class="carousel-item">
+      <a href="${pageContext.request.contextPath }/submain/toprate.do?num=1">
+      <img src="https://img.youtube.com/vi/jBdRhhSt3Bc/maxresdefault.jpg" class="d-block" alt="기생충(평점순)">
       </a>
+      <div class="carousel-caption d-none d-md-block">
+        <p>평점순입니다.</p>
+      </div>
     </div>
-    </c:forEach>
-    
-    <c:forEach var="vo" items="${topratelist }" varStatus="status">
-    <div class="carousel-item ${status.index == 0 ? 'active' : ''}" data-bs-interval="10000">
-      <a href="${pageContext.request.contextPath }/submain/toprate.do?id=${vo.id }">
-      <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="d-block w-100" alt="${vo.title}">
+    <div class="carousel-item">
+      <a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">
+      <img src="https://img.youtube.com/vi/zmNRHgRG3lo/maxresdefault.jpg" class="d-block" alt="분노의질주(개봉예정)">
       </a>
+      <div class="carousel-caption d-none d-md-block">
+        <p>개봉예정입니다.</p>
+      </div>
     </div>
-    </c:forEach>
-    
   </div>
   
-  
-  <!--   좌/우 버튼에 대한 코드로 추정됨 -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
 
+</div>
 </body>
 </html>

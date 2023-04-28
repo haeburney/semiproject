@@ -139,9 +139,10 @@
 	<nav class="navbar navbar-expand-lg navbar-dark"
 		style="background-color: black;" aria-label="Fifth navbar example">
 		<div class="container-fluid">
+			<div class="home-btn" onclick="location.href='${pageContext.request.contextPath }/main/page.jsp';">
 			<img class="logo" src="${pageContext.request.contextPath}/image/logo.png">
 			<div class="logo_name_area" align="left" ><span class="logo_name">조각별</span></div>
-
+			</div>
 
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarsExample05"

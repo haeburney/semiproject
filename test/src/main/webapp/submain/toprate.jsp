@@ -10,15 +10,15 @@
 <title>평점순</title>
 <style>
 
-.card {
-  border: none;
+/*.card {
+  border: 2px solid yellow;
 }
 
 .card-text {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	color: white;
+	color: yellow;
 	text-align: center;
 }
 
@@ -29,7 +29,7 @@
 .card img{
 	height: 26rem;
 	object-fit: cover;
-}
+}*/
 
 .list {
 	margin-left: auto;
@@ -43,34 +43,60 @@
 }
 
 h2{
-	color: pink;
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+	color: white;
 	background-color: black;
+	font-family: 'KOTRA_BOLD-Bold';
 }
+
+.text{
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+	color: white;
+	text-align: center;
+	font-family: 'KOTRA_BOLD-Bold';
+	font-size : 15px;
+}
+
+.col{
+	margin: auto;
+}
+
+.title{
+	margin-left:80px;
+}
+
+.bgcolor{
+	background-color:black;
+}
+
 </style>
 </head>
 <body>
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
-
+<div class="bgcolor">
+<div class="title">
 <h2>평점순</h2>
+</div>
+</div>
 
 <div class="layout">
 <div class="list">
 <div class="row row-cols-md-2 row-cols-lg-4 g-4">
   <c:forEach var="vo" items="${topratelist }">
     <div class="col">
-      <div class="card">
         <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
           <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="개봉예정작">
         </a>
-        <div class="card-body">
-          <p class="card-text">${vo.title }</p>
+          <p class="text">${vo.title }</p>
         </div>
-      </div>
-    </div>
   </c:forEach>
 </div>
 </div>
-</div></body>
+</div>
+<a href="${pageContext.request.contextPath}/submain/toprate.do?num=${prev}"><input type="button" value="이전페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/toprate.do?num=${next}"><input type="button" value="다음페이지"></a>
+
+</body>
 </html>
