@@ -42,6 +42,36 @@ public class followDao {
 		}
 	} 
 	
+	public boolean select (followVo vo) {
+		
+		Connection conn = dbconn.conn();
+		String sql ="select * from follow where userId=? and followedId=?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setString(2, vo.getFollowedId());
+			
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 	//팔로우 취소 할 때 데이터베이스에서 삭제하기 
 	public void delete (followVo vo) {
 		
@@ -162,5 +192,7 @@ public class followDao {
 		}
 		return folnum;
 	}
+	
+	
 
 }

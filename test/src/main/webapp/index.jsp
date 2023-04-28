@@ -18,6 +18,7 @@
 	<a href="${pageContext.request.contextPath }/comments/write.do">코멘트</a><br/>
 	<a href="${pageContext.request.contextPath }/comments/allList.do">코멘트목록</a><br/>
 	<a href="${pageContext.request.contextPath }/main/page2.jsp">연습메인</a><br/>
+	<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=2">다른유저프로필</a><br/>
 
 
 </body>

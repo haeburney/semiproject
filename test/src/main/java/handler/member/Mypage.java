@@ -26,7 +26,7 @@ import member.MemberService;
 import member.MemberVo;
 import movie.movieVo;
 
-public class mypage implements Handler {
+public class Mypage implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
