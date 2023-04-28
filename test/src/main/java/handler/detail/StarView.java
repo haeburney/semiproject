@@ -15,29 +15,27 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import follow.followVo;
 import handler.Handler;
 import movie.movieVo;
-import wish.wishService;
-import wish.wishVo;
+import star.StarService;
+import star.StarVo;
 
-public class MyWishView implements Handler {
+public class StarView implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
 		
 		String userId = request.getParameter("userId");
-		wishService wService = new wishService();
+		StarService starService = new StarService();
 		
-		ArrayList<wishVo> wList= wService.getWishList(userId);
-		request.setAttribute("wList", wList);
-		ArrayList<movieVo> wImgList=new ArrayList<movieVo>();
+		ArrayList<StarVo> sList= starService.getStarList(userId);
+		request.setAttribute("sList", sList);
+		ArrayList<movieVo> sImgList=new ArrayList<movieVo>();
 		
-		for(int i=0;i<wList.size();i++) {
+		// 이제 영화 정보를 불러와야 해요 ㅎ 
+		for(int i=0;i<sList.size();i++) {
 			
-			String movieNum = Integer.toString(wList.get(i).getMovieNum());
+			String movieNum = Integer.toString(sList.get(i).getMovieNum());
 			try {
 				URL url = new URL("https://api.themoviedb.org/3/movie/"+movieNum+"?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
 				URLConnection conn = url.openConnection();
@@ -49,7 +47,7 @@ public class MyWishView implements Handler {
 				String title = (String) obj.get("title");
 				String poster_path = (String) obj.get("poster_path");
 				String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
-				wImgList.add(new movieVo(movieNum, filePath, title, ""));				
+				sImgList.add(new movieVo(movieNum, filePath, title, ""));				
 				
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -62,9 +60,9 @@ public class MyWishView implements Handler {
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("wImgList", wImgList);
+		request.setAttribute("sImgList", sImgList);
 		
-		return "/detail/myWishList.jsp";
+		return "/detail/StarView.jsp";
 	}
 
 }

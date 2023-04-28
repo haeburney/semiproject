@@ -84,7 +84,7 @@
 				<hr/>
 				<div>
 					별점목록
-					<a href="#"><img class="plustImg" src="../image/plus.png"></a>
+					<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
 					<c:if test="${not empty starImageList }">
 						<c:forEach var="li" items="${starImageList }">
 							
@@ -95,7 +95,7 @@
 				<hr/>
 				<div>
 					코멘트목록
-					<a href="#"><img class="plustImg" src="../image/plus.png"></a>
+					<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
 					
 					<c:if test="${not empty commentsImageList }">
 						<c:forEach var="li" items="${commentsImageList }">
