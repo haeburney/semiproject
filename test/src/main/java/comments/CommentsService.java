@@ -28,12 +28,21 @@ public class CommentsService {
 	}
 	
 	/**
+	 * 특정 영화에 대해 내가 쓴 코멘트 보기
+	 * @param movieId
+	 * @return
+	 */
+	public CommentsVo showMyComment(double movieId, String userId) {
+		return dao.showMyComment(movieId, userId);
+	}
+	
+	/**
 	 * 한 영화에 대한 모든 코멘트를 좋아요 기준으로 보여주기
 	 * @param movieId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsByRate(double movieId) {
-		return dao.showAllCommentsByRate(movieId);
+	public ArrayList<CommentsVo> showAllCommentsByRate(int movieId, String userId) {
+		return dao.showAllCommentsByRate(movieId, userId);
 	}
 	
 	/**
@@ -41,8 +50,8 @@ public class CommentsService {
 	 * @param movieId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsByDate(double movieId) {
-		return dao.showAllCommentsByDate(movieId);
+	public ArrayList<CommentsVo> showAllCommentsByDate(int movieId, String userId) {
+		return dao.showAllCommentsByDate(movieId, userId);
 	}
 	
 	/**
@@ -50,16 +59,16 @@ public class CommentsService {
 	 * @param movieId
 	 * @return
 	 */
-	public ArrayList<CommentsVo> showAllCommentsBySpoiler(double movieId) {
-		return dao.showAllCommentsBySpoiler(movieId);
+	public ArrayList<CommentsVo> showAllCommentsBySpoiler(int movieId, String userId) {
+		return dao.showAllCommentsBySpoiler(movieId, userId);
 	}
 	
 	/**
 	 * 코멘트 수정하기
 	 * @param vo
 	 */
-	public void update(CommentsVo vo) {
-		dao.update(vo);
+	public CommentsVo update(CommentsVo vo) {
+		return dao.update(vo);
 	}
 	
 	/**
@@ -68,5 +77,13 @@ public class CommentsService {
 	 */
 	public void delete(CommentsVo vo) {
 		dao.delete(vo);
+	}
+	
+	/**
+	 * 좋아요 추가
+	 * @param vo
+	 */
+	public void setRate(CommentsVo vo) {
+		dao.setRate(vo);
 	}
 }
