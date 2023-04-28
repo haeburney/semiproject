@@ -14,11 +14,9 @@ public class Login implements Handler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
 		String Allview = "";
-		String msg = "/submain/populer.jsp";  
+		String msg = "아이디/비밀번호가 올바르지 않습니다.";
 		
 		if(request.getMethod().equals("GET")) {  
-			//request.setAttribute("view", "/member/login.jsp");  
-			//Allview = "/submain/populer.do"; 
 			return "/member/login.jsp";
 			
 		} else { 
@@ -28,16 +26,14 @@ public class Login implements Handler {
 			MemberService service = new MemberService();
 			MemberVo vo = service.getMember(userId);
 			
-			System.out.println("userId :"+userId+" / password :"+password);
-			
 			if(vo != null && password.equals(vo.getPassword())) {
 				HttpSession session = request.getSession();   
 				session.setAttribute("userId", userId);
-				System.out.println("로그인이 되었어요");
+			} else if(vo != null) {
+				return msg;
 			}
-			Allview = "redirect:/submain/populer.do";
 		}
-		return Allview;  
+		return "/main/page.do";  
 		
 	}
 

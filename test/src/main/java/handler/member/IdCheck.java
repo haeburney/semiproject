@@ -20,6 +20,7 @@ public class IdCheck implements Handler {
 			System.out.println("idCheck : userId"+userId);
 			MemberService service = new MemberService();
 			MemberVo vo = service.getMember(userId);
+			System.out.println("idCheck 의 vo:"+vo);
 			boolean flag =(vo==null);
 			JSONObject obj = new JSONObject();
 			obj.put("flag", flag);

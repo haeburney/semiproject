@@ -123,6 +123,7 @@ public class DispatcherServlet extends HttpServlet {
 					response.sendRedirect(request.getContextPath() + path[1]);
 				} else if (view.startsWith("responsebody")) {
 					String[] path = view.split("/");
+					System.out.println(path[1]);
 					response.getWriter().append(path[1]);  //출력 : {flag:true} 이런 형태로 출력됨
 				} else {	
 					RequestDispatcher dis = request.getRequestDispatcher(view);
