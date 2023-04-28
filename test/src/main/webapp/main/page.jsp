@@ -12,7 +12,14 @@
 
 
 <style>
-
+.main {
+	position: relative;
+	background: black;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
 
 .d-block{
 	height: 635px;
@@ -40,9 +47,10 @@
 
 </head>
 <body>
-<%@include file="/submain/nav.jsp" %>
+<%-- <%@include file="/submain/nav.jsp" %> --%>
+<jsp:include page="../submain/nav.jsp" flush="true"/>
 
-<div class = "main">
+<div class="main">
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 <div class="carousel-indicators">
@@ -85,15 +93,9 @@
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-
-<script>
-$('.main').css("overflow", "hidden");
-</script>
-
+  
 </div>
-
-
+<br><br><br><br><br>
 </div>
-
 </body>
 </html>
