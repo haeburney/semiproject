@@ -199,7 +199,7 @@
 		</div>
 	</nav>
 	
-	<div id="popUpParent">
+	<div id="popUpParent" align="center">
 		<div id="popUp"></div>
 	</div>
 	
