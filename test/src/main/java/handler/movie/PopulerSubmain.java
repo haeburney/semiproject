@@ -53,12 +53,8 @@ public class PopulerSubmain implements Handler {
 				list.add(new movieVo(id, poster, title));
 			}
 			request.setAttribute("movielist", list);
-<<<<<<< HEAD
-			System.out.println(list);
-=======
 			request.setAttribute("prev", num-1);
 			request.setAttribute("next", num+1);
->>>>>>> origin/sonhw
 			is.close();
 			
 		} catch (MalformedURLException e) {
