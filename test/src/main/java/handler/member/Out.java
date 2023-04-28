@@ -19,10 +19,13 @@ public class Out implements Handler {
 		
 		if(request.getMethod().equals("GET")) {
 			MemberVo m = service.getMember(userId);
+			System.out.println("userId :"+userId);
 			request.setAttribute("m", m);
+			System.out.println(m);
 			return "/member/out.jsp";
 			
 		} else {
+			
 			service.delMember(userId);
 			
 			//로그아웃
