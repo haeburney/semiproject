@@ -20,9 +20,19 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+	function closeX(){
+		document.getElementById("popUp").remove();
+		document.getElementById("logoutBtn").checked=false;
+		console.log("하이~");
+	}
 	
 	function lBtn(){
- 		let flag=document.getElementById("logoutBtn").checked
+		console.log("버튼클릭");
+ 		let flag=document.getElementById("logoutBtn").checked;
+ 		let popUp = document.createElement("div");
+ 		popUp.setAttribute("id","popUp");
+ 		document.querySelector("#popUpParent").append(popUp);
+ 		
  		if(flag){
  			$.ajax({
  				type : "GET",
@@ -33,6 +43,7 @@
  				},
  				success : function(data){
  					console.log(data);
+ 					
  					$("#popUp").html(data);
  				}
  			})
@@ -58,6 +69,66 @@
  			document.getElementById("personCircle").style="display:none";
  		}
  	}
+ 	
+	function joinDo(){
+		// ${pageContext.request.contextPath }/member/join.do
+		$.ajax({
+ 			type : "GET",
+ 			url : "${pageContext.request.contextPath}/member/join.do",
+ 			dataType : "text",
+ 			error : function(){
+ 				console.log("에러");
+ 			},
+ 			success : function(data){
+ 				console.log(data);
+ 					
+ 				$("#popUp").html(data);
+ 			}
+ 		})
+	}
+	
+	function idJoin(){
+		var pattern = /\s/g;
+		// 공백 검사를 해주는 정규표현식
+		let userId = joinInfo.userId.value;
+		let password = joinInfo.password.value;
+		let checkpwd = joinInfo.checkpwd.value;
+		let nickname = joinInfo.nickname.value;
+
+		//let form = document.joinInfo;
+		//form.method='POST';
+		//form.action="${pageContext.request.contextPath}/member/join.do";
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/member/join.do",
+			dataType : "text",
+			error : function(){
+					console.log("에러");
+				},
+				success : function(data){
+					console.log(data);
+						
+					$("#popUp").html(data);
+				}
+		});
+		
+		if(password != checkpwd){
+			alert("비밀번호가 일치하지 않습니다.");
+		} else if (userId.length==0){
+			alert("아이디를 입력해주세요");
+		} else if (password.length==0){
+			alert("비밀번호를 입력해주세요");
+		} else if(nickname.length==0){
+			alert("닉네임을 입력해주세요");
+		}
+		
+		if(userId.match(pattern) || password.match(pattern)){
+			alert("공백을 없애주세요.");
+		} else {
+			form.submit();
+		}
+	}
 </script>
 
 </head>
@@ -72,6 +143,7 @@
 			<img class="logo" src="${pageContext.request.contextPath}/image/logo.png">
 			<div class="logo_name_area" align="left" ><span class="logo_name">조각별</span></div>
 			</div>
+
 
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
@@ -122,9 +194,11 @@
 			</div>
 		</div>
 	</nav>
-
-	<div id="popUp"></div>
-
+	
+	<div id="popUpParent">
+		<div id="popUp"></div>
+	</div>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
