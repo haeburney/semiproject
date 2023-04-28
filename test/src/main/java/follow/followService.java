@@ -36,5 +36,8 @@ public class followService {
 		return dao.countF(userId);
 	}
 	
+	public boolean checkfollow(followVo vo) {
+		return dao.select(vo);
+	}
 
 }

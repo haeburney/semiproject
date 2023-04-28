@@ -33,7 +33,7 @@ public class Join implements Handler {
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
 			String nickname = request.getParameter("nickname");
-			System.out.println("userId :"+userId+" / password :"+password+" / nickname :"+nickname);
+			System.out.println("userid :"+userId+" / password :"+password+" / nickname :"+nickname);
 			MemberService service = new MemberService();
 			service.join(new MemberVo(userId, password, nickname, ""));
 			view = "/member/login.jsp";

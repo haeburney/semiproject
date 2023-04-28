@@ -54,6 +54,7 @@ public class PopulerSubmain implements Handler {
 				list.add(new movieVo(id, poster, title ));
 			}
 			request.setAttribute("movielist", list);
+			System.out.println(list);
 			is.close();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
