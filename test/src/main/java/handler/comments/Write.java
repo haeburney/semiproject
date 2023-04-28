@@ -21,21 +21,53 @@ public class Write implements Handler {
 			// double movieNum = Double.parseDouble(request.getParameter("movieNum"));
 			
 			// 임시로 DB에 1로 하드코딩하여 넣어놓음..
-			double movieNum = 1;
+//			double movieNum = 1;
+//			
+//			
+//			ArrayList<CommentsVo> vos = new ArrayList<CommentsVo>();
+//			CommentsService service = new CommentsService();
+//			//vos = service.showAllCommentsByDate(movieNum);
+//			
+//			request.setAttribute("vos", vos);
 			
+			int movieNum = Integer.parseInt(request.getParameter("movieNum"));
+			String userId = request.getParameter("userId");
+			String comment = request.getParameter("comment");
+			String spoiler = request.getParameter("spoiler");
+			String num = request.getParameter("num");
 			
-			ArrayList<CommentsVo> vos = new ArrayList<CommentsVo>();
 			CommentsService service = new CommentsService();
-			vos = service.showAllCommentsByDate(movieNum);
+			CommentsVo vo = new CommentsVo();
+			//vo.setNum(Integer.parseInt(num));
+			vo.setMovieNum(movieNum);
+			vo.setUserId(userId);
+			vo.setComments(comment);
+			vo.setSpoiler(spoiler);
 			
-			request.setAttribute("vos", vos);
+			service.insert(vo);
 			
+			return "/comment/commentList.jsp";
+		
 			
-			return "/submain/nav.jsp";
 		} else { // POST 방식 (내가 쓴 코멘트 DB 에 저장)
+			int movieNum = Integer.parseInt(request.getParameter("movieNum"));
+			String userId = request.getParameter("userId");
+			String comment = request.getParameter("comment");
+			String spoiler = request.getParameter("spoiler");
+			String num = request.getParameter("num");
 			
+			CommentsService service = new CommentsService();
+			CommentsVo vo = new CommentsVo();
+			//vo.setNum(Integer.parseInt(num));
+			vo.setMovieNum(movieNum);
+			vo.setUserId(userId);
+			vo.setComments(comment);
+			vo.setSpoiler(spoiler);
+			
+			service.insert(vo);
+			
+			return "/comment/commentList.jsp";
 		}
-		return null;
 	}
 
 }
