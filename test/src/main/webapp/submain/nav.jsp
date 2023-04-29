@@ -74,7 +74,7 @@
 	}
 	
  	// 회원가입 하기 
-	function idJoin(){
+	/* function idJoin(){
 		var pattern = /\s/g;
 		// 공백 검사를 해주는 정규표현식
 		let userId = joinInfo.userId.value;
@@ -109,7 +109,7 @@
 		} else {
 			form.submit();
 		}
-	}
+	} */
 </script>
 
 </head>
