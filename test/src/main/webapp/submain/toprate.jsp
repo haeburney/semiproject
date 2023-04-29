@@ -95,8 +95,8 @@ h2{
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/toprate.do?num=${prev}"><input type="button" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/toprate.do?num=${next}"><input type="button" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nexttoprate.do?num=${prev}"><input type="button" value="이전페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nexttoprate.do?num=${next}"><input type="button" value="다음페이지"></a>
 
 </body>
 </html>

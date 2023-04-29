@@ -24,6 +24,7 @@ public class ToprateSubmain implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		int num = Integer.parseInt(request.getParameter("num"));
 		//평점순
 		URL url;
 		
@@ -48,6 +49,8 @@ public class ToprateSubmain implements Handler {
 				list.add(new movieVo(id, poster, title));
 			}
 			request.setAttribute("topratelist", list);
+			request.setAttribute("prev", num-1);
+			request.setAttribute("next", num+1);
 			is.close();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
