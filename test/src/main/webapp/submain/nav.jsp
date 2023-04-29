@@ -20,14 +20,8 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
-	function closeX(){
-		document.getElementById("popUp").remove();
-		document.getElementById("logoutBtn").checked=false;
-		console.log("하이~");
-	}
-	
+	// 토글버튼 클릭시 로그인 or 로그아웃 
 	function lBtn(){
-		console.log("버튼클릭");
  		let flag=document.getElementById("logoutBtn").checked;
  		let popUp = document.createElement("div");
  		popUp.setAttribute("id","popUp");
@@ -42,34 +36,28 @@
  					console.log("에러");
  				},
  				success : function(data){
- 					console.log(data);
- 					
  					$("#popUp").html(data);
  				}
  			})
  			
- 			//let win = window.open("${pageContext.request.contextPath }/member/login.jsp", 'win', 'top=100, botton=100')
- 			// 버튼 키면 로그인창으로 넘어가기 
- 			//location.href="${pageContext.request.contextPath}/member/login.do";
  		} else {
- 			// 버튼 끄면 로그아웃창으로 넘어가기 
  			location.href="${pageContext.request.contextPath}/member/logout.do?userId=${sessionScope.userId}";
  		}
  	}
  	
+	// 로그인 여부에 따른 토글 버튼 on/off
  	window.onload = function(){
  		let userId = "${sessionScope.userId}";
- 		console.log("userId :"+userId);
+ 		console.log("현재 로그인중인 userId :"+userId);
  		if(userId.length > 0){
- 			console.log("로그인을 하려고 하거나 된 상태?");
  			document.getElementById("logoutBtn").checked=true;
  		} else {
- 			console.log("로그인 안 된 상태");
  			document.getElementById("logoutBtn").checked=false;
  			document.getElementById("personCircle").style="display:none";
  		}
  	}
  	
+ 	// 회원가입 창 보여주기
 	function joinDo(){
 		// ${pageContext.request.contextPath }/member/join.do
 		$.ajax({
@@ -80,13 +68,12 @@
  				console.log("에러");
  			},
  			success : function(data){
- 				console.log(data);
- 					
  				$("#popUp").html(data);
  			}
  		})
 	}
 	
+ 	// 회원가입 하기 
 	function idJoin(){
 		var pattern = /\s/g;
 		// 공백 검사를 해주는 정규표현식
@@ -94,10 +81,6 @@
 		let password = joinInfo.password.value;
 		let checkpwd = joinInfo.checkpwd.value;
 		let nickname = joinInfo.nickname.value;
-
-		//let form = document.joinInfo;
-		//form.method='POST';
-		//form.action="${pageContext.request.contextPath}/member/join.do";
 		
 		$.ajax({
 			type : "POST",
@@ -105,12 +88,10 @@
 			dataType : "text",
 			error : function(){
 					console.log("에러");
-				},
-				success : function(data){
-					console.log(data);
-						
-					$("#popUp").html(data);
-				}
+			},
+			success : function(data){
+				$("#popUp").html(data);
+			}
 		});
 		
 		if(password != checkpwd){
