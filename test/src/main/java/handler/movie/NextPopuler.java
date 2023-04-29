@@ -53,7 +53,7 @@ public class NextPopuler implements Handler {
 				
 				list.add(new movieVo(id, poster, title));
 			}
-			if(pagenum - 1 >0) {
+			if(pagenum-1 >0) {
 				request.setAttribute("prev", pagenum-1);
 			}else {
 				request.setAttribute("prev", pagenum);
