@@ -12,8 +12,8 @@
 <script type="text/javascript">
 
 	function frameclose() {
-		let pop = document.getElementById("pop");
-		pop.style.display = 'none';
+		document.getElementById("popUp").remove();
+		document.getElementById("logoutBtn").checked=false;
 	}
 
 	function loginDo() {
@@ -33,6 +33,7 @@
 						data : {"userId": userId, "password" : password},
 						success : function(result) {
 							$("#popUp").hide();
+							$("#personCircle").show();
 						},
 						error : function(req, status, error){
 							console.log(status);
@@ -44,6 +45,7 @@
 				}
 			},
 			error : function(req, status, error){
+				console.log(status);
 			}
 		});
 	}
