@@ -24,6 +24,7 @@ public class UpcomingSubmain implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		int num = Integer.parseInt(request.getParameter("num"));
 		//예정작
 		URL url;
 		
@@ -46,6 +47,8 @@ public class UpcomingSubmain implements Handler {
 				list.add(new movieVo(id, poster, title));
 			}
 			request.setAttribute("upcominglist", list);
+			request.setAttribute("prev", num-1);
+			request.setAttribute("next", num+1);
 			is.close();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

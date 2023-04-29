@@ -84,8 +84,8 @@ h2{
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/upcoming.do?num=${prev}"><input type="button" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/upcoming.do?num=${next}"><input type="button" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextupcoming.do?num=${prev}"><input type="button" value="이전페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextupcoming.do?num=${next}"><input type="button" value="다음페이지"></a>
 
 </body>
 </html>
