@@ -71,6 +71,7 @@ color : #FFDD55;
 	function frameclose() {
 		let pop = document.getElementById("pop");
 		pop.style.display='none';
+		document.getElementById("logoutBtn").checked=false;
 	}
 </script>
 </head>
