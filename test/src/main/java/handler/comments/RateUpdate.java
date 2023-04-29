@@ -17,17 +17,20 @@ public class RateUpdate implements Handler {
 			
 			String userId = request.getParameter("userId");
 			int movieNum = Integer.parseInt(request.getParameter("movieNum"));
-			int rate = Integer.parseInt(request.getParameter("rate"));
+			//int commentId = Integer.parseInt(request.getParameter("commentId"));
 			
 			CommentsService service = new CommentsService();
 			CommentsVo vo = new CommentsVo();
 			vo.setUserId(userId);
 			vo.setMovieNum(movieNum);
-			vo.setRate(rate);
+			//vo.setNum(commentId);
+			//vo.setRate(rate);
 			
-			service.setRate(vo);
+			CommentsVo result = new CommentsVo();
+			result = service.setRate(vo);
 			
-			return "/comment/commentList.jsp";
+			//return "/comment/commentList.jsp";
+			return  "responsebody/" + result.getRate();
 		}
 	}
 

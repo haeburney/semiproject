@@ -83,7 +83,7 @@ public class CommentsService {
 	 * 좋아요 추가
 	 * @param vo
 	 */
-	public void setRate(CommentsVo vo) {
-		dao.setRate(vo);
+	public CommentsVo setRate(CommentsVo vo) {
+		return dao.setRate(vo);
 	}
 }
