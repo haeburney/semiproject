@@ -5,17 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <link rel="stylesheet" href="../submain/navcss.css">
 <link rel="stylesheet" href="RDetailcss.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Insert title here</title>
 </head>
-<%@include file="../submain/nav.jsp"%>
+
 
 <body class ="yess">	
-
+<%@include file="/submain/nav.jsp"%>
 	<div>
   <img align="right" class="tmp_img" src="https://image.tmdb.org/t/p/original${file_path }">
 	</div>
