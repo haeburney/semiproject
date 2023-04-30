@@ -89,19 +89,20 @@
 	.other .date { margin-right: 20px; }
 	.other .name { color: white; }
 	.other .good_area { cursor: pointer; color: white; }
+	.spoiler_y_icon { margin-right: 20px; }
 	
 	.write_popup {
-		display: inline;
+		display: inline-block;
 		width: 100%;
 		height: 100%;
 		padding: 0;
 		margin: 0;
 		position: relative;
-		z-index: 2;
+		z-index: 10;
 	}
 	
 	.wrap_popup {
-		display: inline;
+		display: inline-block;
 		width: 100%;
 		height: 100%;
 		padding: 0;
@@ -132,9 +133,6 @@
 	.popup {
 		z-index: 3;
 		position: relative;
-		/* top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%); */
 		min-width: 300px;
 		max-width: 600px;
 		background-color: #fff;
@@ -200,9 +198,9 @@
 	.checkbox-wrap { cursor: pointer; font-family: 'SUIT Variable';
 	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css' format('sans-serif'));
 	    color: black; font-size: 0.8em; }
-	.checkbox-wrap .check-icon  { display: inline-block; width: 25px; height: 25px; color: #AFAFAF;  content: url(../image/spoiler_gray.png); center no-repeat; vertical-align: middle; transition-duration: .3s; }
+	.checkbox-wrap .check-icon  { display: inline-block; width: 25px; height: 25px; /* color: #AFAFAF;  content: url(../image/spoiler_gray.png); */ center no-repeat; vertical-align: middle; transition-duration: .3s; }
 	.checkbox-wrap input[type=checkbox] { display: none; }
-	.checkbox-wrap input[type=checkbox]:checked + .check-icon { color: #FADE6D; content: url(../image/spoiler.png); }
+	.checkbox-wrap input[type=checkbox]:checked + .check-icon { /* color: #FADE6D; content: url(../image/spoiler.png); */ }
 </style>
 
 </head>
@@ -222,7 +220,7 @@
 					<div class="title" style="color: black;">관람한 영화에 조각별을 남겨주세요.</div>
 					<div class="content">
 						<c:if test="${not empty mine}">
-						<textarea class="commentpop" cols="20" rows="5" autofocus>${ mine.comments }</textarea>
+						<textarea class="commentpop" cols="20" rows="5" maxlength="100" autofocus>${ mine.comments }</textarea>
 						</c:if>	
 					</div>
 					<div class="cmd">
@@ -234,8 +232,6 @@
 			</div>
 		</div> 
 		
-		
-		<!-- write popup .main { width: 100%; height: 100%; position: absolute; background-color: #000000; overflow: auto; }-->
 		<div class="write_popup" style="display: none;">	  
 			<div class="dimmed">
 				<div class="popup">
@@ -358,7 +354,7 @@
 												<div style="width: 40px;">
 														<span id="good_best" class="good">${ best.rate }</span>
 														<span id="good_best_rate_userId" style="display: none;">${best.userId}:${status.index}</span>
-														<span id="best_num" class="best_${best.num}" style="display: none;">"best_${best.num}"</span>
+														<%-- <span id="best_num" class="best_${best.num}" style="display: none;">"best_${best.num}"</span> --%>
 													</div>
 												</div>
 											</div>
@@ -375,7 +371,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" width="100%;" align="right">
+									<td colspan="2" width="100%;" align="left">
 										<span class="date">${ best.w_Date }</span>
 									</td>
 								</tr>
@@ -410,7 +406,7 @@
 												<div style="width: 40px;">
 														<span id="good_recent" class="good">${ recent.rate }</span>
 														<span id="good_recent_rate_userId" style="display: none;">${recent.userId}:${status.index}</span>
-														<span id="recent_num" class="recent_${recent.num}" style="display: none;">${recent.num}</span>
+														<%-- <span id="recent_num" class="recent_${recent.num}" style="display: none;">${recent.num}</span> --%>
 													</div>
 												</div>
 											</div>
@@ -427,7 +423,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" width="100%;" align="right">
+									<td colspan="2" width="100%;" align="left">
 										<span class="date">${ recent.w_Date }</span>
 									</td>
 								</tr>
@@ -460,8 +456,8 @@
 												<div class="slash">|</div>
 												<div style="width: 40px;">
 														<span id="good_spoiler" class="good">${ spoiler.rate }</span>
-														<span id="good_spoiler_rate_userId" style="display: none;">${spoiler.userId}:${status.num}</span>
-														<span id="spoiler_num" class="spoiler_${spoiler.num}" style="display: none;">${spoiler.num}</span>
+														<span id="good_spoiler_rate_userId" style="display: none;">${spoiler.userId}:${status.index}</span>
+														<%-- <span id="spoiler_num" class="spoiler_${spoiler.num}" style="display: none;">${spoiler.num}</span> --%>
 													</div>
 												</div>
 											</div>
@@ -478,8 +474,11 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" width="100%;" align="right">
+									<td width="50%;" align="left">
 										<span class="date">${ spoiler.w_Date }</span>
+									</td>
+									<td width="50%;" width="25px;" height="25px;" align="right">
+										<img class="spoiler_y_icon" width="25px;" height="25px;" src="../image/spoiler.png" >
 									</td>
 								</tr>
 								<tr><td><br></td></tr>
@@ -493,14 +492,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<%-- <jsp:include page="../comment/writePopup.jsp" flush="ture"/> --%>
-		 <!-- <div class="modal-bg" onClick="javascript:popClose();"></div>
-		  <div class="modal-wrap">
-		    modal sample
-		    <button class="modal-close" onClick="javascript:popClose();">닫기</button>
-		  </div> -->
-		  
 	</div>	
 		
 	<script>
@@ -539,6 +530,15 @@
 		$('.go_write').click(function() {
 			$('.write_popup').show();
 			$('.main').css("overflow", "hidden");
+		});
+		
+		// 팝업창 스포일러 여부 체크박스 동작시 아이콘 변경
+		$('.checkbox-wrap').click(function() {
+			if ($('input:checkbox[name="spoiler_check"]').is(':checked')) {
+				$('#edit_spoiler_icon').attr("src", "../image/spoiler.png"); // 팝업
+			} else {
+				$('#edit_spoiler_icon').attr("src", "../image/spoiler_gray.png"); // 팝업
+			}
 		});
 	
 		// BEST COMMENT TAB
@@ -725,20 +725,7 @@
 				data: param,
 				dataType: "text",
 				success: function(result) {
-					/* console.log("result : " + result);
-					let rs = JSON.parse(result);
-					
-					$('.wrap_popup').hide();
-					location.replace("./comment/commentList.jsp"); */
-					//location.href = "${pageContext.request.contextPath}/comments/allList.do?movieNum=${movieNum}";
-					//$('.wrap_popup').hide();
-					//getComments();
 					location.href = "${pageContext.request.contextPath}/comments/allList.do?movieNum=${movieNum}&userId=${sessionScope.userId}";
-					
-					//$('.wrap_popup').hide(); 	// 수정 팝업 숨김처리
-					//$('.my_no_data').hide();	// 작성 유도 UI 숨김처리
-					//$('.my').show();			// 내가 쓴 코멘트 노출
-					
 				},
 				error: function(req, status, error) {
 					console.log("req : " + req);
