@@ -120,11 +120,8 @@ input[id="popup"] + label +div >div {
 	height :600px;
 	text-align :center;
 	background : dimgray;
-	border :10px;
-	border-color : yellow;
 	border-radius: 10%;
 	z-index:2;
-
 }
 
 input[id="popup"] + label +div >label{
@@ -212,8 +209,7 @@ a{
 }
 
 .icon.heart.fas{
-  color:yellow;
-  
+color :#FADE6D;  
   }
 .heart{
     transform-origin: center;
@@ -255,9 +251,9 @@ a{
 .star-rating label:hover,
 .star-rating label:hover ~ label,
 .star-rating input:checked ~ label {
-  color: #FFD700;
+  color: #FADE6D;
 }
 
 .star-rating input:checked ~ label {
-  color: #FFD700;
+  color: #FADE6D;
 } 

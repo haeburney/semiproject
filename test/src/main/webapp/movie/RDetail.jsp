@@ -94,7 +94,7 @@ ${title}
         if ($likeBtn.hasClass('active')) {          
             $(this).find('img').attr({
                 'src': '${pageContext.request.contextPath}/image/yellowheart.png',
-                alt: '빨간하트'
+                alt: '노란하트'
             });
 
             console.log("찜");
