@@ -29,4 +29,8 @@ public class StarService {
 		return dao.getStarNum(userId, movieNum);
 	}
 	
+	public boolean checkstar(StarVo vo) {
+		return dao.select(vo);
+	}
+	
 }

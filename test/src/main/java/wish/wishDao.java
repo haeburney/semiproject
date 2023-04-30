@@ -15,7 +15,7 @@ public class wishDao {
 			dbconn = DBConnect.getInstance();
 		}
 		
-		//찜하면 0으로 추가 
+		
 		public void insert (wishVo vo) {
 			Connection conn = dbconn.conn();
 			String sql = "insert into wish values(seq_wish_num.nextVal,?, ?)";
@@ -108,6 +108,7 @@ public class wishDao {
 		         pstmt.setInt(2, vo.getMovieNum());
 		         
 		         ResultSet rs = pstmt.executeQuery();
+		         
 		         if(rs.next()) {
 		            return true;
 		         }

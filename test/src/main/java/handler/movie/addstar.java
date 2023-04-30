@@ -11,22 +11,28 @@ public class addstar implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		if (request.getMethod().equals("GET")) {
 		
-		 if(request.getMethod().equals("GET")) {
-	         
-	      } else {
-	    	  
-	         String userId = request.getParameter("userId");
-	         int movieId=Integer.parseInt(request.getParameter("movieId"));
-	         int value=Integer.parseInt(request.getParameter("value"));
+			String userId = request.getParameter("userId");
+			int movieId = Integer.parseInt(request.getParameter("movieId"));
+			int value = Integer.parseInt(request.getParameter("value"));
 
-	         StarService service = new StarService(); 
-	         service.starInsert(new StarVo (0,userId, movieId, value));
+			StarService service = new StarService();
+			boolean star = service.checkstar(new StarVo(0,userId,movieId,0)); //
+			
+			System.out.println(star);
+			
+			if(star) { //별이 트루라면 
+				service.updateStar(new StarVo(0,userId,movieId,value));
+			} else {
+			
+			service.starInsert(new StarVo(0, userId, movieId, value));
+			
+			}
 
+			return "/movie/RDetail.jsp";
+		}
+
+		return null;
 	}
-
-		 return "/movie/RDetail.jsp";
-}
-	
 }
