@@ -17,7 +17,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import handler.Handler;
-import movie.movieVo;
 import star.StarService;
 import wish.wishService;
 import wish.wishVo;
@@ -29,6 +28,7 @@ public class moviedetail implements Handler {
 		
 		String movieId = request.getParameter("id");
 		int movienum = Integer.parseInt(request.getParameter("id"));
+		String userId = (String) request.getSession().getAttribute("userId");
 
 		URL url;
 
@@ -42,30 +42,41 @@ public class moviedetail implements Handler {
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
 
-			String overview = (String) obj.get("overview");
+			String overview = (String) obj.get("overview"); //요약
 			
-			int runtime = Integer.valueOf(obj.get("runtime").toString());
+			int runtime = Integer.valueOf(obj.get("runtime").toString()); //런타임
 
-			String title = (String) obj.get("title");
-			String tagline = (String) obj.get("tagline");
-
+			String title = (String) obj.get("title"); //제목
+			String tagline = (String) obj.get("tagline"); //태그라인
+			
 			Double d = (Double) obj.get("vote_average");
 			String formatted = String.format("%.2f", d);
-			float vote_average = Float.parseFloat(formatted);
+			float vote_average = Float.parseFloat(formatted); //평점 
 
-			JSONArray arr = (JSONArray) obj.get("genres");
+			String release_date = (String) obj.get("release_date"); //개봉일
+		
+			
+			JSONArray arr = (JSONArray) obj.get("genres"); //장르
 			ArrayList<String> name = new ArrayList<>();
 
 			for (int i = 0; i < arr.size(); i++) {
 				JSONObject o = (JSONObject) arr.get(i);
 				name.add((String) o.get("name"));
 			}
+			
+			JSONArray arr2 = (JSONArray) obj.get("production_companies"); //제작사
+			ArrayList<String> production = new ArrayList<>();
+			
+			for (int j = 0; j < arr2.size(); j++) {
+				JSONObject o2 = (JSONObject) arr2.get(j);
+				production.add((String) o2.get("name"));
+			}
 
 		wishService wservice = new wishService(); 		
-		boolean a = wservice.checkwish(new wishVo(0,"${sessionScope.loginId}",movienum)); 
+        boolean flag = wservice.checkwish(new wishVo(0,userId, movienum));
 			
-		StarService sservice = new StarService(); 
-		int star = sservice.starNum("${sessionScope.loginId}",movienum);
+		request.setAttribute("flag", flag); //wish 했니 안했니? 
+
 		
 			request.setAttribute("name", name); // 장르
 			request.setAttribute("overview", overview); // 요약
@@ -73,18 +84,19 @@ public class moviedetail implements Handler {
 			request.setAttribute("title", title); // 제목
 			request.setAttribute("tagline", tagline); // 태그라인
 			request.setAttribute("vote_average", vote_average); // 평점
-			request.setAttribute("movieId", movieId);
+			request.setAttribute("movieId", movieId); //영화번호
+			request.setAttribute("production", production); //제작사
+			request.setAttribute("release_date", release_date); //개봉일
 			
-			request.setAttribute("flag", a);
-			request.setAttribute("star", star);
-
+			StarService sservice = new StarService(); 
+			int star = sservice.starNum(userId,movienum);
+				
+			request.setAttribute("star", star); //별이 몇개 있니? 
+		
 			is.close();
 			
 			getimg(request, response, movieId);
 			
-
-		
-
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

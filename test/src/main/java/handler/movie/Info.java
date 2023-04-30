@@ -44,7 +44,7 @@ public class Info implements Handler {
 
 		String title=(String) obj.get("title");
 		String tagline=(String) obj.get("tagline");
-		
+		String production=(String) obj.get("name");
 		
 		JSONArray arr = (JSONArray) obj.get("genres");
 		ArrayList <String> name = new ArrayList<>();
@@ -59,6 +59,7 @@ public class Info implements Handler {
 		request.setAttribute("runtime", runtime);
 		request.setAttribute("title", title);
 		request.setAttribute("tagline", tagline);
+		request.setAttribute("production", production);
 		
 		
 		is.close();

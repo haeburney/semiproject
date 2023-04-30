@@ -135,11 +135,11 @@ public class StarDao {
 			pstmt.setInt(2,movieNum);
 			
 			ResultSet rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				return rs.getInt(1); 
 			}
-	
-			
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,6 +152,37 @@ public class StarDao {
 			}
 		}
 		return 0;
+	}
+	
+	//수정을 위해서 별을 찍었니 안찍었니 확인하기 위한 것 
+	public boolean select (StarVo vo) {
+		
+		Connection conn = DBConn.conn();
+		String sql = "select * from star where userId=? and movieNum=?";
+		try {
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,vo.getUserId());
+			pstmt.setInt(2,vo.getMovieNum());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				return true; 
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 		
 }

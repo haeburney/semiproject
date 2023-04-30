@@ -5,10 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../submain/navcss.css">
 <title>Insert title here</title>
 <style>
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-	background-color: black;
+	background-color: black !important;
 }
 
 .video-list ul li {
@@ -25,10 +33,34 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+
+  .poster {
+    position: relative;
+  }
+
+  .emptyvideo {
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'KOTRA_BOLD-Bold';
+	font-size : 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    color: yellow;
+  }
+
+.posterimg{
+
+    background-size: cover;
+}
 </style>
 
 
 </head>
+<%@include file="../submain/nav.jsp" %>
 <body>
 
 
@@ -51,8 +83,9 @@ body {
 
 	<div class="poster">
 		<c:if test="${empty key}">
-			<img src="https://image.tmdb.org/t/p/original${img_path }"
-				style="padding-left: 20px">
+			<img src="https://image.tmdb.org/t/p/original${img_path }" class ="posterimg">
+			 <h1 class="emptyvideo" style="font-size:50px">준비 된 예고편이 없습니다</h1>
+
 		</c:if>
 	</div>
 
