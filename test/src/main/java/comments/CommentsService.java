@@ -86,4 +86,8 @@ public class CommentsService {
 	public CommentsVo setRate(CommentsVo vo) {
 		return dao.setRate(vo);
 	}
+	
+	public CommentsVo addCommentDetail(CommentsVo vo) {
+		return dao.addCommentDetail(vo);
+	}
 }

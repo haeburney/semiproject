@@ -326,4 +326,48 @@ public class CommentsDao {
 		System.out.println("dao > " + result.toString());
 		return result;
 	}
+	
+	public CommentsVo addCommentDetail(CommentsVo vo) {
+		Connection conn = dbconn.conn();
+		CommentsVo vo2 = new CommentsVo();
+		String sql = "insert into comments(NUM, MOVIENUM, USERID, COMMENTS, W_DATE, RATE, SPOILER) values (seq_comments.nextVal, ?, ?, ?, sysdate, ?,?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vo.getMovieNum());
+			pstmt.setString(2, vo.getUserId());
+			pstmt.setString(3, vo.getComments());
+			pstmt.setInt(4, vo.getRate());
+			pstmt.setString(5, vo.getSpoiler());
+
+			pstmt.executeUpdate();
+			
+			String selSql = "select A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER from member A, comments B where B.userId=? and B.movieNum=?";
+			pstmt = conn.prepareStatement(selSql);
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setInt(2, vo.getMovieNum());
+			//pstmt.setInt(3, vo.getNum());
+			
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo2.setUserId(rs.getString(1));
+				vo2.setUserName(rs.getString(2));
+				vo2.setNum(rs.getInt(3));
+				vo2.setMovieNum(rs.getInt(4));
+				vo2.setComments(rs.getString(5));
+				vo2.setW_Date(rs.getDate(6));
+				vo2.setRate(rs.getInt(7));
+				vo2.setSpoiler(rs.getString(8));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return vo2;
+	}
 }

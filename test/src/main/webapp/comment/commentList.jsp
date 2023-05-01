@@ -237,7 +237,7 @@
 				<div class="popup">
 					<div class="title" style="color: black;">관람한 영화에 조각별을 남겨주세요.</div>
 					<div class="content">
-						<textarea class="commentpop initial_comment" cols="20" rows="5" autofocus></textarea>
+						<textarea class="commentpop initial_comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
 					</div>
 					<div class="cmd">
 						<label class="checkbox-wrap">스포일러인가요? 클릭! <input type="checkbox" name="spoiler_check2" value=""><img class="check-icon"></img></label>
@@ -518,10 +518,12 @@
 			if ($('.spoiler_yn').text() == 0) { // 보이지는 않지만 값 가져오기 및 비교하기 위해 사용
 				$('.spoiler_yn_img').attr("src", "../image/spoiler.png");
 				$('.spoiler_yn_txt').text("스포일러가 있어요!");
+				$('input:checkbox[name="spoiler_check"]').prop('checked',true);
 				$('#edit_spoiler_icon').attr("src", "../image/spoiler.png"); // 팝업
 			} else {
 				$('.spoiler_yn_img').attr("src", "../image/spoiler_gray.png");
 				$('.spoiler_yn_txt').text("스포일러가 없어요!");
+				$('input:checkbox[name="spoiler_check"]').prop('checked',false);
 				$('#edit_spoiler_icon').attr("src", "../image/spoiler_gray.png"); // 팝업
 			}
 		}
