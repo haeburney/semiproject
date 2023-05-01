@@ -18,12 +18,12 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	
-}
+}*/
 
-.card img{
+.img{
 	height: 26rem;
 	object-fit: cover;
-}*/
+}
 
 .list {
 	margin-left: auto;
@@ -55,7 +55,7 @@ h2{
 }
 
 .title{
-	margin-left:160px;
+	text-align: center;
 }
 
 .bgcolor{
@@ -150,7 +150,7 @@ function next(){
   <c:forEach var="vo" items="${movielist }">
     <div class="col">
         <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="인기순">
+          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="img" alt="인기순">
         </a>
           <div class="text">${vo.title }</div>
        </div>
