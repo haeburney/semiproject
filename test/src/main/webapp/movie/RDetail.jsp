@@ -130,7 +130,7 @@ ${title}
  </script>
 	<!-- 		  예고편  -->
 	<span>
-	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px">
+	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px; margin-left:50px;">
 	<span class ="watch">예고편 보러가기 |  </span>
 
 	</span>

@@ -28,7 +28,7 @@
     position: relative;
  	padding-right: 90px;
     width: 490px;
-	height: 530px;
+	height: 570px;
 }
 
 .title{	
@@ -189,8 +189,9 @@ a{
   text-decoration:none; color:white; cursor: pointer;
 }
 
+
 .icon .heart{
-		margin-left : 150px;
+	
 	    display: flex;
     align-items: center;
     justify-content: center;
@@ -206,6 +207,7 @@ a{
 .icon.heart img{
     width: calc(100vw * (35 / 1920));
     height: calc(100vw * (35 / 1920));
+    margin-left:50px;
 }
 
 .icon.heart.fas{
