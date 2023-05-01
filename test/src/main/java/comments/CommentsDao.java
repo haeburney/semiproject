@@ -283,17 +283,37 @@ public class CommentsDao {
 		}
 	}
 	
-	public void setRate(CommentsVo vo) {
+	/**
+	 * 좋아요
+	 * @param vo
+	 * @return
+	 */
+	public CommentsVo setRate(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "UPDATE COMMENTS SET RATE = ? WHERE MOVIENUM = ? AND USERID = ?";
+		String sql = "UPDATE COMMENTS SET rate = (SELECT RATE FROM COMMENTS WHERE USERID = ? AND MOVIENUM = ?) + 1 WHERE USERID = ? AND MOVIENUM = ?";
+		CommentsVo result = null;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, vo.getRate());
+			pstmt.setString(1, vo.getUserId());
 			pstmt.setInt(2, vo.getMovieNum());
 			pstmt.setString(3, vo.getUserId());
+			pstmt.setInt(4, vo.getMovieNum());
+			//pstmt.setInt(5, vo.getNum());
 			
 			pstmt.executeUpdate();
+			
+			
+			pstmt = conn.prepareStatement("SELECT A.USERID, A.NICKNAME, B.NUM, B.MOVIENUM, B.COMMENTS, B.W_DATE, B.RATE, B.SPOILER FROM MEMBER A, COMMENTS B WHERE A.USERID = B.USERID AND B.MOVIENUM = ? AND B.USERID = ?");
+			pstmt.setInt(1, vo.getMovieNum());
+			pstmt.setString(2, vo.getUserId());
+		
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				result = new CommentsVo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8));
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -303,5 +323,7 @@ public class CommentsDao {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("dao > " + result.toString());
+		return result;
 	}
 }

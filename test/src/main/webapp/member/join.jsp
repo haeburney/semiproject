@@ -106,7 +106,6 @@ color : #FFDD55;
 				}
 			});
 		}
-		
 	}
 </script>
 </head>

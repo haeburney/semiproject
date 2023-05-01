@@ -39,6 +39,12 @@ h2{
 
 .col{
 	margin: auto;
+	transition: width 2s, height 1s;
+}
+
+.col:hover{
+  width: 330px;
+  height: 380px;
 }
 
 .title{
@@ -81,6 +87,8 @@ h2{
 .floating-btn:hover {
   background-color: #555;
 }
+
+
 
 </style>
 </head>

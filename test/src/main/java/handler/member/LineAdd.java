@@ -23,6 +23,7 @@ public class LineAdd implements Handler {
 			MemberService service=new MemberService();
 			service.lineInsert(userId, introLine);
 			//return "/member/mypage.jsp";
+			return introLine;
 		}
 		
 		return null;
