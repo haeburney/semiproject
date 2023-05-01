@@ -190,7 +190,8 @@ ${title}
 
 
 <div>
-    <span class="tagline">${tagline}</span><br />
+<div style="width : 900px; margin-left: 150px;">
+    <span class="tagline">${tagline}</span><br /></div>
     <span class="basicinfo">${name} · ${runtime}분</span><br/> 
     <span class="average">평점: ${vote_average}</span><br/>
 </div>
@@ -266,7 +267,7 @@ ${title}
  </script>
 	<!-- 		  예고편  -->
 	<span>
-	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px">
+	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px; margin-left:50px;">
 	<span class ="watch">예고편 보러가기 |  </span>
 
 	</span>
