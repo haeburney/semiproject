@@ -27,14 +27,14 @@
 	margin-top : 105px;
     position: relative;
  	padding-right: 90px;
-    width: 450px;
-	height: 510px;
+    width: 490px;
+	height: 530px;
 }
 
 .title{	
 	position: relative;
     top: 100px;
-    margin-left: 100px;
+    margin-left: 150px;
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -46,7 +46,7 @@
 .tagline{	
 	position: relative;
     top: 100px;
-    margin-left: 100px;
+/*     margin-left: 150px; */
     font-family: 'SUIT-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
@@ -58,7 +58,7 @@
 .basicinfo{	
 	position: relative;
     top: 100px;
-    margin-left: 100px;
+    margin-left: 150px;
     font-family: 'SUIT-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
@@ -70,7 +70,7 @@
 .average{	
 	position: relative;
     top: 100px;
-    margin-left: 100px;
+    margin-left: 150px;
     font-family: 'SUIT-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
@@ -190,7 +190,7 @@ a{
 }
 
 .icon .heart{
-		margin-left : 100px;
+		margin-left : 150px;
 	    display: flex;
     align-items: center;
     justify-content: center;

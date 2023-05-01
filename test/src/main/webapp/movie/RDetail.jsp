@@ -53,7 +53,8 @@ ${title}
 
 
 <div>
-    <span class="tagline">${tagline}</span><br />
+<div style="width : 900px; margin-left: 150px;">
+    <span class="tagline">${tagline}</span><br /></div>
     <span class="basicinfo">${name} · ${runtime}분</span><br/> 
     <span class="average">평점: ${vote_average}</span><br/>
 </div>
