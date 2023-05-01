@@ -156,15 +156,16 @@
 				id="navbarsExample05" align="right">
 
 				<!--     검색하기 -->
+				<form action="${pageContext.request.contextPath}/submain/nav.do" method="GET">
 				<div class="search_area" align="right">
-					<input class="form-control iptfind" type="search"
-						placeholder="작가, 감독으로 찾기" maxlength="8" aria-label="Search"> 
+					<input class="form-control iptfind" type="search" name="query"
+						placeholder="작품으로 검색하시오." maxlength="8" aria-label="Search"> 
 
 					<div class="icon_area">
 						<div class="bi bi-search fs-3 icon"></div>
 					</div>
 				</div>
-				
+				</form>
 
 				<ul class="navbar-nav mb-2 mb-lg-0">
 

@@ -62,7 +62,7 @@ h2{
 }
 
 .title{
-	margin-left:80px;
+	text-align: center;
 }
 
 .bgcolor{
