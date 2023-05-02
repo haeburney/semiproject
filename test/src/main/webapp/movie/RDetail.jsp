@@ -137,16 +137,18 @@
 <%@include file="/submain/nav.jsp"%>
 
 <!-- 코멘트 팝업 -->
-<div class="write_popup" style="display: none;">	  
+ <button type="button"  class="btn4" onclick = "">조각별 남기기</button>
+
+<div class="write_popup" id ="popup" style="display: none;">	  
 	<div class="dimmed">
 		<div class="addpopup">
-			<div class="addtitle" style="color: black;" align="center">관람한 영화에 조각별을 남겨주세요.</div>
+			<div class="addtitle" id ="popupInput" style="color: black;" align="center" placeholder="관람한 영화에 조각별을 남겨주세요."></div>
 			<div class="content">
 				<textarea class="commentpop initial_comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
 			</div>
 			<div class="cmd">
 				<label class="checkbox-wrap">스포일러인가요? 클릭! <input type="checkbox" name="spoiler_check2" value=""><img class="check-icon" src="../image/spoiler.png"></img></label>
-				<input type="button" id="btnsave" class="popbutton" value="저장">
+				<input type="button" id="btnsave" class="popbutton" value="저장" onclick="save()">
 				<input type="button" id="btncancel" class="popbutton" value="닫기">
 			</div>
 		</div>
@@ -154,6 +156,37 @@
 </div> 
 <!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 <span id="movieNum" style="display: none;">${movieId}</span>
+
+ 
+<button class="btn4" onclick="openPopup()">클릭해주세요</button>
+
+<!-- 팝업창 -->
+<div id="popup" style="display:none">
+  <input type="text" id="popup-input" placeholder="내용을 입력해주세요">
+  <button onclick="savePopup()">등록</button>
+</div>
+
+
+<script>
+function openPopup(){
+var popup = document.getElementById("popup");
+popup.style.display ="block"; 
+}
+
+function save(){
+var popupInput = document.getElementById("popupInput"); 
+var popupText = popupInput.value;
+var popup = document.getElementById("popup");
+var btn = var btn = document.querySelector(".btn");
+
+if(popupText) {
+btn.setAttribute("data-text", popupText);
+}
+
+popup.style.dispaly ="none";
+
+}
+</script>
 
 
 	<div>
