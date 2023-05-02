@@ -18,218 +18,7 @@
 
 <style>
 
-	@font-face {
-	    font-family: 'GangwonEduHyeonokT_OTFMediumA';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduHyeonokT_OTFMediumA.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
 	
-	#showComments{
-	color : white;
-	}
-	
-	#add_comment_txt {
-		cursor: pointer;
-	}
-	
-	.comment_area {
-		width: 50%;
-		height: 100px;
-		position: absolute;
-		border: 1px solid #FADE6D;
-		border-radius: 15px;
-		color: white;
-		margin-left: 50px;
-	}
-	
-	.comment { margin-top: 5px; margin-left: 10px; /* 0 0 5px rgba(81, 203, 238, 1) */; background-color: #000000; width: 90%; height: 100%; border: 0 solid #000000; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #ffffff; }
-	.comment:focus { box-shadow: #000000; border: #000000; outline: none; }
-	
-	.comment_area_btn {
-		cursor: pointer;
-		margin-top: 10px;
-		color: white;
-	}
-	
-	.comment_area_btn:hover {
-		color: #FADE6D;
-	}
-	
-	.comment_area_btn::before {
-	  content: '';
-	  position: absolute;
-	  bottom: -40%;
-	  width: 18%;
-	  height: 2px;
-	  background: #FADE6D;
-	  display: block;
-	  margin-top: -15px;
-	  -webkit-transform-origin: right top;
-	  -ms-transform-origin: right top;
-	  transform-origin: right top;
-	  -webkit-transform: scale(0, 1);
-	  -ms-transform: scale(0, 1);
-	  transform: scale(0, 1);
-	  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
-	  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
-	}
-	
-	.comment_area_btn:hover::before {
-	  -webkit-transform-origin: left top;	
-	  -ms-transform-origin: left top;
-	  transform-origin: left top;
-	  -webkit-transform: scale(1, 1);
-	  -ms-transform: scale(1, 1);
-	  transform: scale(1, 1)
-	}
-	
-	.write_popup {
-		display: inline;
-		width: 50%;
-		height: 50%;
-		padding: 0;
-		margin: 0;
-		position: absolute;
-		z-index: 10;
-	}
-	
-	.dimmed {
-		background-color: #99999900;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: center;
-	}
-	
-	.dimmed::before {
-		content: '';
-		position: fixed;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background-color: rgba(255, 255, 255, 0.55);
-		-webkit-backdrop-filter: blur(5px);
-		backdrop-filter: blur(5px);
-	}
-	
-	.addpopup {
-		z-index: 3;
-		position: relative;
-		min-width: 300px;
-		max-width: 600px;
-		background-color: #fff;
-		border-radius: 15px;
-		box-shadow: 0 2px 55px -25px rgb(0 0 0/ 100%);
-	}
-	
-	.addpopup>.addtitle {
-		border-radius: 15px 15px 0 0;
-		min-height: 40px;
-		color: #fff;
-		background-color: #FADE6D;
-		padding: 10px 15px;
-		box-sizing: border-box;
-		font-family: 'SUIT Variable';
-	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css') format('sans-serif');
-	    font-weight: bold;
-	    font-style: bold;
-	    font-size: 1em;
-	}
-	
-	.addpopup>.content {
-		padding: 20px;
-		box-sizing: border-box;
-		color: black; 
-		font-family: 'GangwonEduHyeonokT_OTFMediumA'; 
-		font-size: 1.5em;
-	}
-	
-	.commentpop { 
-		background-color: #FFFFFF; 
-		outline-color: #FFFFFF;
-		height: 50%; 
-		width: 100%; 
-		border: 0; 
-		overflow-y: hidden; 
-		resize: none; 
-	}
-	
-	.addpopup>.cmd {
-		bottom: 0;
-		min-height: 40px;
-		padding: 15px 15px;
-		box-sizing: border-box;
-		border-radius: 0 0 15px 15px;
-		min-height: 40px;
-		text-align: right;
-	}
-	
-	.addpopup>.cmd .popbutton {
-		border-radius: 8px;
-		padding: 5px 10px;
-		border: 1px solid #aaa;
-	}
-	
-	.addpopup>.cmd .popbutton:hover {
-		color: #fff;
-		background-color: #000;
-		border-color: #000;
-	}
-	
-	
-	.checkbox-wrap { cursor: pointer; font-family: 'SUIT Variable';
-	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css') format('sans-serif');
-	    color: black; font-size: 0.8em; }
-	.checkbox-wrap .check-icon  { display: inline-block; width: 25px; height: 25px; color: #AFAFAF;  content: url(../image/spoiler_gray.png); /* center no-repeat;  */vertical-align: middle; transition-duration: .3s; }
-	.checkbox-wrap input[type=checkbox] { display: none; }
-	.checkbox-wrap input[type=checkbox]:checked + .check-icon { color: #FADE6D; content: url(../image/spoiler.png); }
-	
-	.go_wirte{
-	  cursor: pointer;
-	  padding: 2px 50px;
-	  margin:10px 4px;
-	  color: #FAFAFA;
-	  font-family: sans-serif;
-	  text-transform: uppercase;
-	  text-align: center;
-	  position: relative;
-	  text-decoration: none;
-	  display:inline-block;
-	}
-	
-	.go_wirte:hover {
-		color: #FADE6D;
-	}
-	
-	.go_wirte::before {
-	  content: '';
-	  position: absolute;
-	  bottom: 0%;
-	  left: 24%;
-	  width: 50%;
-	  height: 2px;
-	  background: #FADE6D;
-	  display: block;
-	  -webkit-transform-origin: right top;
-	  -ms-transform-origin: right top;
-	  transform-origin: right top;
-	  -webkit-transform: scale(0, 1);
-	  -ms-transform: scale(0, 1);
-	  transform: scale(0, 1);
-	  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
-	  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
-	}
-	
-	.go_wirte:hover::before {
-	  -webkit-transform-origin: left top;	
-	  -ms-transform-origin: left top;
-	  transform-origin: left top;
-	  -webkit-transform: scale(1, 1);
-	  -ms-transform: scale(1, 1);
-	  transform: scale(1, 1)
-	}
-
 	
 </style>
 </head>
@@ -252,28 +41,13 @@
 				<img class="check-icon" src="../image/spoiler.png"></img></label>
 				
 				<input type="button" id="btnsave" class="popbutton" value="저장" onclick="save()">
-				<input type="button" id="btncancel" class="popbutton" value="닫기">
+				<input type="button" id="btncancel" class="popbutton" value="닫기" onclick="cancel()">
 			</div>
 		</div>
 	</div>
 </div> 
 
-<script>
 
-jQuery.fn.center = function () {
-    this.css("position","absolute");
-    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
-    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
-    return this;
-  }
-  
-jQuery(".write_popup").center();
-
-function cancel() {
-	$('.write_popup').hide();
-}
-
-</script>
 
 <!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 <span id="movieNum" style="display: none;">${movieId}</span>
@@ -330,62 +104,7 @@ ${title}
 					alt="텅빈하트"> 
 						<span class="watch" > 보고싶어요 </span> </div>
 								
-<script>
-        	  
- $(document).ready(function() {
-        		  
-    var $likeBtn = $('.icon.heart');  
-    let movieId = "${movieId}";
-    let userId = "${sessionScope.userId}"
-    console.log(movieId);     	
-    let isWished = "${flag}"
-    console.log(isWished);
-    	
-    if (isWished && isWished === 'true') {
-	    
-	    $likeBtn.find('img').attr({
-	      'src': '${pageContext.request.contextPath}/image/yellowheart.png',
-	      alt:'빨간하트'
-	    });
-	  } 	
-	  
-    $likeBtn.click(function() {
-        $likeBtn.toggleClass('active');
-        console.log("토글버튼까지 생성");
 
-        if ($likeBtn.hasClass('active')) {          
-            $(this).find('img').attr({
-                'src': '${pageContext.request.contextPath}/image/yellowheart.png',
-                alt: '노란하트'
-            });
-
-            console.log("찜");
-            
-        } else {
-            $(this).find('i').removeClass('fas').addClass('far');
-            $(this).find('img').attr({
-                'src': '${pageContext.request.contextPath}/image/heart.png',
-                alt: '텅빈하트'
-            });
-            console.log("찜 취소");
-        }
-
-        console.log("에이작스들어갈거임");
-        $.ajax ({
-        	        	
-            url: '${pageContext.request.contextPath}/movie/wish.do',
-            type: "GET",
-            data: {"userId": userId, "movieId": movieId},
-            
-            success: function(result) {
-                console.log("에이작스성공");
-            }
-        }); 
-
-    });
-}); 
- 
- </script>
 	<!-- 		  예고편  -->
 	<span>
 	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px; margin-left:50px;">
@@ -472,86 +191,139 @@ $(document).ready(function() {
 </script>
 
 
-</div>
-
-
-<div id = "showComments">
-<button class="btn4" onclick="document.querySelector('.write_popup').style.display = 'block'">조각별 남기기</button>
-</div>
-
-
-<!-- 댓글 보여주기 -->
+	<!-- 댓글 보여주기 -->
 	<div align="left">
-		<div class="go_wirte">
-			<span>조각글 쓰러 가기</span>
+		<span class="go_write">다른조각글 보러가기</span> 
+		<div class="comment_area" onclick="document.querySelector('.write_popup').style.display = 'block'" >
+			<textarea class="comment" cols="20" rows="2" maxlength="100" style="text-align: center; padding-top: 13px;" readonly>내 조각글 남기기</textarea>
 		</div>
-		<div>
-			<div class="comment_area" align="left">
-				<table width="100%" height="100%">
-					<tr>
-						<td width="100%" align="left">
-							<textarea class="comment" cols="20" rows="2" maxlength="100" readonly>이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요</textarea>
-						</td>
-					</tr>
-				</table>
-				<div class="comment_area_btn" align="left">
-					<span>다른조각글보러가기</span>
-				</div>
-			</div>
-		</div>
+
 	</div>
 	
+	<script>
+	// initCommentArea();
+	
+	function initCommentArea() { 
+		$('.write_popup').hide();
+	}
+	
+	jQuery.fn.center = function () {
+	    this.css("position","absolute");
+	    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
+	    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
+	    return this;
+	  }
+	  
+	jQuery(".write_popup").center();
+
+
+</script>
 
 <script> 
-function save(){
-
-  const textarea = document.querySelector('.commentpop.initial_comment');
-  const comment = textarea.value; 
-  console.log(comment)
-
-  const checkbox = document.querySelector('input[name="spoiler_check2"]');
-  const isSpoiler = checkbox.checked ? 0 : 1; 
-console.log(isSpoiler)
-
-
- let userId = "${sessionScope.userId}"
-	 console.log(userId)
- let movieId = "${movieId}";
- console.log(movieId)
-
- 
-$.ajax({
-url:"${pageContext.request.contextPath}/detail/addDetailPage.do",
-type : "GET" ,
-data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
-success : function(result) {
-    	   console.log("성공"); //작성 완료 후 작성한 내용을 버튼을 없애고 div 박스에 넣어서 보여주기 코드를 작성해야 합니다
-    	   //가영님께서 vo 에 담아서 어쩌고하는 방법이 있다고 하니 그렇게 해주
-			$('.write_popup').hide();
-       }
-});
-};
-
-setCommentArea();
-
-function setCommentArea() {
-	//$('.comment').hide();
-}
+	function save(){
+	
+	  const textarea = document.querySelector('.commentpop.initial_comment');
+	  const comment = textarea.value; 
+	  console.log(comment)
+	
+	  const checkbox = document.querySelector('input[name="spoiler_check2"]');
+	  const isSpoiler = checkbox.checked ? 0 : 1; 
+		console.log(isSpoiler);
+	
+	
+		 let userId = "${sessionScope.userId}";
+			 console.log(userId);
+		 let movieId = "${movieId}";
+		 console.log(movieId);
+	
+	 
+	$.ajax({
+	url:"${pageContext.request.contextPath}/detail/addDetailPage.do",
+	type : "GET" ,
+	data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
+	success : function(result) {
+	    	   console.log("성공"); //작성 완료 후 작성한 내용을 버튼을 없애고 div 박스에 넣어서 보여주기 코드를 작성해야 합니다
+	    	   //가영님께서 vo 에 담아서 어쩌고하는 방법이 있다고 하니 그렇게 해주
+	    	   $('.write_popup').hide();
+	    	   $('.comment').text(result);
+	       }
+	});
+	};
+	
+	function cancel() {
+		$('.write_popup').hide();
+	}
 	</script>
-	
-	<script>
-		$(document).ready(function() {
- 			  var comments = "${comments}";
- 			  
-			  if (comments !== null) {
-		
-		    $('.btn4').remove();
+<script>
+        	  
+ $(document).ready(function() {
+	 // 코멘트
+	 var comments = "${comments}"; 
+	 
+	 if (comments == '') { // 코멘트가 없으면
+		/* $('.go_wirte').show();
+	 	$('.comment_area').hide(); */
+	 } else {/*	// 코멘트가 있으면
+		 $('.go_wirte').hide();
+		 $('#comment').show(); */
+		 //$('.comment').innerHTML += '<textarea>' + comments + '</textarea>';
+		 
+		 document.getElementById('comment_area').innerHTML += comments;
+	 }
+	 
+        		  
+    var $likeBtn = $('.icon.heart');  
+    let movieId = "${movieId}";
+    let userId = "${sessionScope.userId}";
+    console.log(movieId);     	
+    let isWished = "${flag}";
+    console.log(isWished);
+    	
+    if (isWished && isWished === 'true') {
+	    
+	    $likeBtn.find('img').attr({
+	      'src': '${pageContext.request.contextPath}/image/yellowheart.png',
+	      alt:'빨간하트'
+	    });
+	  } 	
+	  
+    $likeBtn.click(function() {
+        $likeBtn.toggleClass('active');
+        console.log("토글버튼까지 생성");
 
-		    document.getElementById('showComments').innerHTML += '<div>' + comments + '</div>';
-	  }
-		});
-	
-		</script>
+        if ($likeBtn.hasClass('active')) {          
+            $(this).find('img').attr({
+                'src': '${pageContext.request.contextPath}/image/yellowheart.png',
+                alt: '노란하트'
+            });
+
+            console.log("찜");
+            
+        } else {
+            $(this).find('i').removeClass('fas').addClass('far');
+            $(this).find('img').attr({
+                'src': '${pageContext.request.contextPath}/image/heart.png',
+                alt: '텅빈하트'
+            });
+            console.log("찜 취소");
+        }
+
+        console.log("에이작스들어갈거임");
+        $.ajax ({
+        	        	
+            url: '${pageContext.request.contextPath}/movie/wish.do',
+            type: "GET",
+            data: {"userId": userId, "movieId": movieId},
+            
+            success: function(result) {
+                console.log("에이작스성공");
+            }
+        }); 
+
+    });
+}); 
+ 
+ </script>
 
 <script 
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
