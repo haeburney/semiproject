@@ -20,31 +20,58 @@
 <!-- 메뉴 상당바 출력 -->
 <%@include file="/submain/nav.jsp" %>
 
-
 	<div id="linesParent">
 		<div id="lines">
 		<!-- 한 줄 소개가 없다면 -->
 		<c:if test="${empty vo.introLine }">
-			<form name="addForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
+			<form name="addForm" id="aForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
 				<div id="addLine">작은 조각 작성하기</div>
  				<input id="addBtn" type="button" value="한줄쓰기" onclick="add()">
 				<input id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
 			</form>
+			
+			<form name="editForm" id="eForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post" style="display:none">
+				<div id="editLine">${vo.introLine }</div>
+				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
+				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
+				<input type="button" value="삭제하기" onclick="deleteLine()">
+			</form>
 		</c:if>
+
+			
 	
 		<!-- 한 줄 소개가 있다면 -->
  		<c:if test="${not empty vo.introLine }"> 
-			<form name="editForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
+ 			<form name="addForm" id="aForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post" style="display:none">
+				<div id="addLine">작은 조각 작성하기</div>
+ 				<input id="addBtn" type="button" value="한줄쓰기" onclick="add()">
+				<input id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
+			</form>	
+ 		
+			<form name="editForm" id="eForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
 				<div id="editLine">${vo.introLine }</div>
 				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
 				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
 				<input type="button" value="삭제하기" onclick="deleteLine()">
 			</form>
  		</c:if> 
+ 		
+ 		
+ 		
 		</div>
 	</div>
-
 	
+	<div id="coffee" style="display:none">
+		<c:if test="${not empty americano }">
+			<c:forEach var="li" items="${americano }">
+					<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
+							 ${li.followedId }
+							 </a>
+			</c:forEach>
+		</c:if>
+	</div>
+	
+
 	<div id="allListParent">
 		<div id="allList">
 			<div id="follow">
@@ -55,36 +82,39 @@
 				</span>
 				<span id="fCount">
 					<c:if test="${not empty uCount }">
-					<span>팔로잉수 ${uCount }&nbsp;&nbsp;</span>
+					<input id="myFollowing" type="button" class="button" value="팔로잉수 ${uCount }" onclick="following()">
 					</c:if>
 				<c:if test="${not empty fCount }">
 					<span>팔로워수 ${fCount }</span>
 				</c:if>
 				</span>
 				<span>
-<!-- 					설정 이미지 -->
-					<a href="${pageContext.request.contextPath }/member/edit.do?useriId=${sessionScope.userId}">
-					<img src="../image/option.png" style="width:25px">
-					</a>
-					<img src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
+				
+<!-- 					설정 이미지 -->	
+					<img class="plus" src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
 
 				</span>
 			</div>	
-			<hr/>
+			<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
+			
 				<div>
-					찜목록
-					<a href="#"><img class="plustImg" src="../image/plus.png"></a>
-					<c:if test="${not empty detailImageList }">
-						<c:forEach var="li" items="${detailImageList }">
+					<div class="listPlus">
+						<span>찜목록</span>
+						<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
+					<c:if test="${not empty wishImageList }">
+						<c:forEach var="li" items="${wishImageList }">
 							
 							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
 						</c:forEach>
 					</c:if>
 				</div>
-				<hr/>
+				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div>
-					별점목록
-					<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					<div class="listPlus">
+						<span>별점목록</span>
+						<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
 					<c:if test="${not empty starImageList }">
 						<c:forEach var="li" items="${starImageList }">
 							
@@ -92,11 +122,12 @@
 						</c:forEach>
 					</c:if>
 				</div>
-				<hr/>
+				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div>
-					코멘트목록
-					<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
-					
+					<div class="listPlus">
+						<span>코멘트목록</span>
+						<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
 					<c:if test="${not empty commentsImageList }">
 						<c:forEach var="li" items="${commentsImageList }">
 							
@@ -108,24 +139,22 @@
 		</div>
 	</div>
 	
-	<!-- 설정버튼 누르면 -->
-	<div id="option">
-	<c:if test="${not empty edit}">
-		<jsp:include page="${edit }"/>
-	</c:if>
-	</div>
+	
 	
 	<script>
 	
 	
 	function edit(){
-		let txt = "<input type='text' name='introLine' value='${vo.introLine}'>";
+		console.log("edit()");
+		let writed=document.getElementById("editLine").textContent;
+		let txt = "<input type='text' name='introLine' value='" + writed + "'>";
 		document.getElementById("editLine").innerHTML=txt;
 		document.getElementById("editBtn").style="display:none";
 		document.getElementById("editEnd").style="display:";
 	}
 	
 	function add(){
+		console.log("add()");
 		let txt = "<textarea cols='50' name='introLine'>마음에 드는 영화 대사를 적어보세요</textarea>";
 		document.getElementById("addLine").innerHTML=txt;
 		document.getElementById("addBtn").style="display:none";
@@ -133,6 +162,7 @@
 	}
 	
 	function myInfoEdit(){
+		console.log("myInfoEdit()");
 		const xhttp = new XMLHttpRequest();
 		
 		xhttp.onload = function(){
@@ -149,6 +179,8 @@
 	}
 	
 	function readEdit(){
+		console.log("readEdit()");
+		let answer="";
 		let introLine = editForm.introLine.value;
 		let param = {'userId':'${sessionScope.userId}', 'introLine': introLine };
 		console.log(param);
@@ -160,11 +192,13 @@
 			data : param,
 			dataType : 'text',
 			success : function(result){
-				console.log(result);
-				document.getElementById("#editLine").innerHTML=result;
-				document.getElementById("#editBtn").style="display:";
-				document.getElementById("#editEnd").style="display:none";
-				document.getElementById("#introLine").value=result;
+				answer = result;
+				console.log("answer :"+answer);
+				
+				document.getElementById("editLine").innerHTML=result;
+				document.getElementById("editBtn").style="display:";
+				document.getElementById("editEnd").style="display:none";
+				//document.getElementById("introLine").value=result;
 				
 			},
 			error : function(req, status, error){
@@ -174,6 +208,7 @@
 	}
 	
 	function readAdd(){
+		console.log("readAdd()");
 		let introLine = addForm.introLine.value;
 		let param = {'userId':'${sessionScope.userId}', 'introLine': introLine };
 		console.log(param);
@@ -186,10 +221,13 @@
 			dataType : 'text',
 			success : function(result){
 				console.log(result);
-				document.getElementById("#editForm").style="display:";
-				document.getElementById("#addForm").style="display:none";
-				document.getElementById("#editLine").innerHTML=result;
-				document.getElementById("#introLine").value=result;
+				document.getElementById("addLine").innerHTML="작은 조각 작성하기";
+				document.getElementById("addBtn").style="display:";
+				document.getElementById("addEnd").style="display:none";
+				document.getElementById("aForm").style="display:none";
+				document.getElementById("eForm").style="display:";
+				document.getElementById("editLine").innerHTML=result;
+				//document.getElementById("introLine").value=result;
 				
 			},
 			error : function(req, status, error){
@@ -199,20 +237,24 @@
 	}
 	
 	function deleteLine(){
-		console.log("userId :${sessionScope.userId}" );
+		console.log("deleteLine()");
 		$.ajax({
 			url : '${pageContext.request.contextPath }/member/delLine.do',
 			type : 'post',
 			data : {userId : '${sessionScope.userId}'},
 			success : function(result){
-				console.log(result);
-				document.getElementById("#editForm").hide();
-				document.getElementById("#addForm").show();
+				document.getElementById("eForm").style="display:none";
+				document.getElementById("aForm").style="display:";
 			},
 			error : function(req, status, error){
 				console.log("에러 :"+status);
 			}
 		});
+	}
+	
+	function following(){
+		document.getElementById("coffee").style="display:";
+	
 	}
 	
 

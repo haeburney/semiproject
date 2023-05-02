@@ -95,10 +95,10 @@ h2{
   background-color: #555;
 }
 
-.floating-rightbtn{
+/*.floating-rightbtn{
 background-image: (
-url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
+
+}*/
 </style>
 
 <!-- 다음페이지
@@ -158,8 +158,8 @@ function next(){
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/populer.do?num=${prev}"><input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/populer.do?num=${next}"><input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}"><input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}"><input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"></a>
 
 </body>
 </html>

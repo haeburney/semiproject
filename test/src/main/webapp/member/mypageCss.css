@@ -91,3 +91,29 @@ img{
 	margin-left:20px;
 	margin-right:20px;
 }
+
+.myPageHr{
+	border: solid 10px red; 
+	opacity:1;
+}
+
+hr{
+	border: solid 10px red; 
+	opacity:1;
+}
+
+#myFollowing{
+	font-family: 'SUIT-Regular';
+	font-weight: 700;
+	background: none;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	border: 0;
+	outline: 0;
+}
+
+#myFollowing:hover{
+	transform:scale(1.1);
+  	transition: transform .2s;
+}

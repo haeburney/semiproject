@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginJoinCss.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -51,8 +52,9 @@
 	
 </script>
 </head>
-<center>
+
 <body>
+<div class="login_popup" align="center">
    <div id="pop">
       <div id="a"><img src="/test/image/logo4.png" width="140"></div>
       <form action="${pageContext.request.contextPath }/member/join.do" method="post">
@@ -68,6 +70,20 @@
       	 </div>
       </form>
       </div>
+</div>
+
+<script>
+
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
+    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
+    return this;
+  }
+  
+jQuery(".login_popup").center();
+
+</script>
 </body>
-</center>
+
 </html>

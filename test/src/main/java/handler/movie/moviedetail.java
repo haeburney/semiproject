@@ -18,6 +18,7 @@ import org.json.simple.parser.ParseException;
 
 import handler.Handler;
 import movie.movieVo;
+import star.StarService;
 import wish.wishService;
 import wish.wishVo;
 
@@ -63,6 +64,9 @@ public class moviedetail implements Handler {
 		wishService wservice = new wishService(); 		
 		boolean a = wservice.checkwish(new wishVo(0,"${sessionScope.loginId}",movienum)); 
 			
+		StarService sservice = new StarService(); 
+		int star = sservice.starNum("${sessionScope.loginId}",movienum);
+		
 			request.setAttribute("name", name); // 장르
 			request.setAttribute("overview", overview); // 요약
 			request.setAttribute("runtime", runtime); // 상영시간
@@ -72,6 +76,7 @@ public class moviedetail implements Handler {
 			request.setAttribute("movieId", movieId);
 			
 			request.setAttribute("flag", a);
+			request.setAttribute("star", star);
 
 			is.close();
 			

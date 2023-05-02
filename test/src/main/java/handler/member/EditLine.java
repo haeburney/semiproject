@@ -34,13 +34,9 @@ public class EditLine implements Handler {
 			MemberService service = new MemberService();
 			System.out.println("userId :"+userId+" / introLine :"+introLine);
 			service.lineInsert(userId, introLine);
-			MemberVo vo = service.getMember(userId);
-			System.out.println(vo);
-		
-			
-			String txt2=introLine;
-			
-			return "responsebody/" + txt2;
+			MemberVo vo = service.getMember(userId);		
+						
+			return "responsebody/" + introLine;
 		}
 		return null;
 	}
