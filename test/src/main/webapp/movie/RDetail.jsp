@@ -136,66 +136,35 @@
 <body class ="yess">	
 <%@include file="/submain/nav.jsp"%>
 
-<!-- 코멘트 팝업 -->
- <button type="button"  class="btn4" onclick = "">조각별 남기기</button>
 
-<div class="write_popup" id ="popup" style="display: none;">	  
+<!-- 코멘트 팝업 -->
+<div class="write_popup" style="display: none;">	  
 	<div class="dimmed">
 		<div class="addpopup">
-			<div class="addtitle" id ="popupInput" style="color: black;" align="center" placeholder="관람한 영화에 조각별을 남겨주세요."></div>
+			<div class="addtitle" id ="popupInput" style="color: black;" align="center">관람한 영화에 조각별을 남겨주세요.</div>
 			<div class="content">
 				<textarea class="commentpop initial_comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
 			</div>
 			<div class="cmd">
-				<label class="checkbox-wrap">스포일러인가요? 클릭! <input type="checkbox" name="spoiler_check2" value=""><img class="check-icon" src="../image/spoiler.png"></img></label>
+				<label class="checkbox-wrap">스포일러인가요? 클릭! <input type="checkbox" name="spoiler_check2" value="">
+				<img class="check-icon" src="../image/spoiler.png"></img></label>
+				
 				<input type="button" id="btnsave" class="popbutton" value="저장" onclick="save()">
 				<input type="button" id="btncancel" class="popbutton" value="닫기">
 			</div>
 		</div>
 	</div>
 </div> 
+
 <!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 <span id="movieNum" style="display: none;">${movieId}</span>
 
- 
-<button class="btn4" onclick="openPopup()">클릭해주세요</button>
-
-<!-- 팝업창 -->
-<div id="popup" style="display:none">
-  <input type="text" id="popup-input" placeholder="내용을 입력해주세요">
-  <button onclick="savePopup()">등록</button>
-</div>
-
-
-<script>
-function openPopup(){
-var popup = document.getElementById("popup");
-popup.style.display ="block"; 
-}
-
-function save(){
-var popupInput = document.getElementById("popupInput"); 
-var popupText = popupInput.value;
-var popup = document.getElementById("popup");
-var btn = var btn = document.querySelector(".btn");
-
-if(popupText) {
-btn.setAttribute("data-text", popupText);
-}
-
-popup.style.dispaly ="none";
-
-}
-</script>
 
 
 	<div>
   <img align="right" class="tmp_img" src="https://image.tmdb.org/t/p/original${file_path }">
 	</div>
 	
-
-
-
 <span class="title">
 <input type = "checkbox" id="popup">
 ${title}
@@ -386,120 +355,42 @@ $(document).ready(function() {
 
 </div>
 
-<!-- 코멘트 자리@ -->
-<!-- <div class="tmp_bottom"> -->
 
 
+<button class="btn4" onclick="document.querySelector('.write_popup').style.display = 'block'">조각별 남기기</button>
 
-<div>코멘트를 저장하면 여기에 표시되요 : <span id="add_comment_txt" style="color: white">코멘트쓰기 새 팝업</span></div>
-<div>코멘트가 이미있으면 여기에 표시되요 : <span id="exists_comment_txt" style="color: white"></span></div>
-<%-- <div class="left" ><a href = "${pageContext.request.contextPath}/comments/addDetailPage.do?userId=${sessionScope.userId}$movieNum=${movieId}">코멘트쓰러가기</a></div> --%>
-<div class="right"><a href = "${pageContext.request.contextPath}/comments/allList.do?userId=${sessionScope.userId}&movieNum=${movieId}">다른코멘트보러가기</a></div>
-<!-- </div> -->
+	<script>
+function save(){
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-		crossorigin="anonymous"></script>
+  const textarea = document.querySelector('.commentpop.initial_comment');
+  const comment = textarea.value; 
+  console.log(comment)
+
+  const checkbox = document.querySelector('input[name="spoiler_check2"]');
+  const isSpoiler = checkbox.checked ? 0 : 1; 
+console.log(isSpoiler)
+
+
+ let userId = "${sessionScope.userId}"
+	 console.log(userId)
+ let movieId = "${movieId}";
+ console.log(movieId)
+
+ 
+$.ajax({
+url:"${pageContext.request.contextPath}/detail/addDetailPage.do",
+type : "GET" ,
+data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
+success : function(result) {
+    	   console.log("성공");
+       }
+});
+};
+	</script>
 	
 <script>
-	init();
-	
-	function init() {
-		param = {"movieNum": "${movieId}",
-				"userId": "${sessionScope.userId}"
-				};
-		
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.request.contextPath}/detail/getDetailPage.do",
-			data: param,
-			dataType: "text",
-			success: function(result) {debugger
-				if (result != null) {
-					$('#add_comment_txt').text(result);					
-				}
-				$('.write_popup').hide();
-			},
-			error: function(req, status, error) {
-				console.log("req : " + req);
-				console.log("status : " + status);
-				console.log("error : " + error);
-			}
-		});
-	}
-
-	jQuery.fn.center = function () {
-	    this.css("position","absolute");
-	    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
-	    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
-	    return this;
-	  }
-	  
-	jQuery(".write_popup").center();
-	
-	$('#add_comment_txt').click(function() {
-		$('.write_popup').show();
-		//$('.yess').css("overflow", "hidden");		
-	});
-	
-	// 팝업창 스포일러 여부 체크박스 동작시 아이콘 변경
-	$('.checkbox-wrap').click(function() {
-		if ($('input:checkbox[name="spoiler_check"]').is(':checked')) {
-			$('#edit_spoiler_icon').attr("src", "../image/spoiler.png"); // 팝업
-		} else {
-			$('#edit_spoiler_icon').attr("src", "../image/spoiler_gray.png"); // 팝업
-		}
-	});
-	
-	// *** 작성 팝업
-	$('#btnsave').click(function() {
-		save();
-	});
-	
-	$('#btncancel').click(function () {
-		$('.write_popup').hide();
-		$('.initial_comment').val('');
-		//$('.main').css("overflow", "scroll");
-	});
-	
-	function save() {
-		var comment = $('.initial_comment').val();
-		var spoiler = '1';
-		var movieNum = $('#movieNum').text();
-		
-		
-		if ($('input:checkbox[name="spoiler_check2"]').is(':checked')) {
-			spoiler = '0';
-		}
-		
-		// 0: 스포일러 1: 스포일러 아님
-		var param = {
-						"userId": "${userId}",
-						"comment": comment,
-						"spoiler": spoiler,
-						"movieNum": movieNum,
-						"num": "${mine.num}"
-					};
-		
-		console.log(param);
-		
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.request.contextPath}/detail/addDetailPage.do",
-			data: param,
-			dataType: "text",
-			success: function(result) {
-				$('#add_comment_txt').text(result);
-				$('.write_popup').hide();
-			},
-			error: function(req, status, error) {
-				console.log("req : " + req);
-				console.log("status : " + status);
-				console.log("error : " + error);
-			}
-		});
-	}
-</script>
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+crossorigin="anonymous"></script>
 </body>
 </html>

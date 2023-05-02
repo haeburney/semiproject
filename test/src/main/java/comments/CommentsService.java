@@ -90,4 +90,8 @@ public class CommentsService {
 	public CommentsVo addCommentDetail(CommentsVo vo) {
 		return dao.addCommentDetail(vo);
 	}
+	
+	  public boolean checkcomment(CommentsVo vo) {
+	      return dao.select(vo);
+	   }
 }
