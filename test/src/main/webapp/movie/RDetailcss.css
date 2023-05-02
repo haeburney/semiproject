@@ -14,7 +14,45 @@
     font-style: normal;
 }
 
-/* 찜하기 */
+.btn{
+  padding: 15px 100px;
+  margin:10px 4px;
+  color: #fff;
+  font-family: SUIT-Regular;
+  font-size : 1.3em;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display:inline-block;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0%;
+  left: 73px;
+  width: 50%;
+  height: 2px;
+  background: #FADE6D;
+  display: block;
+  -webkit-transform-origin: right top;
+  -ms-transform-origin: right top;
+  transform-origin: right top;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+}
+
+.btn:hover::before {
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1)
+}
 
 .yess{ 
 	background-color:#000000;
