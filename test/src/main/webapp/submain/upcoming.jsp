@@ -58,6 +58,19 @@ h2{
 	background-color:black;
 }
 
+.not_s{
+margin-top: 12px;
+margin-left: 10px;
+color: #d3d3d3;
+}
+
+.title__l{
+	color: white;
+	float:left;
+	cursor:pointer;
+}
+
+
 </style>
 </head>
 <body>
@@ -66,7 +79,9 @@ h2{
 
 <div class="bgcolor">
 <div class="title">
-<h2>개봉예정작</h2>
+<p class="title__l"><a href="${pageContext.request.contextPath }/submain/populer.do?num=1">인기순</a></p>
+<p class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/toprate.do?num=1">평점순</a></p>
+<h2 class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">개봉예정작</a></h2>
 </div>
 </div>
 
