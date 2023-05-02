@@ -220,6 +220,11 @@ $(document).ready(function() {
 </script>
 
 <script> 
+
+	$('.go_write').click(function () {
+		location.href = "${pageContext.request.contextPath}/comments/allList.do?movieNum=${movieId}&userId=${sessionScope.userId}";
+	});
+	
 	function save(){
 	
 	  const textarea = document.querySelector('.commentpop.initial_comment');
@@ -266,9 +271,9 @@ $(document).ready(function() {
 	 } else {/*	// 코멘트가 있으면
 		 $('.go_wirte').hide();
 		 $('#comment').show(); */
-		 //$('.comment').innerHTML += '<textarea>' + comments + '</textarea>';
+		 $('.comment').text(comments);
 		 
-		 document.getElementById('comment_area').innerHTML += comments;
+		 //document.getElementById('comment_area').innerHTML += comments;
 	 }
 	 
         		  
