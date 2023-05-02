@@ -22,15 +22,14 @@ public class CommentsDao {
 	 */
 	public void insert(CommentsVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into comments(NUM, MOVIENUM, USERID, COMMENTS, W_DATE, RATE, SPOILER) values (seq_comments.nextVal, ?, ?, ?, sysdate, ?,?)";
+		String sql = "insert into comments(NUM, MOVIENUM, USERID, COMMENTS, W_DATE, RATE, SPOILER) values (seq_comments.nextVal, ?, ?, ?, sysdate, 0,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, vo.getMovieNum());
 			pstmt.setString(2, vo.getUserId());
 			pstmt.setString(3, vo.getComments());
-			pstmt.setInt(4, vo.getRate());
-			pstmt.setString(5, vo.getSpoiler());
+			pstmt.setString(4, vo.getSpoiler());
 
 			pstmt.executeUpdate();
 			
@@ -370,4 +369,37 @@ public class CommentsDao {
 		}
 		return vo2;
 	}
+	
+	public boolean select (CommentsVo vo) {
+	      
+	      Connection conn = dbconn.conn();
+	      String sql ="select * from comments where userId=? and movieNum=?";
+	      
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         
+	         pstmt.setString(1, vo.getUserId());
+	         pstmt.setInt(2, vo.getMovieNum());
+	         
+	         ResultSet rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            return true;
+	         }
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            conn.close();
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }
+	      return false;
+	   }
+	
+	
 }

@@ -83,8 +83,7 @@ body {
 
 	<div class="poster">
 		<c:if test="${empty key}">
-			<img src="https://image.tmdb.org/t/p/original${img_path }" class ="posterimg">
-			 <h1 class="emptyvideo" style="font-size:50px">준비 된 예고편이 없습니다</h1>
+			 <h1 class="emptyvideo" style="font-size:50px; top:300px;">준비 된 예고편이 없습니다</h1>
 
 		</c:if>
 	</div>

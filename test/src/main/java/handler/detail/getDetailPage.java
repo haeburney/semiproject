@@ -22,6 +22,7 @@ public class getDetailPage implements Handler {
 
 		CommentsVo commentResult = new CommentsVo();
 		commentResult =	service.showMyComment(movieNum, userId);
+		System.out.println(commentResult);
 
 		return "responsebody/" + commentResult.getComments();
 	}
