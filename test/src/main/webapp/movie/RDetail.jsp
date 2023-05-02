@@ -43,7 +43,7 @@
 		margin-left: 50px;
 	}
 	
-	.commnet { background-color: rgb(22, 22, 22); height: 100%; width: 100%; border: 0; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #ffffff; }
+	.commnet { background-color: rgb(22, 22, 22); border: 0; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #000000; }
 	
 	.comment_area_btn {
 		width: 80px;
@@ -411,7 +411,7 @@ $(document).ready(function() {
 			<table width="100%">
 				<tr>
 					<td width="75%">
-						<textarea class="comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
+						<textarea class="comment" width="100%" cols="20" rows="5" maxlength="100" autofocus></textarea>
 					</td>
 					<td width="25%" align="center">
 						<div class="comment_area_btn" align="center">
@@ -428,12 +428,6 @@ $(document).ready(function() {
 			</div> -->
 		</div>
 	</div>
-
-
-
-
-	<script>
-	$(document).ready(function() {
 	
 <script> 
 function save(){
@@ -479,7 +473,7 @@ success : function(result) {
 		});
 	
 		</script>
-<script>
+<script 
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 crossorigin="anonymous"></script>
