@@ -57,7 +57,7 @@ public class Search implements Handler {
 				list.add(new movieVo(id, poster, title, overview, release_date));
 			}
 			request.setAttribute("searchlist", list);
-			
+			request.setAttribute("text", text);
 			is.close();
 			
 		} catch (MalformedURLException e) {

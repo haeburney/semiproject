@@ -20,10 +20,6 @@
 	
 }*/
 
-.img{
-	height: 26rem;
-	object-fit: cover;
-}
 
 .list {
 	margin-left: auto;
@@ -31,14 +27,10 @@
 	max-width: 1200px;
 }
 
-.layout{
-	background-color: black;
-}
-
 h2{
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
 	color: white;
-	background-color: black;
+	background-color: #212121;
 	font-family: 'KOTRA_BOLD-Bold';
 }
 
@@ -48,28 +40,22 @@ h2{
 	text-align: center;
 	font-family: 'KOTRA_BOLD-Bold';
 	font-size : 15px;
+	overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .col{
 	margin: auto;
 }
 
-.title{
-	text-align: center;
-}
-
-.bgcolor{
-	background-color:black;
-}
 
 /* 버튼양식 */
 .floating-leftbtn{
 	position: fixed;
-	bottom: 20px;
+	bottom: 250px;
 	left: 20px;
-	background-color: #fff0ab;
 	color: black;
-	border-radius: 50%;
 	font-size: 15px;
 	padding: 20px;
 	border: none;
@@ -79,11 +65,9 @@ h2{
 
 .floating-rightbtn{
 	position: fixed;
-	bottom: 20px;
+	bottom: 250px;
 	right: 20px;
-	background-color: #fff0ab;
 	color: black;
-	border-radius: 50%;
 	font-size: 15px;
 	padding: 20px;
 	border: none;
@@ -99,6 +83,56 @@ h2{
 background-image: (
 
 }*/
+
+.not_s{
+margin-top: 12px;
+margin-left: 10px;
+color: #d3d3d3;
+}
+
+.title__l{
+	color: white;
+	float:left;
+	cursor:pointer;
+}
+
+.title__l.active{
+	font-size: 20px;
+}
+
+.img{
+	width: 273px;
+	height: 26rem;
+	object-fit: cover;
+	transition: all 0.2s linear;
+	border-radius: 10px;
+}
+
+.img:hover{
+	transform: scale(1.03); /* 1.1 변경하면 글씨 가려짐 */
+}
+
+.layout{
+	background-color: #212121;
+}
+
+.bgcolor{
+	background-color:#212121;
+	padding-top: 40px;
+	border-top: 2px solid #dbdbdb;
+}
+
+.jpg_wrap{
+	width: 273px !important;
+	height: 416px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.title{
+	margin-left: 160px;
+	height: 76px;
+}
 </style>
 
 <!-- 다음페이지
@@ -140,7 +174,9 @@ function next(){
 
 <div class="bgcolor">
 <div class="title">
-<h2>인기순</h2>
+<h2 class="title__l"><a href="${pageContext.request.contextPath }/submain/populer.do?num=1">인기순</a></h2>
+<p class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/toprate.do?num=1">평점순</a></p>
+<p class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">개봉예정작</a></p>
 </div>
 </div>
 
@@ -150,7 +186,9 @@ function next(){
   <c:forEach var="vo" items="${movielist }">
     <div class="col">
         <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
+        <div class="jpg_wrap">
           <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="img" alt="인기순">
+         </div>
         </a>
           <div class="text">${vo.title }</div>
        </div>
@@ -158,8 +196,33 @@ function next(){
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}"><input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}"><input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}">
+<img src="${pageContext.request.contextPath}/image/left-arrow.png" id="floatingBtn1" class="floating-leftbtn" alt="이전페이지" style="width:100px; height: 100px;">
+<!-- <input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지">--> </a>
+
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}">
+<img src="${pageContext.request.contextPath}/image/right-arrow.png" id="floatingBtn2" class="floating-rightbtn" alt="다음페이지" style="width:100px; height: 100px;">
+<!-- <input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"> --> </a>
+
+
+<!-- title 글씨 크기 (다른거 누를때 마다 포스터가 옆으로 밀림)
+<script>
+function enlarge(element) {
+	  resetAll();
+	  element.classList.add("active");
+	}
+
+	function reset(element) {
+	  element.classList.remove("active");
+	}
+
+	function resetAll() {
+	  var elements = document.getElementsByClassName("title__l");
+	  for (var i = 0; i < elements.length; i++) {
+	    elements[i].classList.remove("active");
+	  }
+	}
+</script>-->
 
 </body>
 </html>

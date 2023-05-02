@@ -25,6 +25,9 @@ public class NextPopuler implements Handler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		int pagenum= Integer.parseInt(request.getParameter("num"));
+		if (pagenum <=1) {
+			pagenum =1;
+		}
 		System.out.println(pagenum);
 		URL url;
 		
@@ -53,10 +56,11 @@ public class NextPopuler implements Handler {
 				
 				list.add(new movieVo(id, poster, title));
 			}
-			if(pagenum-1 >0) {
-				request.setAttribute("prev", pagenum-1);
+			
+			if(pagenum <=1) {
+				request.setAttribute("prev", 1);
 			}else {
-				request.setAttribute("prev", pagenum);
+				request.setAttribute("prev", pagenum-1);
 			}
 			request.setAttribute("next", pagenum+1);
 			
