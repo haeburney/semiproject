@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conn.DBConnect;
+import star.StarVo;
 
 public class CommentsDao {
 
@@ -444,4 +445,33 @@ public class CommentsDao {
 		}
 		return null;
 	}
+	
+	public void updateStar(CommentsVo vo) {
+		Connection conn = dbconn.conn();
+		String sql =  "update comments set comments=?, spoiler = ? where userId=? and movieNum=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, vo.getComments());
+			pstmt.setString(2, vo.getSpoiler());
+			pstmt.setString(3, vo.getUserId());
+			pstmt.setInt(4, vo.getMovieNum());
+
+			int check = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
 }

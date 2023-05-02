@@ -1,5 +1,7 @@
 package handler.detail;
 
+import java.security.Provider.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,23 +14,23 @@ public class AddDetailPage implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
+		int movieNum = Integer.parseInt(request.getParameter("movieId"));
+		String userId = request.getParameter("userId");
+		String comment = request.getParameter("comment");
+		String spoiler = request.getParameter("isSpolier");
+		
+		CommentsService service = new CommentsService();
 		
 		if (request.getMethod().equals("GET")) {
 				
-				
-			int movieNum = Integer.parseInt(request.getParameter("movieId"));
-			String userId = request.getParameter("userId");
-			String comment = request.getParameter("comment");
-			String spoiler = request.getParameter("isSpolier");
 			System.out.println(spoiler);
 			
-			CommentsService service = new CommentsService();
 			boolean flag = service.checkcomment(new CommentsVo(userId,null,0,movieNum,comment,null,0,spoiler));
 			// 사용자가 이미 해당 영화에 대한 댓글을 작성한 경우 처리
-			if (flag) { 
+			if (flag) {    
 				
+				service.update(new CommentsVo(comment, spoiler,userId,movieNum));
 				//이미 댓글 있다면 수정하는 걸로 돌아와도 좋을듯 
-				// 이미 댓글을 작성했으므로 에러 메시지를 추가하고 JSP로 이동
 				System.out.println(flag);
 				return "/movie/RDetail.jsp";
 			}
@@ -38,9 +40,13 @@ public class AddDetailPage implements Handler {
 			
 			// JSP로 이동
 			return "/movie/RDetail.jsp";
-		}
+		} 
 		
-		return null;
+		else { //post 방식으로 오면 삭제하기 
+			
+			service.delete(new CommentsVo (movieNum, userId)); 
+		}
+		return "/movie/RDetail.jsp";
 	}
 		
 	}

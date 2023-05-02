@@ -43,6 +43,22 @@ public class CommentsVo {
 		this.spoiler = spoiler;
 	}
 
+	public CommentsVo(String comments, String spoiler, String userId,int movieNum) {
+		super();
+		
+		this.comments = comments;
+		this.spoiler = spoiler;
+		this.userId = userId;
+		this.movieNum = movieNum;
+	}
+	
+	public CommentsVo(int movieNum,String userId) {
+		super();
+		this.movieNum = movieNum;
+		this.userId = userId;
+		
+	}
+	
 
 	public String getUserId() {
 		return userId;
