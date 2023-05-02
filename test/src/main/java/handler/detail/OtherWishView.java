@@ -19,28 +19,26 @@ import handler.Handler;
 import movie.movieVo;
 import star.StarService;
 import star.StarVo;
+import wish.wishService;
+import wish.wishVo;
 
-public class StarView implements Handler {
+public class OtherWishView implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
-
+		// TODO Auto-generated method stub
 		String userId = request.getParameter("userId");
-		StarService starService = new StarService();
+		wishService wService = new wishService();
 
-		ArrayList<StarVo> sList = starService.getStarList(userId);
-		request.setAttribute("sList", sList);
+		ArrayList<wishVo> wList = wService.getWishList(userId);
+		request.setAttribute("wList", wList);
+		System.out.println("OtherWishView");
+		System.out.println(wList);
+		ArrayList<movieVo> wImgList = new ArrayList<movieVo>();
 
-		ArrayList<movieVo> s1ImgList = new ArrayList<movieVo>();
-		ArrayList<movieVo> s2ImgList = new ArrayList<movieVo>();
-		ArrayList<movieVo> s3ImgList = new ArrayList<movieVo>();
-		ArrayList<movieVo> s4ImgList = new ArrayList<movieVo>();
-		ArrayList<movieVo> s5ImgList = new ArrayList<movieVo>();
+		for (int i = 0; i < wList.size(); i++) {
 
-		// 이제 영화 정보를 불러와야 해요 ㅎ
-
-		for (int i = 0; i < sList.size(); i++) {
-			String movieNum = Integer.toString(sList.get(i).getMovieNum());
+			String movieNum = Integer.toString(wList.get(i).getMovieNum());
 			try {
 				URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
 						+ "?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
@@ -51,25 +49,7 @@ public class StarView implements Handler {
 				String title = (String) obj.get("title");
 				String poster_path = (String) obj.get("poster_path");
 				String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
-
-				System.out.println(sList.get(i).getStar());	
-				switch (sList.get(i).getStar()) {
-				case 1:
-					s1ImgList.add(new movieVo(movieNum, filePath, title, ""));
-					break;
-				case 2:
-					s2ImgList.add(new movieVo(movieNum, filePath, title, ""));
-					break;
-				case 3:
-					s3ImgList.add(new movieVo(movieNum, filePath, title, ""));
-					break;
-				case 4:
-					s4ImgList.add(new movieVo(movieNum, filePath, title, ""));
-					break;
-				case 5:
-					s5ImgList.add(new movieVo(movieNum, filePath, title, ""));
-					break;
-				}
+				wImgList.add(new movieVo(movieNum, filePath, title, ""));
 
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -82,13 +62,10 @@ public class StarView implements Handler {
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("s1ImgList", s1ImgList);
-		request.setAttribute("s2ImgList", s2ImgList);
-		request.setAttribute("s3ImgList", s3ImgList);
-		request.setAttribute("s4ImgList", s4ImgList);
-		request.setAttribute("s5ImgList", s5ImgList);
+		System.out.println(wImgList);
+		request.setAttribute("wImgList", wImgList);
 
-		return "/detail/StarView.jsp";
+		return "/detail/otherWishList.jsp";
 	}
 
 }

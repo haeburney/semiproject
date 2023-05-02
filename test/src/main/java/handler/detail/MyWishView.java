@@ -48,6 +48,7 @@ public class MyWishView implements Handler {
 				System.out.println(url);
 				String title = (String) obj.get("title");
 				String poster_path = (String) obj.get("poster_path");
+				System.out.println("포스터사진 빈값 확인"+poster_path.length()+" / "+poster_path);
 				String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
 				wImgList.add(new movieVo(movieNum, filePath, title, ""));				
 				

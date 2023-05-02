@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="mypageCss.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/member/mypageCss.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
 	
@@ -21,14 +21,14 @@
     	console.log(flag);
     	
     	if(flag == true){
-    		$(this).find('img').attr({
+    		$(this).find('#followImg').attr({
                 'src': 'https://cdn-icons-png.flaticon.com/512/803/803087.png',
                  alt:"찜하기 완료"
                  
              });
     	} else {
     		$(this).find('i').removeClass('fas').addClass('far')
-            $(this).find('img').attr({
+            $(this).find('#followImg').attr({
                'src': 'https://cdn-icons-png.flaticon.com/512/812/812327.png',
 //                텅빈하트
                alt:"찜하기"
@@ -67,7 +67,6 @@
             	type : "post",
             	data : {"userId" : userId, "followedId" : followedId},
             	success : function(result) {
-      
     
             	}
             });
@@ -82,14 +81,14 @@
 	<!-- 메뉴 상당바 출력 -->
 	<%@include file="/submain/nav.jsp" %>
 	
-	${followedId }
+	
 	
 	<div id="linesParent">
 		<div id="lines">
 		<!-- 한 줄 소개가 없다면 -->
 		<c:if test="${empty vo.introLine }">
 			<form name="addForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
-				<div id="addLine">내가 팔로우한 다른 유저가 본인 마이페이지에 적은 한 줄</div>
+				<div id="addLine">아직 한 줄 소개가 없습니다.</div>
 			</form>
 		</c:if>
 	
@@ -106,34 +105,36 @@
 		<div id="allList">
 			<div id="follow">
 			<span id="nickname">
-			<c:if test="${not empty sessionScope.userId }">
-						${sessionScope.userId }
-			</c:if>
+				${vo.userId }
 			</span>
 			
 			<!-- 팔로워 추가 설정 이미지 -->
 			<div class="right_area">
   			<a href="javascript:;" class="icon heart">
-     		<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
+     		<img id="followImg" src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
   			</a>
        		</div>
 			
 			</div>	
-				<hr/>
+				<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
 					<div>
-						찜목록
-						<a href="#"><img class="plustImg" src="../image/plus.png"></a>
-						<c:if test="${not empty detailImageList }">
-							<c:forEach var="li" items="${detailImageList }">
+						<div class="listPlus">
+							찜목록
+							<a href="${pageContext.request.contextPath }/detail/otherWishView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
+						</div>
+						<c:if test="${not empty wishImageList }">
+							<c:forEach var="li" items="${wishImageList }">
 								
 								<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
 							</c:forEach>
 						</c:if>
 					</div>
-					<hr/>
+					<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
 					<div>
-						별점목록
-						<a href="#"><img class="plustImg" src="../image/plus.png"></a>
+						<div class="listPlus">
+							별점목록
+							<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
+						</div>
 						<c:if test="${not empty starImageList }">
 							<c:forEach var="li" items="${starImageList }">
 								
@@ -141,11 +142,12 @@
 							</c:forEach>
 						</c:if>
 					</div>
-					<hr/>
+					<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
 					<div>
-						코멘트목록
-						<a href="#"><img class="plustImg" src="../image/plus.png"></a>
-						
+						<div class="listPlus">
+							코멘트목록
+							<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
+						</div>
 						<c:if test="${not empty commentsImageList }">
 							<c:forEach var="li" items="${commentsImageList }">
 								

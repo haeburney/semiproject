@@ -60,6 +60,7 @@ input::-webkit-input-placeholder {
 }
 
 #pop {
+	z-index:100;
 	width: 400px;
 	height: 500px;
 	margin-left: -100px;
