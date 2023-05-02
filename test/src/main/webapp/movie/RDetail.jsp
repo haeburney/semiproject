@@ -25,8 +25,36 @@
 	    font-style: normal;
 	}
 	
+	#showComments{
+	color : white;
+	}
+	
 	#add_comment_txt {
 		cursor: pointer;
+	}
+	
+	.comment_area {
+		width: 50%;
+		height: 100px;
+		position: absolute;
+		border: 1px solid #FADE6D;
+		border-radius: 15px;
+		color: white;
+		margin-left: 50px;
+	}
+	
+	.commnet { background-color: rgb(22, 22, 22); height: 100%; width: 100%; border: 0; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #ffffff; }
+	
+	.comment_area_btn {
+		width: 80px;
+		height: 80px;
+		position: relative;
+		border: 1px solid #FAFAFA;
+		border-radius: 10px;
+		backgound-color: #FADE6D;
+		/* margin-right: -100px; */
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 	
 	.write_popup {
@@ -150,7 +178,7 @@
 				<img class="check-icon" src="../image/spoiler.png"></img></label>
 				
 				<input type="button" id="btnsave" class="popbutton" value="저장" onclick="save()">
-				<input type="button" id="btncancel" class="popbutton" value="닫기" onclick="cancel()">
+				<input type="button" id="btncancel" class="popbutton" value="닫기">
 			</div>
 		</div>
 	</div>
@@ -290,8 +318,6 @@ ${title}
 	<span class ="watch">예고편 보러가기 |  </span>
 
 	</span>
-	
-	<!-- 댓글 보여주기 -->
 
 
 <script>
@@ -318,7 +344,7 @@ window.location.href = url;
 				</div>
 			</span>
 
-			<script type="text/javascript">
+<script type="text/javascript">
 //별점 평가 
 
 //별점 클릭하면 데이터베이스에 들어갈 거임.. 
@@ -375,11 +401,33 @@ $(document).ready(function() {
 </div>
 
 
-<div>
+<div id = "showComments">
 <button class="btn4" onclick="document.querySelector('.write_popup').style.display = 'block'">조각별 남기기</button>
 </div>
 
-
+<!-- 댓글 보여주기 -->
+	<div align="left">
+		<div class="comment_area" align="left">
+			<table width="100%">
+				<tr>
+					<td width="75%">
+						<textarea class="comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
+					</td>
+					<td width="25%" align="center">
+						<div class="comment_area_btn" align="center">
+							<span>다른조각글보러가기</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- <div class="comment_area_txt">
+				<textarea class="comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
+			</div>
+			<div class="comment_area_btn" align="left">
+				<span>다른조각글보러가기</span>
+			</div> -->
+		</div>
+	</div>
 
 
 
@@ -387,6 +435,7 @@ $(document).ready(function() {
 	<script>
 	$(document).ready(function() {
 	
+<script> 
 function save(){
 
   const textarea = document.querySelector('.commentpop.initial_comment');
@@ -409,13 +458,27 @@ url:"${pageContext.request.contextPath}/detail/addDetailPage.do",
 type : "GET" ,
 data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
 success : function(result) {
-    	   console.log("성공");
+    	   console.log("성공"); //작성 완료 후 작성한 내용을 버튼을 없애고 div 박스에 넣어서 보여주기 코드를 작성해야 합니다
+    	   //가영님께서 vo 에 담아서 어쩌고하는 방법이 있다고 하니 그렇게 해주
     	   $('.write_popup').hide();
        }
 });
 };
 	</script>
 	
+	<script>
+		$(document).ready(function() {
+ 			  var comments = "${comments}";
+ 			  
+			  if (comments !== null) {
+		
+		    $('.btn4').remove();
+
+		    document.getElementById('showComments').innerHTML += '<div>' + comments + '</div>';
+	  }
+		});
+	
+		</script>
 <script>
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
