@@ -19,6 +19,7 @@ import org.json.simple.parser.ParseException;
 import comments.CommentsService;
 import comments.CommentsVo;
 import follow.followService;
+import follow.followVo;
 import handler.Handler;
 import member.MemberService;
 import member.MemberVo;
@@ -187,18 +188,17 @@ public class mypage implements Handler {
 			}
 			request.setAttribute("commentsImageList", commentsImageList);
 			request.setAttribute("view", "/member/mypage.jsp");
-
-			System.out.println("wishList :" + wishList.size() + wishList);
-			System.out.println("wishImageList :" + wishImageList.size() + wishImageList);
-			System.out.println("commentsList :" + commentsList.size() + commentsList);
-			System.out.println("commentsImageList :" + commentsImageList.size() + commentsImageList);
-			System.out.println("starList :" + starList.size() + starList);
-			System.out.println("starImageList :" + starImageList.size() + starImageList);
-
+			ArrayList<followVo> FollowingList = new ArrayList<followVo>();
+			followService americano = new followService();
+			FollowingList = americano.Allfollower(userId);
+			request.setAttribute("americano", FollowingList);
+			System.out.println(americano);
+			
 			return "/member/mypage.jsp";
 		}
 
-		return "/member/mypage.jsp";
+		
+		return null;
 	}
 
 }

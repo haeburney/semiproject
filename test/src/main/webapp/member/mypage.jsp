@@ -25,7 +25,7 @@
 		<!-- 한 줄 소개가 없다면 -->
 		<c:if test="${empty vo.introLine }">
 			<form name="addForm" id="aForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
-				<div id="addLine">작은 조각 작성하기</div>
+				<div id="addLine" >작은 조각 작성하기</div>
  				<input id="addBtn" type="button" value="한줄쓰기" onclick="add()">
 				<input id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
 			</form>
@@ -60,6 +60,17 @@
  		
 		</div>
 	</div>
+	
+	<div id="coffee" style="display:none">
+		<c:if test="${not empty americano }">
+			<c:forEach var="li" items="${americano }">
+					<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
+							 ${li.followedId }
+							 </a>
+			</c:forEach>
+		</c:if>
+	</div>
+	
 
 	<div id="allListParent">
 		<div id="allList">
@@ -128,6 +139,7 @@
 		</div>
 	</div>
 	
+
 	<div id="option">
 	</div>
 	
@@ -145,7 +157,7 @@
 	
 	function add(){
 		console.log("add()");
-		let txt = "<textarea cols='50' name='introLine'>마음에 드는 영화 대사를 적어보세요</textarea>";
+		let txt = "<textarea cols='50' name='introLine' ">마음에 드는 영화 대사를 적어보세요</textarea>";
 		document.getElementById("addLine").innerHTML=txt;
 		document.getElementById("addBtn").style="display:none";
 		document.getElementById("addEnd").style="display:";
@@ -243,7 +255,8 @@
 	}
 	
 	function following(){
-		console.log("팔로잉클릭");
+		document.getElementById("coffee").style="display:";
+	
 	}
 	
 
