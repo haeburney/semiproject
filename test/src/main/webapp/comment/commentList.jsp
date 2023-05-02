@@ -39,7 +39,7 @@
 	    font-weight: normal;
 	    font-style: normal;
 	}
-	.main { width: 100%; height: 100%; position: absolute; background-color: #000000; overflow: auto; }
+	.main { width: 100%; height: 100%; position: absolute; background-color: #000000; overflow: auto; margin-boddom: 50px; }
 	.contents { width: 100%; height: 100%; background: black; font-family: 'SUIT Variable';
 			    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css' format('sans-serif'));
 			    font-weight: normal;
@@ -48,7 +48,8 @@
 			    backgorund: black;
 			    position: absolute;
 			    z-index: 1;
-			    align: center; }
+			    align: center; 
+			    margin-bottom: 50px; }
 	.all { width: 50%; height: 79%; margin-top: 5%; background: #000000; position: relative; display: inline-block;}
 	
 	.my_no_data { height: 100px; border-radius: 10px; border: 2px solid rgb(249, 222, 109); background: rgb(55, 55, 55); font-family: 'SUIT Variable';
@@ -91,6 +92,63 @@
 	.other .good_area { cursor: pointer; color: white; }
 	.spoiler_y_icon { margin-right: 20px; }
 	
+	#spoiler_blind { color: #FFFFFF; cursor: pointer; }
+	.confirm_popup_spoiler { width:100%; height: 100px; display: inline-block; position: relative; }
+	.btn_yes { cursor: pointer; font-size: 1em; background: #AFAFAF; border-radius: 5px; color: white; width: 50%; }
+	.btn_no { cursor: pointer; font-size: 1em; background: #AFAFAF; border-radius: 5px; color: white; width: 50%; }
+	.btn_yes:hover { background-color: rgb(249, 222, 109); }
+	.btn_no:hover { background-color: rgb(249, 222, 109); }
+	.popup_spoiler { 
+		position: relative;
+		width: 30%;
+		height: 250px;
+		background-color: #fff;
+		border-radius: 15px;
+		z-index:22;
+	}
+	.title_spoiler { 
+		border-radius: 15px 15px 0 0;
+		min-height: 40px;
+		color: #fff;
+		background-color: #FADE6D;
+		padding: 10px 15px;
+		box-sizing: border-box;
+		font-family: 'SUIT Variable';
+	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css' format('sans-serif'));
+	    font-weight: bold;
+	    font-style: bold;
+	    font-size: 1em;
+	}
+	
+	.content {
+		padding: 20px;
+		box-sizing: border-box;
+		color: black; 
+		font-family: 'GangwonEduHyeonokT_OTFMediumA'; 
+		font-size: 1.5em;
+	}
+	
+	.dimmed_spoiler_popup { 		
+		background-color: #99999900;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center; 
+		z-index: 21;
+	}
+	
+	.dimmed_spoiler_popup::before {
+		content: '';
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba(255, 255, 255, 0.55);
+		-webkit-backdrop-filter: blur(5px);
+		backdrop-filter: blur(5px);
+		z-index: 20;
+	}
+	
 	.write_popup {
 		display: inline-block;
 		width: 100%;
@@ -98,7 +156,7 @@
 		padding: 0;
 		margin: 0;
 		position: relative;
-		z-index: 10;
+		z-index: 2;
 	}
 	
 	.wrap_popup {
@@ -205,10 +263,11 @@
 
 </head>
 <body>
-	<div class="main">
-	<div class="contents" align="center">
 	<!--  헤더 -->
 	<jsp:include page="../submain/nav.jsp" flush="true"/>
+	<div class="main">
+	<div class="contents" align="center">
+	
 	
 	<!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 	<span id="movieNum" style="display: none;">${movieNum}</span>
@@ -232,6 +291,7 @@
 			</div>
 		</div> 
 		
+		<!-- write popup -->
 		<div class="write_popup" style="display: none;">	  
 			<div class="dimmed">
 				<div class="popup">
@@ -247,6 +307,40 @@
 				</div>
 			</div>
 		</div> 
+		
+		<!-- deltete 확인 popup -->
+		<div class="confirm_popup_del" style="display: none;">
+			
+		</div>
+		
+		<!-- spoiler 보기 확인 popup -->
+		<div class="confirm_popup_spoiler" align="center" style="display: none;"> <!-- style="display: none;" --> 
+			<div class="dimmed_spoiler_popup">
+				<div class="popup_spoiler" align="center">
+				<div class="title_spoiler" style="color: black;">Warning!</div>
+					<div class="content">
+						<p>스포일러가 있는 조각글입니다.</p>
+						<p>확인하시겠습니까?</p>
+					</div>
+					<div class="yn_btn_area">
+						<table width="100%">
+							<tr>
+								<td style="padding-left: 20px;" width="50%" align="right">
+									<div class="btn_yes" align="center">
+										<span>확인</span>
+									</div>
+								</td>
+								<td style="padding-right: 20px;" width="50%" align="left">
+									<div class="btn_no" align="center">
+										<span>닫기</span>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 	
 		<!-- 내용 -->
@@ -474,7 +568,8 @@
 									<td colspan="2">
 										<div class="comment_area">
 											<br>
-											<textarea class="comment" cols="20" rows="5" disabled>${ spoiler.comments }</textarea>
+											<span id="spoiler_blind">스포일러가 포함되어 있어요! >><u>보기 클릭</u></span>
+											<textarea class="comment spoiler_comment" cols="20" rows="5" disabled>${ spoiler.comments }</textarea>
 											<br>
 										</div>
 									</td>
@@ -494,7 +589,7 @@
 					
 					</c:forEach>
 					</div>
-					
+					<br><br><br><br><br>
 				</div>
 			</div>
 		</div>
@@ -515,6 +610,7 @@
 			}
 			$('.wrap_popup').hide();		// 수정 팝업창 기본 숨김처리
 			$('.write_popup').hide();		// 작성 팝업창 기본 숨김처리
+			$('.spoiler_comment').hide();	// 스포일러 탭의 코멘트 가리기
 			
 			// 탭 3개 init -> rate가 가장 많은 순으로 정렬 (best)
 			$('#best_comments').show();
@@ -590,6 +686,35 @@
 		$('.icon_delete').click(function() {
 			del();
 		})
+		
+		// 스포일러 보기
+		$('#spoiler_blind').click(function() {
+			$('.confirm_popup_spoiler').show();
+			//$('.main').css("overflow", "hidden");
+		});
+		
+		// 보기 확인
+		$('.btn_yes').click(function() {
+			$('.confirm_popup_spoiler').hide();
+			$('.main').css("overflow", "scroll");
+			$('#spoiler_blind').hide();
+			$('.spoiler_comment').show();
+		});
+		
+		// 보기 취소
+		$('.btn_no').click(function() {
+			$('.confirm_popup_spoiler').hide();
+			$('.main').css("overflow", "scroll");
+		});
+		
+		jQuery.fn.center = function () {
+		    this.css("position","absolute");
+		    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
+		    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
+		    return this;
+		  }
+		  
+		jQuery(".confirm_popup_spoiler").center();
 		
 		// *** 남의 글에서 좋아요 선택 ***
 		// 1. good_area_best 2. good_area_recent 3. good_area_spoiler
