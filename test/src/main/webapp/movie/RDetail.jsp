@@ -43,18 +43,45 @@
 		margin-left: 50px;
 	}
 	
-	.commnet { background-color: rgb(22, 22, 22); border: 0; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #000000; }
+	.comment { margin-top: 5px; margin-left: 10px; /* 0 0 5px rgba(81, 203, 238, 1) */; background-color: #000000; width: 90%; height: 100%; border: 0 solid #000000; overflow-y: hidden; resize: none; font-family: 'GangwonEduHyeonokT_OTFMediumA'; font-size: 1.5em; color: #ffffff; }
+	.comment:focus { box-shadow: #000000; border: #000000; outline: none; }
 	
 	.comment_area_btn {
-		width: 80px;
-		height: 80px;
-		position: relative;
-		border: 1px solid #FAFAFA;
-		border-radius: 10px;
-		backgound-color: #FADE6D;
-		/* margin-right: -100px; */
+		cursor: pointer;
 		margin-top: 10px;
-		margin-bottom: 10px;
+		color: white;
+	}
+	
+	.comment_area_btn:hover {
+		color: #FADE6D;
+	}
+	
+	.comment_area_btn::before {
+	  content: '';
+	  position: absolute;
+	  bottom: -40%;
+	  width: 18%;
+	  height: 2px;
+	  background: #FADE6D;
+	  display: block;
+	  margin-top: -15px;
+	  -webkit-transform-origin: right top;
+	  -ms-transform-origin: right top;
+	  transform-origin: right top;
+	  -webkit-transform: scale(0, 1);
+	  -ms-transform: scale(0, 1);
+	  transform: scale(0, 1);
+	  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+	  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+	}
+	
+	.comment_area_btn:hover::before {
+	  -webkit-transform-origin: left top;	
+	  -ms-transform-origin: left top;
+	  transform-origin: left top;
+	  -webkit-transform: scale(1, 1);
+	  -ms-transform: scale(1, 1);
+	  transform: scale(1, 1)
 	}
 	
 	.write_popup {
@@ -157,6 +184,53 @@
 	.checkbox-wrap .check-icon  { display: inline-block; width: 25px; height: 25px; color: #AFAFAF;  content: url(../image/spoiler_gray.png); /* center no-repeat;  */vertical-align: middle; transition-duration: .3s; }
 	.checkbox-wrap input[type=checkbox] { display: none; }
 	.checkbox-wrap input[type=checkbox]:checked + .check-icon { color: #FADE6D; content: url(../image/spoiler.png); }
+	
+	.go_wirte{
+	  cursor: pointer;
+	  padding: 2px 50px;
+	  margin:10px 4px;
+	  color: #FAFAFA;
+	  font-family: sans-serif;
+	  text-transform: uppercase;
+	  text-align: center;
+	  position: relative;
+	  text-decoration: none;
+	  display:inline-block;
+	}
+	
+	.go_wirte:hover {
+		color: #FADE6D;
+	}
+	
+	.go_wirte::before {
+	  content: '';
+	  position: absolute;
+	  bottom: 0%;
+	  left: 24%;
+	  width: 50%;
+	  height: 2px;
+	  background: #FADE6D;
+	  display: block;
+	  -webkit-transform-origin: right top;
+	  -ms-transform-origin: right top;
+	  transform-origin: right top;
+	  -webkit-transform: scale(0, 1);
+	  -ms-transform: scale(0, 1);
+	  transform: scale(0, 1);
+	  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+	  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+	}
+	
+	.go_wirte:hover::before {
+	  -webkit-transform-origin: left top;	
+	  -ms-transform-origin: left top;
+	  transform-origin: left top;
+	  -webkit-transform: scale(1, 1);
+	  -ms-transform: scale(1, 1);
+	  transform: scale(1, 1)
+	}
+
+	
 </style>
 </head>
 
@@ -204,7 +278,7 @@ function cancel() {
 <!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 <span id="movieNum" style="display: none;">${movieId}</span>
 
-
+<div style="height: 100%; position: relative; margin-top: -5%;">
 
 	<div>
   <img align="right" class="tmp_img" src="https://image.tmdb.org/t/p/original${file_path }">
@@ -235,7 +309,7 @@ ${title}
 </div>
 </span>
 
-
+</div>
 <div>
 <div style="width : 900px; margin-left: 150px;">
     <span class="tagline">${tagline}</span><br /></div>
@@ -407,27 +481,27 @@ $(document).ready(function() {
 
 <!-- 댓글 보여주기 -->
 	<div align="left">
-		<div class="comment_area" align="left">
-			<table width="100%">
-				<tr>
-					<td width="75%">
-						<textarea class="comment" width="100%" cols="20" rows="5" maxlength="100" autofocus></textarea>
-					</td>
-					<td width="25%" align="center">
-						<div class="comment_area_btn" align="center">
-							<span>다른조각글보러가기</span>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<!-- <div class="comment_area_txt">
-				<textarea class="comment" cols="20" rows="5" maxlength="100" autofocus></textarea>
+		<div class="go_wirte">
+			<span>조각글 쓰러 가기</span>
+		</div>
+		<div>
+			<div class="comment_area" align="left">
+				<table width="100%" height="100%">
+					<tr>
+						<td width="100%" align="left">
+							<textarea class="comment" cols="20" rows="2" maxlength="100" readonly>이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요이곳에저장한코멘트가담겨요</textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="comment_area_btn" align="left">
+					<span>다른조각글보러가기</span>
+				</div>
 			</div>
-			<div class="comment_area_btn" align="left">
-				<span>다른조각글보러가기</span>
-			</div> -->
 		</div>
 	</div>
+	
+	
+	
 	
 <script> 
 function save(){
@@ -458,6 +532,12 @@ success : function(result) {
        }
 });
 };
+
+setCommentArea();
+
+function setCommentArea() {
+	//$('.comment').hide();
+}
 	</script>
 	
 	<script>
