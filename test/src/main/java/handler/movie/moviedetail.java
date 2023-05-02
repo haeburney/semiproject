@@ -16,6 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import comments.CommentsService;
 import handler.Handler;
 import star.StarService;
 import wish.wishService;
@@ -93,6 +94,12 @@ public class moviedetail implements Handler {
 				
 			request.setAttribute("star", star); //별이 몇개 있니? 
 		
+			CommentsService cservice = new CommentsService(); 
+			String comments = cservice.getComments(userId, movienum);
+			
+			request.setAttribute("comments", comments); //코멘트 보여줘 
+			
+			
 			is.close();
 			
 			getimg(request, response, movieId);

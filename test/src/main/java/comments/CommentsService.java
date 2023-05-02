@@ -94,4 +94,8 @@ public class CommentsService {
 	  public boolean checkcomment(CommentsVo vo) {
 	      return dao.select(vo);
 	   }
+	  
+	  public  String getComments(String userId, int movieNum) {
+		  return dao.getComments(userId, movieNum);
+	  }
 }

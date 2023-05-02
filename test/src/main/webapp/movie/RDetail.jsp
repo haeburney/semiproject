@@ -479,6 +479,7 @@ $(document).ready(function() {
 <button class="btn4" onclick="document.querySelector('.write_popup').style.display = 'block'">조각별 남기기</button>
 </div>
 
+
 <!-- 댓글 보여주기 -->
 	<div align="left">
 		<div class="go_wirte">
@@ -500,9 +501,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
-	
-	
-	
+
 <script> 
 function save(){
 
@@ -528,7 +527,7 @@ data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier"
 success : function(result) {
     	   console.log("성공"); //작성 완료 후 작성한 내용을 버튼을 없애고 div 박스에 넣어서 보여주기 코드를 작성해야 합니다
     	   //가영님께서 vo 에 담아서 어쩌고하는 방법이 있다고 하니 그렇게 해주
-    	   $('.write_popup').hide();
+			$('.write_popup').hide();
        }
 });
 };
@@ -553,6 +552,7 @@ function setCommentArea() {
 		});
 	
 		</script>
+
 <script 
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
