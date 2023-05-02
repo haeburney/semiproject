@@ -80,14 +80,17 @@
 				<span>
 				
 <!-- 					설정 이미지 -->	
-					<img src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
+					<img class="plus" src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
 
 				</span>
 			</div>	
-			<hr style="border: solid 1px #cecece; opacity:1;"/>
+			<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
+			
 				<div>
-					찜목록
-					<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					<div class="listPlus">
+						<span>찜목록</span>
+						<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
 					<c:if test="${not empty wishImageList }">
 						<c:forEach var="li" items="${wishImageList }">
 							
@@ -95,10 +98,12 @@
 						</c:forEach>
 					</c:if>
 				</div>
-				<hr style="border: solid 0.5px #cecece; opacity:1;"/>
+				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div>
-					별점목록
-					<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					<div class="listPlus">
+						<span>별점목록</span>
+						<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
 					<c:if test="${not empty starImageList }">
 						<c:forEach var="li" items="${starImageList }">
 							
@@ -106,11 +111,12 @@
 						</c:forEach>
 					</c:if>
 				</div>
-				<hr style="border: solid 0.5px #cecece; opacity:1;"/>
+				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div>
-					코멘트목록
-					<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
-					
+					<div class="listPlus">
+						<span>코멘트목록</span>
+						<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
+					</div>
 					<c:if test="${not empty commentsImageList }">
 						<c:forEach var="li" items="${commentsImageList }">
 							
@@ -120,6 +126,9 @@
 				</div>
 			
 		</div>
+	</div>
+	
+	<div id="option">
 	</div>
 	
 	<script>

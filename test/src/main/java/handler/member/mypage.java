@@ -35,7 +35,7 @@ public class mypage implements Handler {
 		// TODO Auto-generated method stub
 		if (request.getMethod().equals("GET")) {
 			String userId = request.getParameter("userId");
-			
+
 			StarService starService = new StarService();
 			wishService wService = new wishService();
 
@@ -52,12 +52,10 @@ public class mypage implements Handler {
 			request.setAttribute("uCount", uCount);
 
 			// 찜 리스트
-			
 			ArrayList<wishVo> wishList = wService.getWishList(userId);
 			ArrayList<movieVo> wishImageList = new ArrayList<movieVo>();
-			
 
-			int max = 6; // 한 줄에 총 보여질 개수
+			int max = 7; // 한 줄에 총 보여질 개수
 			int size = 0;
 			if (wishList.size() <= max) {
 				size = wishList.size();
@@ -69,26 +67,22 @@ public class mypage implements Handler {
 				String movieNum = Integer.toString(wishList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
-							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
+							+ "?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
 					URLConnection conn = url.openConnection();
 					InputStream is = conn.getInputStream();
 					JSONParser parser = new JSONParser();
 					JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
-					JSONArray posters = (JSONArray) obj.get("posters");
-					// 특정 무비 아이디의 포스터 사진을 가져오기 
+					String title = (String) obj.get("title");
+					String poster_path = (String) obj.get("poster_path");
+					String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
 
-					int randomImg = (int) (Math.random() * posters.size());
-					// 특정 무비 아이디가 갖고 있는 포스터만큼 난수 생성
-					// Math.random() * 10 이면 0~9의 난수를 생성해준다.
-					if(posters.size()>0) {
-						JSONObject s = (JSONObject) posters.get(randomImg);
-						String posterPath = (String) s.get("file_path");
-						// 그 랜덤번째 인덱스에 있는 포스터 이미지를 가져오기 
-						
-						String filePath = "https://image.tmdb.org/t/p/original" + posterPath;
-						wishImageList.add(new movieVo(movieNum, filePath, "", "")); 
-					}					
-					
+					if (poster_path != null) {
+						wishImageList.add(new movieVo(movieNum, filePath, "", ""));
+					} else {
+						filePath = request.getContextPath() + "/image/No_image.png";
+						wishImageList.add(new movieVo(movieNum, filePath, title, ""));
+					}
+
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -103,11 +97,10 @@ public class mypage implements Handler {
 			request.setAttribute("wishImageList", wishImageList);
 			// 여기
 
-
 			// 별점 리스트
-			ArrayList<StarVo> starList = starService.getStarList(userId);  
+			ArrayList<StarVo> starList = starService.getStarList(userId);
 			ArrayList<movieVo> starImageList = new ArrayList<movieVo>();
-			
+
 			size = 0;
 			if (starList.size() <= max) {
 				size = starList.size();
@@ -119,20 +112,22 @@ public class mypage implements Handler {
 				String movieNum = Integer.toString(starList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
-							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
+							+ "?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
 					URLConnection conn = url.openConnection();
 					InputStream is = conn.getInputStream();
 					JSONParser parser = new JSONParser();
 					JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
-					JSONArray posters = (JSONArray) obj.get("posters");
+					String title = (String) obj.get("title");
+					String poster_path = (String) obj.get("poster_path");
+					String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
 
-					int randomImg = (int) (Math.random() * posters.size());
-					if(posters.size()>0) {
-						JSONObject s = (JSONObject) posters.get(randomImg);
-						String posterPath = (String) s.get("file_path");
-						String filePath = "https://image.tmdb.org/t/p/original" + posterPath;
-						starImageList.add(new movieVo(movieNum, filePath, "", "")); 
-					}		
+					if (poster_path != null) {
+						starImageList.add(new movieVo(movieNum, filePath, "", ""));
+					} else {
+						filePath = request.getContextPath() + "/image/No_image.png";
+						starImageList.add(new movieVo(movieNum, filePath, title, ""));
+					}
+
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -146,13 +141,12 @@ public class mypage implements Handler {
 			}
 			request.setAttribute("starImageList", starImageList);
 
-			
 			// 코멘트 리스트
 			CommentsService commentsService = new CommentsService();
 			ArrayList<CommentsVo> commentsList = commentsService.showMyComments(userId);
 			request.setAttribute("commentsList", commentsList);
 			ArrayList<movieVo> commentsImageList = new ArrayList<movieVo>();
-			
+
 			size = 0;
 			if (commentsList.size() <= max) {
 				size = commentsList.size();
@@ -161,23 +155,25 @@ public class mypage implements Handler {
 			}
 
 			for (int i = 0; i < size; i++) {
-				 String movieNum = String.valueOf(commentsList.get(i).getMovieNum());
+				String movieNum = String.valueOf(commentsList.get(i).getMovieNum());
 				try {
 					URL url = new URL("https://api.themoviedb.org/3/movie/" + movieNum
-							+ "/images?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
+							+ "?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko");
 					URLConnection conn = url.openConnection();
 					InputStream is = conn.getInputStream();
 					JSONParser parser = new JSONParser();
 					JSONObject obj = (JSONObject) parser.parse(new InputStreamReader(is));
-					JSONArray posters = (JSONArray) obj.get("posters");
+					String title = (String) obj.get("title");
+					String poster_path = (String) obj.get("poster_path");
+					String filePath = "https://image.tmdb.org/t/p/original" + poster_path;
 
-					int randomImg = (int) (Math.random() * posters.size());
-					if(posters.size()>0) {
-						JSONObject s = (JSONObject) posters.get(randomImg);
-						String posterPath = (String) s.get("file_path");
-						String filePath = "https://image.tmdb.org/t/p/original" + posterPath;
-						commentsImageList.add(new movieVo(movieNum, filePath, "", "")); 
-					}		
+					if (poster_path != null) {
+						commentsImageList.add(new movieVo(movieNum, filePath, "", ""));
+					} else {
+						filePath = request.getContextPath() + "/image/No_image.png";
+						commentsImageList.add(new movieVo(movieNum, filePath, title, ""));
+					}
+
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -190,12 +186,19 @@ public class mypage implements Handler {
 				}
 			}
 			request.setAttribute("commentsImageList", commentsImageList);
-			
 			request.setAttribute("view", "/member/mypage.jsp");
+
+			System.out.println("wishList :" + wishList.size() + wishList);
+			System.out.println("wishImageList :" + wishImageList.size() + wishImageList);
+			System.out.println("commentsList :" + commentsList.size() + commentsList);
+			System.out.println("commentsImageList :" + commentsImageList.size() + commentsImageList);
+			System.out.println("starList :" + starList.size() + starList);
+			System.out.println("starImageList :" + starImageList.size() + starImageList);
+
 			return "/member/mypage.jsp";
 		}
 
-		return null;
+		return "/member/mypage.jsp";
 	}
 
 }

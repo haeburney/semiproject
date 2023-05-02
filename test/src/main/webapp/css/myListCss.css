@@ -1,7 +1,66 @@
 @charset "UTF-8";
 
-body{
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GangwonEduHyeonokT_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduHyeonokT_OTFMediumA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#listBody{
 	background-color:black;
 	color:white;
-	
+	text-align : center;
 }
+
+.content{
+	 float:left;
+	 font-family: 'SUIT-Regular';
+	 padding-left:10px;
+	 padding-right:10px;
+	 padding-top:10px;
+	 padding-bottom:10px;
+}
+
+.list{
+	margin-left:10%;
+	margin-right:10%;
+}
+
+.listParent{
+	text-align : center;
+	align-items: center;
+}
+
+.posterImg:hover{
+	transform:scale(1.05);
+  	transition: transform .3s;
+}
+
+.title{
+	margin-top:10px;
+}
+
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }
