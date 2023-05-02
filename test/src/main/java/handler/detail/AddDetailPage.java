@@ -30,6 +30,7 @@ public class AddDetailPage implements Handler {
 				//이미 댓글 있다면 수정하는 걸로 돌아와도 좋을듯 
 				// 이미 댓글을 작성했으므로 에러 메시지를 추가하고 JSP로 이동
 				System.out.println(flag);
+				
 				return "/movie/RDetail.jsp";
 			}
 			
