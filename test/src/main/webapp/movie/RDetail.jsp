@@ -375,10 +375,18 @@ $(document).ready(function() {
 </div>
 
 
-
+<div>
 <button class="btn4" onclick="document.querySelector('.write_popup').style.display = 'block'">조각별 남기기</button>
+</div>
+
+
+
+
+
 
 	<script>
+	$(document).ready(function() {
+	
 function save(){
 
   const textarea = document.querySelector('.commentpop.initial_comment');
