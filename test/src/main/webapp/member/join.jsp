@@ -71,6 +71,10 @@ color : #FFDD55;
 	function frameclose() {
 		document.getElementById("popUp").remove();
 		document.getElementById("logoutBtn").checked=false;
+		document.getElementById("popUpParent").style.backdropFilter = "blue(0px)";
+		document.getElementById("popUpParent").style="background : rgba(169 ,169, 169,0)";
+		//$("#popUpParent").css("backdrop-filter","blur(0px)");
+		//$("#popUpParent").css("background","rgba(169 ,169, 169,0)");
 	}
 	
 	function idJoin() {

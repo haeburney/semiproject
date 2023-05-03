@@ -97,5 +97,52 @@
 </div>
 <br><br><br><br><br>
 </div>
+
+
+<script>
+function loginDo() {
+	let userId = document.getElementById("b").value;
+	let password = document.getElementById("c").value;
+	
+	$.ajax({
+		url : '${pageContext.request.contextPath }/member/password.do',
+		type : "post",
+		data : {"userId": userId, "password" : password},
+		dataType : "json",
+		success : function(result) {
+			if(result.flag == true) {
+				$.ajax({
+					url : '${pageContext.request.contextPath }/member/login.do',
+					type : "post",
+					data : {"userId": userId, "password" : password},
+					success : function(result) {
+						$("#popUp").hide();
+						$("#personCircle").show();
+					},
+					error : function(req, status, error){
+						console.log(status);
+					}
+				});
+			} else {
+				console.log("비밀번호 불일치");
+				$("#log").html("비밀번호 불일치");				
+			}
+		},
+		error : function(req, status, error){
+			console.log(status);
+		}
+	});
+}
+
+function frameclose() {
+	document.getElementById("popUp").remove();
+	document.getElementById("logoutBtn").checked=false;
+	// $("#popUpParent").css("background","rgba(169 ,169, 169,.9)");
+	document.getElementById("popUpParent").style.background="rgba(169 ,169, 169,.0)";
+	document.getElementById("popUpParent").style.backdrop-filter="blur(10px)";
+//	$("#popUpParent").css("backdrop-filter","blur(10px)");
+}
+
+</script>
 </body>
 </html>

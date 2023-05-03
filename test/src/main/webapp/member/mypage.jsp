@@ -10,9 +10,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="mypageCss.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/member/mypageCss.css?after">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+<style>
+
+
+
+</style>
 
 </head>
 
@@ -89,9 +94,25 @@
 				</c:if>
 				</span>
 				<span>
+					<!-- 	모달 -->
+					<input type="checkbox" id="popup2">
+					<label for="popup2">
+						<img src="../image/option.png" style="width:25px">
+					</label>
+					<div>
+					<div>
+						<label for="popup2"></label>
+						여기에 본문 넣기 
+						<%@include file="/member/edit.jsp" %>
+					</div>
+
+					<label for="popup2">
+					</label>
+					</div>
+	
+<!-- 	모달 -->
 				
 <!-- 					설정 이미지 -->	
-					<img class="plus" src="../image/option.png" style="width:25px" onclick="myInfoEdit()">
 
 				</span>
 			</div>	
@@ -143,6 +164,21 @@
 	<div id="option">
 	</div>
 	
+	<input type="checkbox" id="popup2">
+					<label for="popup2">
+						<img src="../image/option.png" style="width:25px">
+					</label>
+					<div>
+					<div>
+						<label for="popup2"></label>
+						여기에 본문 넣기 
+						<%@include file="/member/edit.jsp" %>
+					</div>
+
+					<label for="popup2">
+					</label>
+					</div>
+	
 	<script>
 	
 	
@@ -157,7 +193,7 @@
 	
 	function add(){
 		console.log("add()");
-		let txt = "<textarea cols='50' name='introLine' ">마음에 드는 영화 대사를 적어보세요</textarea>";
+		let txt = "<textarea cols='50' name='introLine'>마음에 드는 영화 대사를 적어보세요</textarea>";
 		document.getElementById("addLine").innerHTML=txt;
 		document.getElementById("addBtn").style="display:none";
 		document.getElementById("addEnd").style="display:";

@@ -12,6 +12,8 @@
     font-style: normal;
 }
 
+body { overflow: hidden; }
+
 /* 드롭다운 박스 크기 조절 */
 .dropdown-menu.row {
 	width: 500px; /* 드롭다운 박스 크기 조절 */

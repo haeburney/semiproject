@@ -15,7 +15,7 @@ body {
 }
 
 #a {
-	margin-top: 45px;
+	margin-top: 0px;
 }
 
 #b, #c {
@@ -63,18 +63,28 @@ input::-webkit-input-placeholder {
 	z-index:100;
 	width: 400px;
 	height: 500px;
-	margin-left: -100px;
-	margin-top: -150px;
-	left: 50%;
-	top: 50%;
+/* 	top: ; */
+	
+
 	background: #3d3d3d;
 	color: #fff;
 	position: absolute;
+	left : 0;
+	right : 0;
+	top : 0;
+	bottom : 0;
+	margin : auto;
 	text-align: center;
 	border-radius: 10px;
 	/* 		display : flex;  화면 크기에 따라 크기가 달라지게 하는 것*/
 }
 
+#popUp{
+	align-items:center;
+	
+}
+
+
 #log {
-	color : blue;
+	color : white;
 }
