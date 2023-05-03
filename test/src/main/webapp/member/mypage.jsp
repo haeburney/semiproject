@@ -95,14 +95,28 @@
 					<div>
 					<div>
 						<label for="popup3"></label>
-						리스트를 보여줘라
+						<div id="abc"><img src="/test/image/logo4.png" width="100"></div>
+						<table>
 						<c:if test="${not empty americano }">
-							<c:forEach var="li" items="${americano }">
-								<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
-										 ${li.followedId }
-							   </a>
+						<c:forEach var="li" items="${americano }">
+						
+						<tr><td><img src="../image/icon_profile.png" style=width:45px></td><td><a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">${li.followedId }</a></td></tr>
+<!-- 						<tr><td>1</td><td>1</td></tr> -->
+<!-- 						<tr><td>1</td><td>1</td></tr> -->
+						
+<%-- 						<c:if test="${not empty americano }"> --%>
+<%-- 							<c:forEach var="li" items="${americano }"> --%>
+<%-- 								<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}"> --%>
+<%-- 										 ${li.followedId } --%>
+<!-- 							   </a> -->
 							</c:forEach>
 						</c:if>
+						
+						</table>
+						
+<!-- 						<div id="f"> -->
+<!--       					<img src="../image/close.png" style="width:30px" onclick="fclose()"> -->
+<!--       					</div> -->
 					</div>
 
 					<label for="popup3">
@@ -149,7 +163,7 @@
 					<c:if test="${not empty wishImageList }">
 						<c:forEach var="li" items="${wishImageList }">
 							
-							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
 						</c:forEach>
 					</c:if>
 				</div>
@@ -162,7 +176,7 @@
 					<c:if test="${not empty starImageList }">
 						<c:forEach var="li" items="${starImageList }">
 							
-							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
 						</c:forEach>
 					</c:if>
 				</div>
@@ -175,7 +189,7 @@
 					<c:if test="${not empty commentsImageList }">
 						<c:forEach var="li" items="${commentsImageList }">
 							
-							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+							<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
 						</c:forEach>
 					</c:if>
 				</div>
@@ -186,23 +200,6 @@
 
 	<div id="option">
 	</div>
-	
-	<input type="checkbox" id="popup2">
-					<label for="popup2">
-						<img src="../image/option.png" style="width:25px">
-					</label>
-					<div>
-					<div>
-						<label for="popup2"></label>
-						여기에 본문 넣기 
-						<%@include file="/member/edit.jsp" %>
-					</div>
-
-					<label for="popup2">
-					</label>
-					</div>
-	
-	
 	
 	<script>
 	
@@ -321,6 +318,13 @@
 		document.getElementById("coffee").style="display:";
 	
 	}
+	
+// 	function fclose() {
+// 		document.getElementById("fCount").remove();
+// 		document.getElementById("popUpParent").style.backdropFilter = "blue(0px)";
+// 		document.getElementById("popUpParent").style="background : rgba(169 ,169, 169,0)";
+// 	}
+
 	
 
 </script>

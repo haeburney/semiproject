@@ -117,7 +117,7 @@ hr{
   	transition: transform .2s;
 }
 
-a:hover, img:hover{
+a:hover, .pImg:hover{
 	transform:scale(1.1);
   	transition: transform .2s;
 }
@@ -266,4 +266,14 @@ input[id="popup3"]:checked + label +div {
 }
 
 
+#abc {
+	margin-top : 30px;
+}
 
+
+table {
+	width : 150px;
+	margin-top : 90px;
+	margin-left: 90px;
+    margin-right: auto;
+}
