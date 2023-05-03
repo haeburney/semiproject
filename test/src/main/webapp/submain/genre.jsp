@@ -18,14 +18,10 @@
 	max-width: 1200px;
 }
 
-.layout{
-	background-color: black;
-}
-
 h2{
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
 	color: white;
-	background-color: black;
+	background-color: #212121;
 	font-family: 'KOTRA_BOLD-Bold';
 }
 
@@ -34,29 +30,24 @@ h2{
 	color: white;
 	text-align: center;
 	font-family: 'KOTRA_BOLD-Bold';
-	font-size : 15px;	
+	font-size : 15px;
+	overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-top: 20px;
 }
 
 .col{
 	margin: auto;
 }
 
-.title{
-	text-align: center;
-}
-
-.bgcolor{
-	background-color:black;
-}
 
 /* 버튼양식 */
 .floating-leftbtn{
 	position: fixed;
-	bottom: 20px;
+	bottom: 250px;
 	left: 20px;
-	background-color: #fff0ab;
 	color: black;
-	border-radius: 50%;
 	font-size: 15px;
 	padding: 20px;
 	border: none;
@@ -66,11 +57,9 @@ h2{
 
 .floating-rightbtn{
 	position: fixed;
-	bottom: 20px;
+	bottom: 250px;
 	right: 20px;
-	background-color: #fff0ab;
 	color: black;
-	border-radius: 50%;
 	font-size: 15px;
 	padding: 20px;
 	border: none;
@@ -78,12 +67,60 @@ h2{
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.floating-btn:hover {
-  background-color: #555;
+.not_s{
+margin-top: 12px;
+margin-left: 10px;
+color: #d3d3d3;
 }
 
+.title__l{
+	color: white;
+	float:left;
+	cursor:pointer;
+	style=text-decoration:none;
+}
 
+/* .title__l.active{
+ 	font-size: 20px; 
+ } */
 
+.img{
+	width: 273px;
+	height: 26rem;
+	object-fit: cover;
+	transition: all 0.2s linear;
+	border-radius: 10px;
+}
+
+.img:hover{
+	transform: scale(1.03); /* 1.1 변경하면 글씨 가려짐 */
+}
+
+.layout{
+	background-color: #212121;
+}
+
+.bgcolor{
+	background-color:#212121;
+	padding-top: 40px;
+}
+
+.jpg_wrap{
+	width: 273px !important;
+	height: 416px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.title{
+	margin-left: 160px;
+	height: 76px;
+}
+
+a{
+	color: white !important;
+	text-decoration: none !important;
+}
 </style>
 </head>
 <body>
@@ -94,7 +131,7 @@ h2{
 <div class="title">
 <c:forEach var="genrename" items="${genrename}">
   <c:if test="${genrename.id.equals(genrenum)}">
-    <h2>${genrename.video_path}</h2>
+    <h2>[${genrename.video_path}]</h2>
   </c:if>
 </c:forEach>
 </div>
@@ -105,6 +142,7 @@ h2{
 <div class="list">
 <div class="row row-cols-md-2 row-cols-lg-4 g-4">
   <c:forEach var="vo" items="${movielist }">
+  <br/>
     <div class="col">
         <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
           <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="인기순">
@@ -115,8 +153,12 @@ h2{
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}"><input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}"><input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}">
+<img src="${pageContext.request.contextPath}/image/left-arrow.png" id="floatingBtn1" class="floating-leftbtn" alt="이전페이지" style="width:100px; height: 100px;">
+<!-- <input type="button" id="floatingBtn1" class="floating-leftbtn" value="이전페이지">--> </a>
 
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}">
+<img src="${pageContext.request.contextPath}/image/right-arrow.png" id="floatingBtn2" class="floating-rightbtn" alt="다음페이지" style="width:100px; height: 100px;">
+<!-- <input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"> --> </a>
 </body>
 </html>

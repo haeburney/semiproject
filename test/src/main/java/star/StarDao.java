@@ -73,11 +73,10 @@ public class StarDao {
 	public double avgStar(int movieNum) {
 		double avg = 0;
 		Connection conn = DBConn.conn();
-		String sql = "select avg(star) from star where movieNum=? group by movieNum=?";
+		String sql = "select avg(star) from star where movieNum=? group by movieNum";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, movieNum);
-			pstmt.setInt(2, movieNum);
 
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {

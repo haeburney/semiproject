@@ -12,19 +12,29 @@
     font-style: normal;
 }
 
-/* body { overflow: hidden; } */
 
 /* 드롭다운 박스 크기 조절 */
+.dropdown-item{
+	background-color : black;
+	
+}
+
+.dropdown-item:hover{ 
+	background-color : #FADE6D !important; 
+ } 
+
 .dropdown-menu.row {
-	width: 500px; /* 드롭다운 박스 크기 조절 */
+	width: 500px; 
 	left: auto;
 	right: 0;
-	background-color:white;
+	background-color : black;
 	font-family: 'SUIT-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 	font-size : 1.0em;
+	color: white;
+
 
 }
 
@@ -32,12 +42,14 @@
     display: inline-block;
     width: calc(25% - 20px);
     margin-right: 20px;
-    background-color:white;
+    background-color: black;
+
 
 }
 .nav-item .dropdown-menu.row .col-3:last-child {
     margin-right: 0;
-    background-color:white;
+    background-color:black;
+
 
 }
 
@@ -102,7 +114,7 @@
 }
 
 .logo {
-color : yellow;
+color :#FADE6D
 }
 
 .navbar-brand{
@@ -111,6 +123,11 @@ font-size : 1.5em;
 color : white;
 
 }
+
+.container-fluid{
+	border-bottom: 1px solid white; 
+}
+
 
 .home-btn{
    display: flex; align-items: center; float: right;
@@ -129,15 +146,13 @@ color : white;
    height: 100%;
 }
 
+
 #logoutLabel {
   display: inline-flex; 
   align-items: center;
-  /* gap: 0.5rem; */
   cursor: pointer;
-  
   opacity: 1;
   z-index: 1;
-  /* transition: all 0.5s; */
   transform: translate(-50%, 0, -50%, 0);
   transition: all 0.5s;
 }
@@ -178,7 +193,7 @@ color : white;
 }
 
 [type="checkbox"]#logoutBtn:disabled {
-  border-color: #FFFF54;
+  border-color: #FADE6D;
   opacity: 0.7;
   cursor: not-allowed;
 }
@@ -213,7 +228,9 @@ color : white;
   border-color: black;
   /* transition: left 250ms linear; */
 }
-
+#logoutLabel{
+	margin-top : 10px;
+}
 #popUp{
 	height:100%;
 }
