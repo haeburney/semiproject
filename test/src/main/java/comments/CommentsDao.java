@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import conn.DBConnect;
 import star.StarVo;
+import wish.wishVo;
 
 public class CommentsDao {
 
@@ -391,16 +392,16 @@ public class CommentsDao {
 		String sql = "select * from comments where userId=? and movieNum=?";
 
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, vo.getUserId());
-			pstmt.setInt(2, vo.getMovieNum());
-
-			ResultSet rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				return true;
-			}
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         
+	         pstmt.setString(1, vo.getUserId());
+	         pstmt.setInt(2, vo.getMovieNum());
+	         
+	         ResultSet rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            return true;
+	         }
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

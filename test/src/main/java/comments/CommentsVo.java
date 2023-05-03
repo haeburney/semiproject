@@ -59,6 +59,11 @@ public class CommentsVo {
 		
 	}
 	
+	public CommentsVo(String userId,int movieNum) {
+		super();
+		this.userId = userId;
+		this.movieNum = movieNum;
+		}
 
 	public String getUserId() {
 		return userId;

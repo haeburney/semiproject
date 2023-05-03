@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="/submain/reset.css">
 <link rel="stylesheet" href="/submain/navcss.css">
 <title>인기순</title>
@@ -104,7 +103,6 @@ color: #d3d3d3;
 .bgcolor{
 	background-color:#212121;
 	padding-top: 40px;
-	border-top: 2px solid #dbdbdb;
 }
 
 .jpg_wrap{
@@ -124,38 +122,6 @@ a{
 	text-decoration: none !important;
 }
 </style>
-
-<!-- 다음페이지
-<script type="text/javascript">
-let num = 1;
-function next(){
-	num++;
-	//비동기요청 객체 생성
-	xhttp = new XMLHttpRequest();
-	
-	//비동기 요청 응답이 왔을때 자동 실행될 핸들러 등록
-	xhttp.onload = function(){
-		let val = xhttp.responseText;
-		let arr = JSON.parse(val);
-		let html = '';
-		for(let obj of arr){
-			html += obj.content+"(writer:"+obj.writer+")<br/>" //댓글내용과 작성자누구인가
-		}
-		let div = document.getElementById("r_"+num);
-		div.innerHTML = html;
-	}
-	
-	//작성값(?) 요청전송에 보낼 param(작성값(?))
-	alert(num);
-	let param = "?next=" + num;
-	
-	//요청 전송방식, 서버페이지 url 설정. get방식인 경우 url뒤에 파라메타 붙임
-	xhttp.open("GET", "${pageContext.request.contextPath}/submain/nextpopuler.do" + param);
-	
-	//요청보냄
-	xhttp.send();
-}
-</script> -->
 
 </head>
 <body>
@@ -195,24 +161,6 @@ function next(){
 <!-- <input type="button" id="floatingBtn2" class="floating-rightbtn" value="다음페이지"> --> </a>
 
 
-<!-- title 글씨 크기 (다른거 누를때 마다 포스터가 옆으로 밀림)
-<script>
-function enlarge(element) {
-	  resetAll();
-	  element.classList.add("active");
-	}
-
-	function reset(element) {
-	  element.classList.remove("active");
-	}
-
-	function resetAll() {
-	  var elements = document.getElementsByClassName("title__l");
-	  for (var i = 0; i < elements.length; i++) {
-	    elements[i].classList.remove("active");
-	  }
-	}
-</script>-->
 
 </body>
 </html>

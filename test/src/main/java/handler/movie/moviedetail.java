@@ -91,13 +91,17 @@ public class moviedetail implements Handler {
 			
 			StarService sservice = new StarService(); 
 			int star = sservice.starNum(userId,movienum);
+			double avg = sservice.getAvgStar(movienum);
+			System.out.println(avg);
 				
 			request.setAttribute("star", star); //별이 몇개 있니? 
+			request.setAttribute("avg", avg); //평점 들고 가자 
 		
 			CommentsService cservice = new CommentsService(); 
 			String comments = cservice.getComments(userId, movienum);
 			
 			request.setAttribute("comments", comments); //코멘트 보여줘 
+			
 			
 			
 			is.close();
