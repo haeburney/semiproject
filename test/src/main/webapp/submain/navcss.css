@@ -12,7 +12,7 @@
     font-style: normal;
 }
 
-body { overflow: hidden; }
+/* body { overflow: hidden; } */
 
 /* 드롭다운 박스 크기 조절 */
 .dropdown-menu.row {
@@ -136,7 +136,7 @@ color : white;
   cursor: pointer;
   
   opacity: 1;
-  z-index: 1000;
+  z-index: 1;
   /* transition: all 0.5s; */
   transform: translate(-50%, 0, -50%, 0);
   transition: all 0.5s;
