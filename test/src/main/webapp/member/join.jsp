@@ -115,16 +115,15 @@ color : #FFDD55;
 <body>
 	<div id="pop">
 	<form name="joinInfo" action="${pageContext.request.contextPath }/member/join.do" action="post">
-		<div id="a"><img src="/test/image/logo4.png" width="90"></div>
+		<div id="a"><img src="/test/image/logo4.png" width="100"></div>
+		<input id="userId" type="text" name="userId" placeholder="아이디">
+		<div><input id="chek" class="button"  type="button" value="중복확인" onclick="idcheck()"></div>
 		<div><span id="spanId"></span></div>
-		<input id="userId" type="text" name="userId" placeholder="아이디 입력">
-		<div><input  class="button"  type="button" value="중복 확인" onclick="idcheck()"></div>
-		<div ><span id="spanPwd"></span></div>
-		<div><input type="password" name="password" id="password" placeholder="비밀번호 입력"></div>
-		
+		<div><input id="nickname" type="text" name="nickname" placeholder="닉네임"></div>
+		<div><input type="password" name="password" id="password" placeholder="비밀번호"></div>
 		<div><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인"></div>
+		<div ><span id="spanPwd"></span></div>
 		
-		<div><input id="nickname" type="text" name="nickname" placeholder="닉네임 입력"></div>
 		<input class="button"  id="d" type="button" value="가입완료" onclick="idJoin()">
 		<div id="f">
       	<img src="../image/close.png" style="width:30px" onclick="frameclose()">

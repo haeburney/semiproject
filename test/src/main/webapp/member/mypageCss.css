@@ -155,8 +155,8 @@ input[id="popup2"] + label +div > div {
 	top : 50% ;
 	left : 50% ;
 	transform:translate(-50%,-50%);
-	width: 800px;
-	height :600px;
+	width: 400px;
+	height: 500px;
 	text-align :center;
 	background : dimgray;
 	border-radius: 10%;
@@ -224,8 +224,8 @@ input[id="popup3"] + label +div > div {
 	top : 50% ;
 	left : 50% ;
 	transform:translate(-50%,-50%);
-	width: 800px;
-	height :600px;
+	width: 400px;
+	height: 500px;
 	text-align :center;
 	background : dimgray;
 	border-radius: 10%;
