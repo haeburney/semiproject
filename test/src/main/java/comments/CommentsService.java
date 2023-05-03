@@ -98,4 +98,8 @@ public class CommentsService {
 	  public  String getComments(String userId, int movieNum) {
 		  return dao.getComments(userId, movieNum);
 	  }
+	  
+	  public void updateComments(CommentsVo vo) {
+		  dao.updateStar(vo);
+	  }
 }

@@ -23,7 +23,7 @@ public class editdel implements Handler {
       if (request.getMethod().equals("GET")) { //get방식으로 오면 수정 
          
          
-         service.update(new CommentsVo(comment, spoiler,userId,movieNum));
+         service.updateComments(new CommentsVo(comment, spoiler,userId,movieNum));
          
          return "/movie/RDetail.jsp";
 
