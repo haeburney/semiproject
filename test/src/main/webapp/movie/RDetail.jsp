@@ -82,27 +82,6 @@
 		</span>
 
 	</div>
-	
-<span class="title" >
-<input type = "checkbox" id="popup">
-${title}
-<label for ="popup" style="cursor:pointer;"><img src="${pageContext.request.contextPath }/image/info.png"></label>
-<div>
-<div>
-<label for ="popup" class ="info">
-제목 : ${title}<br/>
-<br/>
-장르 : ${name } <br/>
-<br/>
-런타임 : ${runtime}분<br/>
-<br/>
-요약 : ${overview}<br/>
-<br/>
-제작사 : ${production } <br/>
-<br/>
-개봉일 :  ${release_date} <br/>
- <br/></label>
-
 	<div>
 		<div style="width: 900px; margin-left: 150px;">
 			<span class="tagline">${tagline}</span><br />
@@ -117,21 +96,6 @@ ${title}
 
 
 		<!-- 하트이모지 -->
-
-
-			<div class="right_area">
-				<div class="icon heart"> 	
-				<img class="emptyheart" src="${pageContext.request.contextPath}/image/heart.png"
-					alt="텅빈하트"> 
-						<span class="watch" > 보고싶어요 </span> </div>
-								
-
-	<!-- 		  예고편  -->
-	<span style="cursor:pointer;">
-	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px; margin-left:50px;">
-	<span class ="watch">예고편 보러가기 |  </span>
-
-	</span>
 
 		<div class="right_area">
 			<div class="icon heart">
