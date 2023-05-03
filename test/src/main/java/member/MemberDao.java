@@ -73,12 +73,11 @@ public class MemberDao {
 		String sql = "update member set  password=?, nickname=? where userid=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getUserId());
-			pstmt.setString(2, vo.getPassword());
-			pstmt.setString(3, vo.getNickname());
-
-			pstmt.executeUpdate();
-
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(2, vo.getNickname());
+			pstmt.setString(3, vo.getUserId());
+			int check=pstmt.executeUpdate();
+			System.out.println(check+"줄 수정");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

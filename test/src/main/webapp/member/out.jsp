@@ -53,6 +53,7 @@
 	<div id="check" style="font-size:54pt">Really?</div>
 	<form action="${pageContext.request.contextPath }/member/out.do" method="post" name="f">
 	<div id="a"><input type="password" name="password" placeholder="비밀번호"><span id="msg"></span></div>
+	<input type="hidden" name="userId" value="${sessionScope.userId }">
 	<div>
 		<span id="b"><input type="button" value="탈퇴" onclick="del()"></span>
 		<span><input type="button" value="취소" onclick="location.href='/main/page.do'"></span>
