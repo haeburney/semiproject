@@ -8,33 +8,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
 <link rel="stylesheet" href="/submain/reset.css">
 <link rel="stylesheet" href="/submain/navcss.css">
 <title>평점순</title>
 <style>
-
-/*.card {
-  border: 2px solid yellow;
-}
-
-.card-text {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	color: yellow;
-	text-align: center;
-}
-
-.card-body{
-	background-color: black;
-}
-
-.card img{
-	height: 26rem;
-	object-fit: cover;
-}*/
 
 /* 버튼양식 */
 .floating-leftbtn{
@@ -107,9 +86,6 @@ color: #d3d3d3;
 	cursor:pointer;
 }
 
-/* .title__l.active{
- 	font-size: 20px; 
- } */
 
 .img{
 	width: 273px;
@@ -130,7 +106,6 @@ color: #d3d3d3;
 .bgcolor{
 	background-color:#212121;
 	padding-top: 40px;
-	border-top: 2px solid #dbdbdb;
 }
 
 .jpg_wrap{

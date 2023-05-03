@@ -67,37 +67,37 @@
 
 
     <li class="nav-item dropdown" style="cursor:pointer;">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
         <i class="bi bi-film fs-3"></i>
     </a>
     <ul class="dropdown-menu row">
         <div class="col-3">
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10751">가족</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=27">공포</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=99">다큐멘터리</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=18">드라마</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10749">로맨스</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10751" style="color : white;">가족</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=27" style="color : white;">공포</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=99" style="color : white;">다큐멘터리</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=18" style="color : white;">드라마</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10749" style="color : white;">로맨스</a>
         </div>
         <div class="col-3">
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=12">모험</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=9648">미스터리</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=80">범죄</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=37">서부</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=53">스릴러</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=12" style="color : white;">모험</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=9648" style="color : white;">미스터리</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=80" style="color : white;">범죄</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=37" style="color : white;">서부</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=53" style="color : white;">스릴러</a>
         </div>
         <div class="col-3">
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=16">애니메이션</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=28">액션</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=36">역사</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10402">음악</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10752">전쟁</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=16" style="color : white;">애니메이션</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=28" style="color : white;">액션</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=36" style="color : white;">역사</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10402" style="color : white;">음악</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10752" style="color : white;">전쟁</a>
         </div>
         <div class="col-3">
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=35">코미디</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=14">판타지</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=878">SF</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10770">TV영화</a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=">모든장르</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=35" style="color : white;">코미디</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=14" style="color : white;">판타지</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=878" style="color : white;">SF</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=10770" style="color : white;">TV영화</a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath }/movie/findgenre.do?id=" style="color : white;">모든장르</a>
         </div>
     </ul>
 </li>

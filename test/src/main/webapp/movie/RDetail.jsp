@@ -7,11 +7,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <link rel="stylesheet" href="../submain/navcss.css">
 <link rel="stylesheet" href="RDetailcss.css">
-<!-- <link rel="stylesheer" href="addComment.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -59,9 +56,9 @@
 	<!-- ajax 통신 때 필요한 값 임의로 선언, 히든처리 -->
 	<span id="movieNum" style="display: none;">${movieId}</span>
 
-	<div style="height: 100%; position: relative; margin-top: -5%;">
 
-		<div>
+
+		<div style="height: 100%; position: relative; margin-top: -5%;">
 			<img align="right" class="tmp_img"
 				src="https://image.tmdb.org/t/p/original${file_path }">
 		</div>
@@ -75,6 +72,7 @@
 						장르 : ${name } <br /> <br /> 런타임 : ${runtime}분<br /> <br /> 요약
 						: ${overview}<br /> <br /> 제작사 : ${production } <br /> <br />
 						개봉일 : ${release_date} <br /> <br /></label>
+						
 
 				</div>
 				<label for="popup"></label>
@@ -83,11 +81,11 @@
 
 	</div>
 	<div>
-		<div style="width: 900px; margin-left: 150px;">
+		<div style="width: 600px; margin-left: 100px;">
 			<span class="tagline">${tagline}</span><br />
 		</div>
 		<span class="basicinfo">${name} · ${runtime}분</span><br /> <span
-			class="average">평점: ${vote_average}</span><br />
+			class="average">평점: ${vote_average} | 조각별 평점 : ${avg }</span><br />
 	</div>
 
 	<!-- heart 좋아요 클릭시!  -->
@@ -109,7 +107,7 @@
 			<span> <img
 				src="${pageContext.request.contextPath}/image/play.png"
 				onclick="Trailer(${movieId})"
-				style="position: relative; bottom: 3px; margin-left: 50px;"> <span
+				style="position: relative; bottom: 3px;"> <span
 				class="watch">예고편 보러가기 | </span>
 
 			</span>
@@ -194,11 +192,11 @@ $(document).ready(function() {
 
 			<!-- 댓글 보여주기 -->
 			<div align="left">
-				<span class="go_write">다른조각글 보러가기</span>
+				<br/><span class="go_write">다른 조각별 보러가기</span>
 				<div class="comment_area"
 					onclick="document.querySelector('.write_popup').style.display = 'block'">
 					<textarea class="comment" cols="20" rows="2" maxlength="100"
-						style="text-align: center; padding-top: 13px;" readonly>내 조각글 남기기</textarea>
+						style="text-align: center; padding-top: 18px;" readonly>내 조각별 남기기</textarea>
 				</div>
 
 			</div>
@@ -250,12 +248,11 @@ $(document).ready(function() {
 	type : "GET" ,
 	data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
 	success : function(result) {
-	    	   console.log("성공"); //작성 완료 후 작성한 내용을 버튼을 없애고 div 박스에 넣어서 보여주기 코드를 작성해야 합니다
-	    	   //가영님께서 vo 에 담아서 어쩌고하는 방법이 있다고 하니 그렇게 해주
+	    	   console.log("성공"); 
 	    	   $('.write_popup').hide();
 	    	   $('.comment').text(result);
-	    	   // 코멘트 팝업창 타이틀 바꾸기
-	    	   $('#popupInput').text("조각글을 수정해 주세요.");
+	    
+	    	   $('#popupInput').text("조각별을 수정해 주세요.");
 	    	   
 	    	   $('#btndel').show();
 	    		 $('#btnedit').show();
@@ -268,7 +265,7 @@ $(document).ready(function() {
 		
 		$('.write_popup').hide();
 		$('.comment').text(comment);
-		$('#popupInput').text("조각글을 수정해 주세요.");
+		$('#popupInput').text("조각별을 수정해 주세요.");
 		
 		 $('#btndel').show();
 		 $('#btnedit').show();
@@ -314,7 +311,7 @@ $(document).ready(function() {
 	                		
 	                		$('.write_popup').hide();
 	                		$('.comment').text(comment);
-	                		$('#popupInput').text("조각글을 수정해 주세요.");
+	                		$('#popupInput').text("조각별을 수정해 주세요.");
 	                		
 	                		 $('#btndel').show();
 	                		 $('#btnedit').show();
@@ -347,7 +344,7 @@ $(document).ready(function() {
 	                           success : function(result) {
 	                                     console.log("성공"); 
 	                                     $('.write_popup').hide();
-	                                     $('.comment').text("내 조각글 남기기");
+	                                     $('.comment').text("내 조각별 남기기");
 	                                  },
 	                              	error : function(req, status, error) {
 	                            		console.log("req : " + req);
@@ -356,7 +353,7 @@ $(document).ready(function() {
 	                            		
 	                            		$('.write_popup').hide();
 	                            		$('.comment').text(comment);
-	                            		$('#popupInput').text("조각글을 수정해 주세요.");
+	                            		$('#popupInput').text("조각별을 수정해 주세요.");
 	                            		
 	                            		 $('#btndel').show();
 	                            		 $('#btnedit').show();
@@ -387,7 +384,7 @@ $(document).ready(function() {
 		 //document.getElementById('comment_area').innerHTML += comments;
 		 
 		 // 코멘트 팝업창 타이틀 바꾸기
-		 $('#popupInput').text("조각글을 수정해 주세요.");
+		 $('#popupInput').text("조각별을 수정해 주세요.");
 		 
 		 $('#btnsave').hide();
 		 $('#btndel').show();
@@ -449,9 +446,9 @@ $(document).ready(function() {
  
  </script>
 
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-				crossorigin="anonymous"></script>
+<!-- 			<script -->
+<!-- 				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" -->
+<!-- 				integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" -->
+<!-- 				crossorigin="anonymous"></script> -->
 </body>
 </html>

@@ -12,6 +12,21 @@
 
 <title>검색(인기순)</title>
 <style>
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .card{
 margin:auto;
 background-color:black !important;
@@ -20,11 +35,17 @@ color: white;
 
 .main_content{
 padding-top: 30px;
+font-family: 'SUIT-Regular';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+font-weight: normal;
+font-style: normal;
 }
 
 .poster{
 width: 150px;
-height: 225px;
+margin-left : 5px;  
+ margin-top :5px;  
+ margin-bottom :5px;  
 border-radius: 10px;
 }
 
@@ -36,6 +57,7 @@ background-color:#212121 !important;
 .img_box{
 float:left;
 width: 150px !important;
+
 }
 
 .desc_box{
@@ -45,20 +67,24 @@ height:225px !important;
 margin: 0;
 flex-direction: row !important;
 	overflow: hidden;
-  	/* text-overflow: ellipsis;
-  	display: -webkit-box;
-  	-webkit-line-clamp: 10; 생략할 라인 수 
-  	-webkit-box-orient: vertical; */
 }
 
 .movie_desc{
-	width:150%;
+    width: 950px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size : 1.1em;
 }
 
 @media (max-width:800px){
-.movie_desc{
-width:100%;
-}
 }
 
 .card_box{
@@ -84,7 +110,7 @@ width:100%;
 
 <div class="main_content">
 <div style="width:100%;">
-<p style="display: block; width:1200px; margin: auto; color:white;">검색 결과 : ' ${text } '</p>
+<p style="display: block; width:1200px; margin: auto; color:white;" class ="searchresult">검색 결과 : ' ${text } '</p>
 </div>
 <c:forEach var="vo" items="${searchlist }">
 	<div class="card mb-2 card_box" style="max-width:80%; flex-direction:row; border-radius:8px; margin-top: 20px;">
@@ -109,30 +135,6 @@ width:100%;
 	</div>
 </c:forEach>
 </div>
-<script>
-/* function isTextOverflown(element, maxLength) {
-  return element.textContent.length > maxLength;
-}
 
-let paragraph = document.getElementByClassName('.movie_desc');
-console.log(paragraph);
-let button = document.createElement('button');
-button.textContent = '더 보기';
-
-paragraph.forEach(button=> {
-if (isTextOverflown(paragraph, 50)) {
-	  let originalText = paragraph.textContent;
-	  let truncatedText = originalText.substring(0, 50) + '...';
-	  paragraph.textContent = truncatedText;
-	  paragraph.appendChild(button);
-	  
-	  button.addEventListener('click', () => {
-	    paragraph.textContent = originalText;
-	    paragraph.removeChild(button);
-	  });
-	}
-}); */
-	
-</script>
 </body>
 </html>

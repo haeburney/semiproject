@@ -39,18 +39,17 @@
 	    font-weight: normal;
 	    font-style: normal;
 	}
-	.main { width: 100%; height: 100%; position: absolute; background-color: #000000; overflow: auto; margin-boddom: 50px; }
-	.contents { width: 100%; height: 100%; background: black; font-family: 'SUIT Variable';
+	.main { width: 100%; height: 100%; position: absolute; background-color: #212121; overflow: auto; margin-boddom: 50px; }
+	.contents { width: 100%; height: 100%; background: #212121; font-family: 'SUIT Variable';
 			    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css' format('sans-serif'));
 			    font-weight: normal;
 			    font-style: normal;
 			    color: black;
-			    backgorund: black;
 			    position: absolute;
 			    z-index: 1;
 			    align: center; 
 			    margin-bottom: 50px; }
-	.all { width: 50%; height: 79%; margin-top: 5%; background: #000000; position: relative; display: inline-block;}
+	.all { width: 50%; height: 79%; margin-top: 5%; background: #212121; position: relative; display: inline-block;}
 	
 	.my_no_data { height: 100px; border-radius: 10px; border: 2px solid rgb(249, 222, 109); background: rgb(55, 55, 55); font-family: 'SUIT Variable';
 	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css' format('sans-serif'));
