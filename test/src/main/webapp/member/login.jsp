@@ -69,7 +69,7 @@
          <input id="log" type="button" class="button" value="로그인" onclick="loginDo()">
          <input id="e" type="button" class="button" value="회원가입" onclick="joinDo()">
          </div>
-      	 <div id="f">
+      	 <div id="f" style="cursor:pointer;">
       	 <img src="../image/close.png" style="width:30px" onclick="frameclose()">
       	 </div>
       </form>

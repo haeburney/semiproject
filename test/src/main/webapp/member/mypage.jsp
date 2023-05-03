@@ -87,10 +87,33 @@
 				</span>
 				<span id="fCount">
 					<c:if test="${not empty uCount }">
-					<input id="myFollowing" type="button" class="button" value="팔로잉수 ${uCount }" onclick="following()">
+<!-- 					모달 -->
+					<input type="checkbox" id="popup3">
+					<label for="popup3">
+						<span id="fff" style="cursor:pointer;">팔로잉 ${uCount }</span>
+					</label>
+					<div>
+					<div>
+						<label for="popup3"></label>
+						리스트를 보여줘라
+						<c:if test="${not empty americano }">
+							<c:forEach var="li" items="${americano }">
+								<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
+										 ${li.followedId }
+							   </a>
+							</c:forEach>
+						</c:if>
+					</div>
+
+					<label for="popup3">
+					</label>
+					</div>
+					
+					
 					</c:if>
+					
 				<c:if test="${not empty fCount }">
-					<span>팔로워수 ${fCount }</span>
+					<span>팔로워 ${fCount }</span>
 				</c:if>
 				</span>
 				<span>
@@ -102,7 +125,7 @@
 					<div>
 					<div>
 						<label for="popup2"></label>
-						여기에 본문 넣기 
+						팔로우
 						<%@include file="/member/edit.jsp" %>
 					</div>
 
@@ -179,7 +202,11 @@
 					</label>
 					</div>
 	
+	
+	
 	<script>
+	
+	
 	
 	
 	function edit(){

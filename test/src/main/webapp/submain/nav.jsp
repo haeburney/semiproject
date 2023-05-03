@@ -66,7 +66,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
 
 
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown" style="cursor:pointer;">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-film fs-3"></i>
     </a>
@@ -112,7 +112,7 @@
 
 <!-- 로그아웃버튼 -->
                <label id="logoutLabel"> <input class="ipt_logout" role="switch"
-                  type="checkbox" id="logoutBtn" name="logoutBtn"
+                  type="checkbox" id="logoutBtn" name="logoutBtn" style="cursor:pointer;"
                   onclick="lBtn()" />
                </label>
             </ul>

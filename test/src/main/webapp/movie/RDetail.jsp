@@ -58,10 +58,10 @@
   <img align="right" class="tmp_img" src="https://image.tmdb.org/t/p/original${file_path }">
 	</div>
 	
-<span class="title">
+<span class="title" >
 <input type = "checkbox" id="popup">
 ${title}
-<label for ="popup"><img src="${pageContext.request.contextPath }/image/info.png"></label>
+<label for ="popup" style="cursor:pointer;"><img src="${pageContext.request.contextPath }/image/info.png"></label>
 <div>
 <div>
 <label for ="popup" class ="info">
@@ -106,7 +106,7 @@ ${title}
 								
 
 	<!-- 		  예고편  -->
-	<span>
+	<span style="cursor:pointer;">
 	<img src="${pageContext.request.contextPath}/image/play.png" onclick="Trailer(${movieId})" style="position :relative; bottom:3px; margin-left:50px;">
 	<span class ="watch">예고편 보러가기 |  </span>
 
