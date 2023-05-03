@@ -157,9 +157,9 @@ a{
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}">
+<a href="${pageContext.request.contextPath}/submain/nexttoprate.do?num=${prev}">
 <img src="${pageContext.request.contextPath}/image/left-arrow.png" id="floatingBtn1" class="floating-leftbtn" alt="이전페이지" style="width:100px; height: 100px;"></a>
-<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}">
+<a href="${pageContext.request.contextPath}/submain/nexttoprate.do?num=${next}">
 <img src="${pageContext.request.contextPath}/image/right-arrow.png" id="floatingBtn2" class="floating-rightbtn" alt="다음페이지" style="width:100px; height: 100px;"></a>
 
 </body>
