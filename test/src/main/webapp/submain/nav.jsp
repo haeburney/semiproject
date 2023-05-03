@@ -122,7 +122,7 @@
    </nav>
    
    <div id="popUpParent">
-      <div id="popUp"></div>
+<!--       <div id="popUp"></div> -->
    </div>
    
    
@@ -145,6 +145,18 @@
                 console.log("에러");
              },
              success : function(data){
+            	$("#popUpParent").css("position","absolute");
+             	$("#popUpParent").css("top","0%");
+             	$("#popUpParent").css("left","0%");
+             	$("#popUpParent").css("width","100%");
+             	$("#popUpParent").css("height","100%");
+             	$("#popUpParent").css("background","rgba(169 ,169, 169,.9)");
+             	$("#popUpParent").css("z-index","3");
+             	$("#popUpParent").css("backdrop-filter","blur(10px)");
+             	$("body").css("-webkit-backdrop-filter","blur(5px)");
+             	 
+             	$(".scrollLock").css("overflow","hidden");  
+            	 
                 $("#popUp").html(data);
              }
           })

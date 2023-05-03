@@ -214,8 +214,6 @@ color : white;
   /* transition: left 250ms linear; */
 }
 
-.popUpParent {
-   z-index: 10;
-   width: 50%;
-   overflow: hidden;
+#popUp{
+	height:100%;
 }
