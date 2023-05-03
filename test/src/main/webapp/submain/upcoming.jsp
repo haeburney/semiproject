@@ -21,14 +21,35 @@
 	object-fit: cover;
 }*/
 
+/* 버튼양식 */
+.floating-leftbtn{
+	position: fixed;
+	bottom: 250px;
+	left: 20px;
+	color: black;
+	font-size: 15px;
+	padding: 20px;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-rightbtn{
+	position: fixed;
+	bottom: 250px;
+	right: 20px;
+	color: black;
+	font-size: 15px;
+	padding: 20px;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .list {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1200px;
-}
-
-.layout{
-	background-color: black;
 }
 
 h2{
@@ -36,6 +57,7 @@ h2{
 	color: white;
 	background-color: black;
 	font-family: 'KOTRA_BOLD-Bold';
+	padding-left: 15px;
 }
 
 .text{
@@ -43,7 +65,10 @@ h2{
 	color: white;
 	text-align: center;
 	font-family: 'KOTRA_BOLD-Bold';
-	font-size : 15px;	
+	font-size : 15px;
+	overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .col{
@@ -51,7 +76,8 @@ h2{
 }
 
 .title{
-	text-align: center;
+	margin-left: 160px;
+	height: 76px;
 }
 
 .bgcolor{
@@ -70,6 +96,44 @@ color: #d3d3d3;
 	cursor:pointer;
 }
 
+.img{
+	width: 273px;
+	height: 26rem;
+	object-fit: cover;
+	transition: all 0.2s linear;
+	border-radius: 10px;
+}
+
+.img:hover{
+	transform: scale(1.03); /* 1.1 변경하면 글씨 가려짐 */
+}
+
+.layout{
+	background-color: #212121;
+}
+
+.bgcolor{
+	background-color:#212121;
+	padding-top: 40px;
+	border-top: 2px solid #dbdbdb;
+}
+
+.jpg_wrap{
+	width: 273px !important;
+	height: 416px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.title{
+	margin-left: 160px;
+	height: 76px;
+}
+
+a{
+	color: white !important;
+	text-decoration: none !important;
+}
 
 </style>
 </head>
@@ -79,9 +143,9 @@ color: #d3d3d3;
 
 <div class="bgcolor">
 <div class="title">
-<p class="title__l"><a href="${pageContext.request.contextPath }/submain/populer.do?num=1">인기순</a></p>
+<p class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/populer.do?num=1">인기순</a></p>
 <p class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/toprate.do?num=1">평점순</a></p>
-<h2 class="title__l not_s"><a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">개봉예정작</a></h2>
+<h2 class="title__l"><a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">개봉예정작</a></h2>
 </div>
 </div>
 
@@ -91,7 +155,9 @@ color: #d3d3d3;
   <c:forEach var="vo" items="${upcominglist }">
     <div class="col">
         <a href="${pageContext.request.contextPath }/movie/detail.do?id=${vo.id }">
-          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="card-img-top" alt="개봉예정작">
+        <div class="jpg_wrap">
+          <img src="https://image.tmdb.org/t/p/original${vo.poster_path}" class="img" alt="개봉예정작">
+          </div>
         </a>
           <div class="text">${vo.title }</div>
     </div>
@@ -99,8 +165,10 @@ color: #d3d3d3;
 </div>
 </div>
 </div>
-<a href="${pageContext.request.contextPath}/submain/nextupcoming.do?num=${prev}"><input type="button" value="이전페이지"></a>
-<a href="${pageContext.request.contextPath}/submain/nextupcoming.do?num=${next}"><input type="button" value="다음페이지"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${prev}">
+<img src="${pageContext.request.contextPath}/image/left-arrow.png" id="floatingBtn1" class="floating-leftbtn" alt="이전페이지" style="width:100px; height: 100px;"></a>
+<a href="${pageContext.request.contextPath}/submain/nextpopuler.do?num=${next}">
+<img src="${pageContext.request.contextPath}/image/right-arrow.png" id="floatingBtn2" class="floating-rightbtn" alt="다음페이지" style="width:100px; height: 100px;"></a>
 
 </body>
 </html>

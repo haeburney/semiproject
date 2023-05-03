@@ -14,6 +14,8 @@
 <style>
 .card{
 margin:auto;
+background-color:black !important;
+color: white;
 }
 
 .main_content{
@@ -42,10 +44,15 @@ width: 70vw !important;
 height:225px !important;
 margin: 0;
 flex-direction: row !important;
+	overflow: hidden;
+  	/* text-overflow: ellipsis;
+  	display: -webkit-box;
+  	-webkit-line-clamp: 10; 생략할 라인 수 
+  	-webkit-box-orient: vertical; */
 }
 
 .movie_desc{
-width:150%;
+	width:150%;
 }
 
 @media (max-width:800px){
@@ -56,10 +63,16 @@ width:100%;
 
 .card_box{
 	transition: all 0.2s linear;
+	border-color: gold !important;
 }
 
 .card_box:hover{
 	transform: scale(1.03); /* 1.1 변경하면 글씨 가려짐 */
+}
+
+
+.text-muted{
+	color:white !important;
 }
 
 </style>
@@ -85,9 +98,10 @@ width:100%;
 	    <div class="desc_box">
 	    <div class="col-md-8">
 	      <div class="card-body">
-	        <h5 class="card-title"><b>${vo.title }</b></h5>
+	        <h5 class="card-title" style="color:white;"><b>${vo.title }</b></h5>
+	        
 	        <p><small class="text-muted">개봉일: ${vo.release_date }</small></p>
-	        <p class="movie_desc">${vo.overview }</p>
+	        <p class="movie_desc" style="color:white;">${vo.overview }</p>
 	      </div>
 	    </div>
 	    </div>

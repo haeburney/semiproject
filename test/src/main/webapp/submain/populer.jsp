@@ -13,14 +13,6 @@
 <title>인기순</title>
 <style>
 
-/*.card-text {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	
-}*/
-
-
 .list {
 	margin-left: auto;
 	margin-right: auto;
@@ -43,6 +35,7 @@ h2{
 	overflow: hidden;
     white-space: nowrap;
 	text-overflow: ellipsis;
+	margin-top: 20px;
 }
 
 .col{
@@ -75,15 +68,6 @@ h2{
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.floating-btn:hover {
-  background-color: #555;
-}
-
-/*.floating-rightbtn{
-background-image: (
-
-}*/
-
 .not_s{
 margin-top: 12px;
 margin-left: 10px;
@@ -94,11 +78,12 @@ color: #d3d3d3;
 	color: white;
 	float:left;
 	cursor:pointer;
+	style=text-decoration:none;
 }
 
-.title__l.active{
-	font-size: 20px;
-}
+/* .title__l.active{
+ 	font-size: 20px; 
+ } */
 
 .img{
 	width: 273px;
@@ -132,6 +117,11 @@ color: #d3d3d3;
 .title{
 	margin-left: 160px;
 	height: 76px;
+}
+
+a{
+	color: white !important;
+	text-decoration: none !important;
 }
 </style>
 
