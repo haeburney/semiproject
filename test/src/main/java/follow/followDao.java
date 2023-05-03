@@ -104,7 +104,7 @@ public class followDao {
 		
 		ArrayList<followVo> list = new ArrayList<>(); 
 		Connection conn = dbconn.conn();
-		String sql = "select * from follow where userId=?"; 
+		String sql = "select * from follow where userId=? and followedid is not null"; 
 		
 		
 		try {
