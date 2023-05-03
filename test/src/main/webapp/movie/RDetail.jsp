@@ -82,7 +82,6 @@
 		</span>
 
 	</div>
-<<<<<<< HEAD
 	
 <span class="title" >
 <input type = "checkbox" id="popup">
@@ -103,7 +102,7 @@ ${title}
 <br/>
 개봉일 :  ${release_date} <br/>
  <br/></label>
-=======
+
 	<div>
 		<div style="width: 900px; margin-left: 150px;">
 			<span class="tagline">${tagline}</span><br />
@@ -111,7 +110,6 @@ ${title}
 		<span class="basicinfo">${name} · ${runtime}분</span><br /> <span
 			class="average">평점: ${vote_average}</span><br />
 	</div>
->>>>>>> branch 'sgy' of https://github.com/hennie-yun/semiproject.git
 
 	<!-- heart 좋아요 클릭시!  -->
 
@@ -120,7 +118,7 @@ ${title}
 
 		<!-- 하트이모지 -->
 
-<<<<<<< HEAD
+
 			<div class="right_area">
 				<div class="icon heart"> 	
 				<img class="emptyheart" src="${pageContext.request.contextPath}/image/heart.png"
@@ -134,14 +132,13 @@ ${title}
 	<span class ="watch">예고편 보러가기 |  </span>
 
 	</span>
-=======
+
 		<div class="right_area">
 			<div class="icon heart">
 				<img class="emptyheart"
 					src="${pageContext.request.contextPath}/image/heart.png" alt="텅빈하트">
 				<span class="watch"> 보고싶어요 </span>
 			</div>
->>>>>>> branch 'sgy' of https://github.com/hennie-yun/semiproject.git
 
 
 			<!-- 		  예고편  -->
