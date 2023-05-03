@@ -271,9 +271,13 @@ input[id="popup3"]:checked + label +div {
 }
 
 
-table {
-	width : 150px;
-	margin-top : 90px;
-	margin-left: 90px;
+#follist {
+   width : 150px;
+   margin-top : 90px;
+   margin-left: 90px;
     margin-right: auto;
+}
+
+.follow_name {
+   color : white;
 }

@@ -39,7 +39,7 @@
 				<div id="editLine">${vo.introLine }</div>
 				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
 				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
-				<input type="button" value="삭제하기" onclick="deleteLine()">
+				<input id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
 			</form>
 		</c:if>
 
@@ -57,7 +57,7 @@
 				<div id="editLine">${vo.introLine }</div>
 				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
 				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
-				<input type="button" value="삭제하기" onclick="deleteLine()">
+				<input id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
 			</form>
  		</c:if> 
  		
@@ -96,27 +96,21 @@
 					<div>
 						<label for="popup3"></label>
 						<div id="abc"><img src="/test/image/logo4.png" width="100"></div>
-						<table>
+						<span id="follist">
 						<c:if test="${not empty americano }">
-						<c:forEach var="li" items="${americano }">
-						
-						<tr><td><img src="../image/icon_profile.png" style=width:45px></td><td><a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">${li.followedId }</a></td></tr>
-<!-- 						<tr><td>1</td><td>1</td></tr> -->
-<!-- 						<tr><td>1</td><td>1</td></tr> -->
-						
-<%-- 						<c:if test="${not empty americano }"> --%>
-<%-- 							<c:forEach var="li" items="${americano }"> --%>
-<%-- 								<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}"> --%>
-<%-- 										 ${li.followedId } --%>
-<!-- 							   </a> -->
+							<c:forEach var="li" items="${americano }">
+							<br/>
+								<img src="../image/icon_profile.png" style=width:45px>
+								<a class="follow_name" href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
+										 ${li.followedId }
+							   </a><br/>
 							</c:forEach>
 						</c:if>
-						
-						</table>
 						
 <!-- 						<div id="f"> -->
 <!--       					<img src="../image/close.png" style="width:30px" onclick="fclose()"> -->
 <!--       					</div> -->
+						</span>
 					</div>
 
 					<label for="popup3">
@@ -209,15 +203,17 @@
 	function edit(){
 		console.log("edit()");
 		let writed=document.getElementById("editLine").textContent;
-		let txt = "<input type='text' name='introLine' value='" + writed + "'>";
+		let txt = "<input type='text' name='introLine' id='melon' value='" + writed + "'>";
 		document.getElementById("editLine").innerHTML=txt;
 		document.getElementById("editBtn").style="display:none";
+		document.getElementById("delBtn").style="display:none";
+		//id="delBtn"
 		document.getElementById("editEnd").style="display:";
 	}
 	
 	function add(){
 		console.log("add()");
-		let txt = "<textarea cols='50' name='introLine'>마음에 드는 영화 대사를 적어보세요</textarea>";
+		let txt = "<textarea cols='50' name='introLine' placeholder='마음에 드는 영화 대사를 적어보세요'></textarea>";
 		document.getElementById("addLine").innerHTML=txt;
 		document.getElementById("addBtn").style="display:none";
 		document.getElementById("addEnd").style="display:";
@@ -243,7 +239,11 @@
 	function readEdit(){
 		console.log("readEdit()");
 		let answer="";
-		let introLine = editForm.introLine.value;
+		let introLine = document.getElementById("melon").value;
+		//let introLine = document.getElementById("editIntroLine");
+		//console.log(introLine);
+		//console.log(editForm);
+		//let introLine = editForm.introLine.value;
 		let param = {'userId':'${sessionScope.userId}', 'introLine': introLine };
 		console.log(param);
 		// 이게 될까? 
@@ -260,6 +260,7 @@
 				document.getElementById("editLine").innerHTML=result;
 				document.getElementById("editBtn").style="display:";
 				document.getElementById("editEnd").style="display:none";
+				document.getElementById("delBtn").style="display:";
 				//document.getElementById("introLine").value=result;
 				
 			},
