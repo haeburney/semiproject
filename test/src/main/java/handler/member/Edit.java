@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import handler.Handler;
 import member.MemberService;
 import member.MemberVo;
@@ -43,7 +45,13 @@ public class Edit implements Handler {
 
 			service.editMyInfo(new MemberVo(userId, password, nickname, ""));
 			request.setAttribute("view", "/member/edit.do?userId=" + userId);
-			return "/member/mypage.do";
+			
+			JSONObject obj = new JSONObject();
+			obj.put("password", password);
+			obj.put("nickname", nickname);
+			
+			String txt = obj.toJSONString();
+			return "responsebody/" + txt;
 		}
 
 		//return "메인페이지로 이동";
