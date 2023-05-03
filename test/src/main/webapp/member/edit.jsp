@@ -8,46 +8,23 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <style>
-	body{
-		background-color:black;
-		color:white;
-	}
+#pwd, #nickName{
+	outline: 0;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px solid black;
+	width: 150px;
+	height: 24px;
+	background-color: #3d3d3d;
+	color: white;
+	margin-bottom:10px;
+}
 
-	form{
-		text-align : center;
-	}
-	h2{
-		text-align : center;
-	}
-	#out{
-		float : right;
-		margin-right:160px;
-	}
-	#box{
-		border : solid 1px black;
-		border-radius : 5px;
-		padding-bottom:10px;
-	}
-
-/* .overlay { */
-/*   position: fixed; */
-/*   top: 0; */
-/*   left: 0; */
-/*   z-index: 2; */
-/*   width: 100%; */
-/*   height: 100%; */
-/*   background: rgba(0, 0, 0, .7); */
-/*   opacity: 0; */
-/*   visibility: hidden; */
-/*   transition: .3s linear; */
-/* } */
-/* .overlay.is-open { */
-/*   opacity: 1; */
-/*   visibility: visible; */
-/* } */
-
+#box{
+	top : 50%;
+}
 </style>
-
 </head>
 <body>
 		<div id="box">

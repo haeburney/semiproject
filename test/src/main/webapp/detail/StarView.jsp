@@ -9,6 +9,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .starbtn:hover{
 	transform:scale(1.1);
   	transition: transform .2s;
@@ -49,12 +63,69 @@
 .star-rating input:checked ~ label {
   color: #FADE6D;
 } 
+
+/* 리스트 css */
+#listBody{
+	background-color: #212121;
+	color:white;
+	text-align : center;
+}
+
+.posterImg:hover{
+	transform:scale(1.03);
+  	transition: transform .3s;
+}
+
+.posterImg{
+	align-items:center;
+	text-align:center;
+	border-radius : 10px; 
+}
+
+.list {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
+.col{
+	margin: auto;
+	margin-bottom : 50px;
+	float:left;
+}
+
+.jpg_wrap{
+	width: 273px;
+	position: relative;
+	text-align:center;
+}
+
+.text{
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+	color: white;
+	text-align: center;
+	font-family: 'KOTRA_BOLD-Bold';
+	font-size : 15px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-top:8px;
+}
+
+.hTitle{
+	margin-top : 30px;
+	margin-bottom : 20px;
+	font-family: 'KOTRA_BOLD-Bold';
+}
+
+.layout{
+	margin-top:40px;
+}
 </style>
 </head>
 
 <body id="listBody">
 <%@include file="/submain/nav.jsp" %>
-<h2>별점 목록</h2>
+<h2 class="hTitle">Star List</h2>
 <span>
 	<div class="star-rating">
 		<input type="radio" id="5-stars" name="rating" value="5" /> 
@@ -71,73 +142,81 @@
 </span>
 
 
-<div id="msg">
-	위를 누르세요~
+<div id="msg" style="margin-top:30px">
+	💫 보고싶은 별점 개수를 클릭하세욤 💫
 </div>
-<c:if test="${not empty sList}">
-	<div id="star1" style="display:none">
-		별점 1
-		<c:forEach var="li" items="${s1ImgList }">
-			<div>
-				<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
-					<img src="${li.poster_path }" style="width:200px">
-				</a>
-				<div>${li.title }</div>
-			</div>
-		</c:forEach>
 
-	</div>
-	
-	<div id="star2" style="display:none">
-		별점 2
-		<c:forEach var="li" items="${s2ImgList }">
-			<div>
-				<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
-					<img src="${li.poster_path }" style="width:200px">
-				</a>
-				<div>${li.title }</div>
+<div class="layout">
+<div class="list">
+<c:if test="${not empty sList}">
+	<div id="star1" style="display:none" class="row row-cols-md-2 row-cols-lg-4 g-4">
+		<c:forEach var="li" items="${s1ImgList }">
+			<div class="col">
+				<div class="jpg_wrap">
+					<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
+						<img class="posterImg" src="${li.poster_path }" style="width:200px">
+					</a>
+				</div>
+				<div class="text">${li.title }</div>
 			</div>
 		</c:forEach>
 	</div>
 	
-	<div id="star3" style="display:none">
-		별점 3
+	<div id="star2" style="display:none" class="row row-cols-md-2 row-cols-lg-4 g-4">
+		<c:forEach var="li" items="${s2ImgList }">
+			<div class="col">
+				<div class="jpg_wrap">
+					<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
+						<img class="posterImg" src="${li.poster_path }" style="width:200px">
+					</a>
+				</div>
+				<div class="text">${li.title }</div>
+			</div>
+		</c:forEach>
+	</div>
+	
+	<div id="star3" style="display:none" class="row row-cols-md-2 row-cols-lg-4 g-4">
 		<c:forEach var="li" items="${s3ImgList }">
-			<div>
-				<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
-					<img src="${li.poster_path }" style="width:200px">
-				</a>
-				<div>${li.title }</div>
+			<div class="col">
+				<div class="jpg_wrap">
+					<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
+						<img class="posterImg" src="${li.poster_path }" style="width:200px">
+					</a>
+				</div>
+				<div class="text">${li.title }</div>
 			</div>
 		</c:forEach>	
 	</div>
 	
-	<div id="star4" style="display:none">
-		별점 4
+	<div id="star4"  style="display:none"  class="row row-cols-md-2 row-cols-lg-4 g-4">
 		<c:forEach var="li" items="${s4ImgList }">
-			<div>
-				<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
-					<img src="${li.poster_path }" style="width:200px">
-				</a>
-				<div>${li.title }</div>
+			<div class="col">
+				<div class="jpg_wrap">
+					<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
+						<img class="posterImg" src="${li.poster_path }" style="width:200px">
+					</a>
+				</div>
+				<div class="text">${li.title }</div>
 			</div>
 		</c:forEach>
 	</div>
 	
-	<div id="star5" style="display:none">
-		별점 5
+	<div id="star5" style="display:none" class="row row-cols-md-2 row-cols-lg-4 g-4" >
 		<c:forEach var="li" items="${s5ImgList }">
-			<div>
-				<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
-					<img src="${li.poster_path }" style="width:200px">
-				</a>
-				<div>${li.title }</div>
+			<div class="col">
+				<div class="jpg_wrap">
+					<a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }">
+						<img class="posterImg" src="${li.poster_path }" style="width:200px">
+					</a>
+				</div>
+				<div class="text">${li.title }</div>
 			</div>
 		</c:forEach>
 	</div>
-
-
 </c:if>
+</div>
+</div>
+
 
 <script>
 

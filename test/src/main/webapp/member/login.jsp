@@ -14,6 +14,8 @@
 	function frameclose() {
 		document.getElementById("popUp").remove();
 		document.getElementById("logoutBtn").checked=false;
+		document.getElementById("popUpParent").style.backdropFilter = "blue(0px)";
+		document.getElementById("popUpParent").style="background : rgba(169 ,169, 169,0)";
 	}
 
 	function loginDo() {
@@ -33,6 +35,8 @@
 						data : {"userId": userId, "password" : password},
 						success : function(result) {
 							$("#popUp").hide();
+							$("#popUpParent").css("backdrop-filter","blur(0px)");
+							$("#popUpParent").css("background","rgba(169 ,169, 169,0)");
 							$("#personCircle").show();
 						},
 						error : function(req, status, error){
@@ -54,7 +58,7 @@
 </head>
 
 <body>
-<div class="login_popup" align="center">
+<!-- <div class="login_popup" align="center"> -->
    <div id="pop">
       <div id="a"><img src="/test/image/logo4.png" width="140"></div>
       <form action="${pageContext.request.contextPath }/member/join.do" method="post">
@@ -70,7 +74,7 @@
       	 </div>
       </form>
       </div>
-</div>
+<!-- </div> -->
 
 <script>
 

@@ -22,39 +22,62 @@
 }
 
 #listBody{
-	background-color:black;
+	background-color: #212121;
 	color:white;
 	text-align : center;
 }
 
-.content{
-	 float:left;
-	 font-family: 'SUIT-Regular';
-	 padding-left:10px;
-	 padding-right:10px;
-	 padding-top:10px;
-	 padding-bottom:10px;
-}
-
-.list{
-	margin-left:10%;
-	margin-right:10%;
-}
-
-.listParent{
-	text-align : center;
-	align-items: center;
-}
-
 .posterImg:hover{
-	transform:scale(1.05);
+	transform:scale(1.03);
   	transition: transform .3s;
 }
 
-.title{
-	margin-top:10px;
+.posterImg{
+	align-items:center;
+	text-align:center;
+	border-radius : 10px; 
 }
 
+.title{
+	margin-top:8px;
+	margin-bottom:3px;
+}
+
+.list {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
+.col{
+	margin: auto;
+	margin-bottom : 50px;
+}
+
+.jpg_wrap{
+	width: 273px;
+	position: relative;
+	text-align:center;
+}
+
+.text{
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+	color: white;
+	text-align: center;
+	font-family: 'KOTRA_BOLD-Bold';
+	font-size : 15px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.hTitle{
+	margin-top : 30px;
+	margin-bottom : 60px;
+	font-family: 'KOTRA_BOLD-Bold';
+}
+
+
+/* 헐트♡ */
 .heart.active img{
     animation: animateHeart .3s linear forwards;
 }
@@ -63,4 +86,11 @@
     0%{transform:scale(.2);}
     40%{transform:scale(1.2);}
     100%{transform:scale(1);}
-  }
+}
+
+.fullheart:hover{
+	transform:scale(1.1);
+  	transition: transform .2s;
+}
+
+
