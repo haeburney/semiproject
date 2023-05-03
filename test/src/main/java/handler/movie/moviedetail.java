@@ -93,9 +93,12 @@ public class moviedetail implements Handler {
 			int star = sservice.starNum(userId,movienum);
 			double avg = sservice.getAvgStar(movienum);
 			System.out.println(avg);
+			String form = String.format("%.2f", avg);
+			float avgg = Float.parseFloat(form);
 				
 			request.setAttribute("star", star); //별이 몇개 있니? 
-			request.setAttribute("avg", avg); //평점 들고 가자 
+//			request.setAttribute("avg", avg); //평점 들고 가자 
+			request.setAttribute("avg", avgg);
 		
 			CommentsService cservice = new CommentsService(); 
 			String comments = cservice.getComments(userId, movienum);
