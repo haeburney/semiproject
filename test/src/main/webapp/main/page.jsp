@@ -64,23 +64,20 @@
       <img src="https://img.youtube.com/vi/qEVUtrk8_B4/maxresdefault.jpg" class="d-block" alt="존윅(인기순)">
       </a>
       <div class="carousel-caption d-none d-md-block">
-        <p>인기순입니다.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <a href="${pageContext.request.contextPath }/submain/toprate.do?num=1">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
       <img src="https://img.youtube.com/vi/jBdRhhSt3Bc/maxresdefault.jpg" class="d-block" alt="기생충(평점순)">
       </a>
       <div class="carousel-caption d-none d-md-block">
-        <p>평점순입니다.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <a href="${pageContext.request.contextPath }/submain/upcoming.do?num=1">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
       <img src="https://img.youtube.com/vi/zmNRHgRG3lo/maxresdefault.jpg" class="d-block" alt="분노의질주(개봉예정)">
       </a>
       <div class="carousel-caption d-none d-md-block">
-        <p>개봉예정입니다.</p>
       </div>
     </div>
   </div>
