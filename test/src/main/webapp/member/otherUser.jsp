@@ -32,36 +32,39 @@ $(document).ready(function() {
        console.log(flag);
        
        //팔로우 했나 안했나 페이지 로드 하자마자 이미지를 변경해줄 스트립트 
-if(flag && flag === 'true'){
-          
+		if(flag || flag === 'true'){ debugger
+		          
           $(this).find('.followImg').attr({
                 'src': '${pageContext.request.contextPath}/image/add-friend.png',
                  alt:"팔로우 완료"
                  
-             });
-}
+           });
+		
+		}
          
-            $likeBtn.click(function(){ //var $likeBtn =$('.followicon'); 버튼 클릭하면 
-            $likeBtn.toggleClass('active'); //토글 액티브하고 
-            console.log("토글버튼까지 생성");
+        $likeBtn.click(function(){ //var $likeBtn =$('.followicon'); 버튼 클릭하면 
+            
+        	$likeBtn.toggleClass('active'); //토글 액티브하고 
+           	console.log("토글버튼까지 생성");
 
-            if($likeBtn.hasClass('active')){         //토글이 액티브 되어 있다면   
-                $(this).find('img').attr({ //이미지 변경 
+           	if($likeBtn.hasClass('active')){         //토글이 액티브 되어 있다면   
+               $(this).find('img').attr({ //이미지 변경 
                    'src': '${pageContext.request.contextPath}/image/add-friend.png',
                     alt:'찜하기 완료'
                     
-                    
-                });
-                console.log("팔로우완료");
-              } else {
+                   
+               });
+               console.log("팔로우완료");
+               
+            } else {
                 $(this).find('i').removeClass('fas').addClass('far')
                 $(this).find('img').attr({
                    'src': '${pageContext.request.contextPath}/image/add.png',
                    alt:"팔로우아직안함"
                 
-                })
+                });
                 console.log("팔로취소");
-              }
+            }
             
             $.ajax ({
                url : '${pageContext.request.contextPath }/follow/add.do',
@@ -72,7 +75,7 @@ if(flag && flag === 'true'){
     
                }
             });
-         });
+       	});
     });
     
      
