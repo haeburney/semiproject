@@ -39,13 +39,14 @@ if(flag && flag === 'true'){
                  alt:"팔로우 완료"
                  
              });
-}
-         
+} 
+
+    
             $likeBtn.click(function(){ //var $likeBtn =$('.followicon'); 버튼 클릭하면 
-            $likeBtn.toggleClass('active'); //토글 액티브하고 
+           $likeBtn.toggleClass('active') //토글 액티브하고 
             console.log("토글버튼까지 생성");
 
-            if($likeBtn.hasClass('active')){         //토글이 액티브 되어 있다면   
+            if(flag && flag === 'false' && $likeBtn.hasClass('active')){         //토글이 액티브 되어 있다면   
                 $(this).find('img').attr({ //이미지 변경 
                    'src': '${pageContext.request.contextPath}/image/add-friend.png',
                     alt:'찜하기 완료'
@@ -53,7 +54,10 @@ if(flag && flag === 'true'){
                     
                 });
                 console.log("팔로우완료");
-              } else {
+              } 
+            
+            
+            else {
                 $(this).find('i').removeClass('fas').addClass('far')
                 $(this).find('img').attr({
                    'src': '${pageContext.request.contextPath}/image/add.png',
@@ -73,8 +77,8 @@ if(flag && flag === 'true'){
                }
             });
          });
-    });
     
+}); 
      
 </script>
 
