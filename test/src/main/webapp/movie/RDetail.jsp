@@ -13,6 +13,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <title>Insert title here</title>
 
 <style>
@@ -151,6 +153,15 @@ $('.star-rating input').click(function() {
     let movieId = "${movieId}";
     console.log(movieId);
     
+    if("${sessionScope.userId}" == "" || "${sessionScope.userId}" == null) {
+        swal.fire({
+            icon: 'warning',
+            title: '로그인 후 사용해주세요',
+            confirmButtonColor : '#FADE6D',           
+            confirmButtonText : '확인',
+        });
+        $('.star-rating input:checked').prop('checked', false);         
+    } else {
     $.ajax ({
     	
         url : '${pageContext.request.contextPath }/movie/starAdd.do',
@@ -161,6 +172,7 @@ $('.star-rating input').click(function() {
     	   console.log("성공");
        }
     });
+    }
 });
 
 //시작되자마자 별점 보여줄껀데 
@@ -392,6 +404,9 @@ $(document).ready(function() {
 		 
 	 }
 	 
+	
+	 
+// 	 else {
         		  
     var $likeBtn = $('.icon.heart');  
     let movieId = "${movieId}";
@@ -408,9 +423,20 @@ $(document).ready(function() {
 	    });
 	  } 	
 	  
+    
     $likeBtn.click(function() {
         $likeBtn.toggleClass('active');
         console.log("토글버튼까지 생성");
+
+        if("${sessionScope.userId}" == "" || "${sessionScope.userId}" == null) {
+            swal.fire({
+            	icon: 'warning',
+                title: '로그인 후 사용해주세요',
+                confirmButtonColor : '#FADE6D',           
+                confirmButtonText : '확인',
+            });
+        }  
+        else {
 
         if ($likeBtn.hasClass('active')) {          
             $(this).find('img').attr({
@@ -440,9 +466,10 @@ $(document).ready(function() {
                 console.log("에이작스성공");
             }
         }); 
-
+   	 }
     });
 }); 
+//  }
  
  </script>
 

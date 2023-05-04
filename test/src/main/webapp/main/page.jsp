@@ -12,6 +12,8 @@
 
 
 <style>
+
+
 .main {
 	position: relative;
 	background: black;
@@ -35,7 +37,8 @@
 .carousel-item img{ 
  	max-width: 100%;
  	max-height: 700px;
-	margin: auto;	
+	margin: auto;
+
 }
 
 .carousel-control-prev, .carousel-control-next	{
@@ -160,7 +163,7 @@ function frameclose() {
 	document.getElementById("logoutBtn").checked=false;
 	// $("#popUpParent").css("background","rgba(169 ,169, 169,.9)");
 	document.getElementById("popUpParent").style.background="rgba(169 ,169, 169,.0)";
-	document.getElementById("popUpParent").style.backdrop-filter="blur(10px)";
+// 	document.getElementById("popUpParent").style.backdrop-filter="blur(10px)";
 //	$("#popUpParent").css("backdrop-filter","blur(10px)");
 }
 
