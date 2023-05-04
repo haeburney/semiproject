@@ -9,6 +9,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@font-face {
+	font-family: 'KOTRA_BOLD-Bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 #listBody{
 	background-color: #212121;
 	color:white;
@@ -57,12 +66,15 @@
 .hTitle{
 	margin-top : 30px;
 	margin-bottom : 60px;
+	font-family: 'KOTRA_BOLD-Bold';
 }
+
+
 </style>
 </head>
 <body id="listBody">
 <%@include file="/submain/nav.jsp" %>
-<h2 class="hTitle">찜 목록</h2>
+<h2 class="hTitle">Wish List</h2>
 <div class="layout">
 <div class="list">
 <div class="row row-cols-md-2 row-cols-lg-4 g-4">

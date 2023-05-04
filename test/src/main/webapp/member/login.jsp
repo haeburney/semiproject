@@ -246,7 +246,7 @@ input::-webkit-input-placeholder {
          
          </div>
       	 <div id="f" style="cursor:pointer;">
-      	 <img src="../image/close.png" style="width:30px" onclick="frameclose()">
+      	 <img src="../image/close.png" style="width:30px; margin:30px" onclick="frameclose()">
       	 </div>
       </form>
       </div>
