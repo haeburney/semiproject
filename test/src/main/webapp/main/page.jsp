@@ -52,16 +52,33 @@
 
 <div class="main">
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1300">
 <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="5" aria-label="Slide 6"></button>    
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
       <img src="https://img.youtube.com/vi/qEVUtrk8_B4/maxresdefault.jpg" class="d-block" alt="존윅(인기순)">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
+      <img src="https://img.youtube.com/vi/zmNRHgRG3lo/maxresdefault.jpg" class="d-block" alt="분노의질주(개봉예정)">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
+      <img src="https://img.youtube.com/vi/jWM0ct-OLsM/maxresdefault.jpg" class="d-block" alt="주토피아">
       </a>
       <div class="carousel-caption d-none d-md-block">
       </div>
@@ -75,7 +92,14 @@
     </div>
     <div class="carousel-item">
       <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
-      <img src="https://img.youtube.com/vi/zmNRHgRG3lo/maxresdefault.jpg" class="d-block" alt="분노의질주(개봉예정)">
+      <img src="https://img.youtube.com/vi/aXeJ8NM7c9g/maxresdefault.jpg" class="d-block" alt="멜로">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <a href="${pageContext.request.contextPath }/submain/populer.do?num=1">
+      <img src="https://img.youtube.com/vi/iwROgK94zcM/maxresdefault.jpg" class="d-block" alt="애니">
       </a>
       <div class="carousel-caption d-none d-md-block">
       </div>

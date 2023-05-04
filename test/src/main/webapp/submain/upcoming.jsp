@@ -69,6 +69,7 @@ h2{
 	overflow: hidden;
     white-space: nowrap;
 	text-overflow: ellipsis;
+	margin-top: 20px;
 }
 
 .col{
