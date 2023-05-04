@@ -455,7 +455,7 @@ function block(){
         }  
         else {
 
-        if ($likeBtn.hasClass('active')) {          
+        if (flag && flag === 'false' && $likeBtn.hasClass('active')) {          
             $(this).find('img').attr({
                 'src': '${pageContext.request.contextPath}/image/yellowheart.png',
                 alt: '노란하트'

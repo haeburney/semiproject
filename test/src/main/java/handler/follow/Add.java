@@ -21,6 +21,7 @@ public class Add implements Handler {
 			followService service = new followService();
 			
 			boolean flag = service.checkfollow(new followVo(userId, followedId));
+			System.out.println(flag);
 			
 			if(flag) {
 				service.delFollow(new followVo(userId, followedId));
