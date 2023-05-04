@@ -30,16 +30,16 @@
 		<!-- 한 줄 소개가 없다면 -->
 		<c:if test="${empty vo.introLine }">
 			<form name="addForm" id="aForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
-				<div id="addLine" >작은 조각 작성하기</div>
- 				<input id="addBtn" type="button" value="한줄쓰기" onclick="add()">
-				<input id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
+				<div id="addLine" class="oneLine" >작은 조각 작성하기</div>
+ 				<input class="allBtn" id="addBtn" type="button" value="한줄쓰기" onclick="add()">
+				<input class="allBtn" id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
 			</form>
 			
 			<form name="editForm" id="eForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post" style="display:none">
-				<div id="editLine">${vo.introLine }</div>
-				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
-				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
-				<input id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
+				<div id="editLine" class="oneLine">${vo.introLine }</div>
+				<input class="allBtn" id="editBtn" type="button" value="수정하기" onclick="edit()">
+				<input class="allBtn" id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
+				<input class="allBtn" id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
 			</form>
 		</c:if>
 
@@ -48,16 +48,16 @@
 		<!-- 한 줄 소개가 있다면 -->
  		<c:if test="${not empty vo.introLine }"> 
  			<form name="addForm" id="aForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post" style="display:none">
-				<div id="addLine">작은 조각 작성하기</div>
- 				<input id="addBtn" type="button" value="한줄쓰기" onclick="add()">
-				<input id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
+				<div id="addLine" class="oneLine">작은 조각 작성하기</div>
+ 				<input class="allBtn" id="addBtn" type="button" value="한줄쓰기" onclick="add()">
+				<input class="allBtn" id="addEnd" type="button" value="쓰기완료" style="display:none" onclick="readAdd()">
 			</form>	
  		
 			<form name="editForm" id="eForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
-				<div id="editLine">${vo.introLine }</div>
-				<input id="editBtn" type="button" value="수정하기" onclick="edit()">
-				<input id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
-				<input id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
+				<div id="editLine" class="oneLine">${vo.introLine }</div>
+				<input class="allBtn" id="editBtn" type="button" value="수정하기" onclick="edit()">
+				<input class="allBtn" id="editEnd" type="button" value="수정완료" style="display:none" onclick="readEdit()">
+				<input class="allBtn" id="delBtn" type="button" value="삭제하기" onclick="deleteLine()">
 			</form>
  		</c:if> 
  		
@@ -69,9 +69,9 @@
 	<div id="coffee" style="display:none">
 		<c:if test="${not empty americano }">
 			<c:forEach var="li" items="${americano }">
-					<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
-							 ${li.followedId }
-							 </a>
+					<a href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${li.followedId }">
+							 아이디는요?${li.followedId }
+					</a>
 			</c:forEach>
 		</c:if>
 	</div>
@@ -81,8 +81,9 @@
 		<div id="allList">
 			<div id="follow">
 				<span id="nickname">
+						<img src="${pageContext.request.contextPath }/image/user.png" style="width:20px">
 					<c:if test="${not empty sessionScope.userId }">
-					${sessionScope.userId }
+						<span id="nickname2">${vo.nickname }</span>
 					</c:if>
 				</span>
 				<span id="fCount">
@@ -101,7 +102,7 @@
 							<c:forEach var="li" items="${americano }">
 							<br/>
 								<img src="../image/icon_profile.png" style=width:45px>
-								<a class="follow_name" href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${recent.userId}">
+								<a class="follow_name" href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${li.followedId }">
 										 ${li.followedId }
 							   </a><br/>
 							</c:forEach>
@@ -128,7 +129,7 @@
 					<!-- 	모달 -->
 					<input type="checkbox" id="popup2">
 					<label for="popup2">
-						<img src="../image/option.png" style="width:25px">
+						<img src="../image/option.png" style="width:25px; margin-right:0px">
 					</label>
 					<div>
 					<div>
@@ -149,7 +150,7 @@
 			</div>	
 			<hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
 			
-				<div>
+				<div class="listHeight">
 					<div class="listPlus">
 						<span>찜목록</span>
 						<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
@@ -162,7 +163,7 @@
 					</c:if>
 				</div>
 				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
-				<div>
+				<div class="listHeight">
 					<div class="listPlus">
 						<span>별점목록</span>
 						<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
@@ -175,7 +176,7 @@
 					</c:if>
 				</div>
 				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
-				<div>
+				<div class="listHeight">
 					<div class="listPlus">
 						<span>코멘트목록</span>
 						<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
@@ -209,11 +210,20 @@
 		document.getElementById("delBtn").style="display:none";
 		//id="delBtn"
 		document.getElementById("editEnd").style="display:";
+		
+		/*버튼 흰색으로 만들기 .allBtn 태그랑 똑같게*/
+// 		document.getElementById("editEnd").style="font-family: 'SUIT-Regular'";
+// 		document.getElementById("editEnd").style="font-weight: 700";
+// 		document.getElementById("editEnd").style="background: none";
+// 		document.getElementById("editEnd").style="color: white";
+// 		document.getElementById("editEnd").style="border: 0";
+// 		document.getElementById("editEnd").style="outline: 0";
+
 	}
 	
 	function add(){
 		console.log("add()");
-		let txt = "<textarea cols='50' name='introLine' placeholder='마음에 드는 영화 대사를 적어보세요'></textarea>";
+		let txt = "<textarea id='textArea' cols='50' name='introLine' placeholder='마음에 드는 영화 대사를 적어보세요' style='background-color:transparent; color:white; height:28px'></textarea>";
 		document.getElementById("addLine").innerHTML=txt;
 		document.getElementById("addBtn").style="display:none";
 		document.getElementById("addEnd").style="display:";

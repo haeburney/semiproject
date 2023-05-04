@@ -84,11 +84,6 @@ body{
 	margin-bottom:50px;
 }
 
-#editEnd{
-	color : white;
-	 text-decoration: none;
-}
-
 #box{
 	width:100%;
 	height:90%;
@@ -98,11 +93,12 @@ input::placeholder{
 	color:#999999;
 }
 
-#editEnd{
+#editEndJJin{
   position: relative;
   color:black;
+  text-decoration: none;
 }
-#editEnd:after{
+#editEndJJin:after{
   content: "";
   position: absolute;
   left: 0;
@@ -116,7 +112,7 @@ input::placeholder{
   background-color: #EF7953;
   z-index:-1;
 }
-#editEnd:hover:after{
+#editEndJJin:hover:after{
   width: 100%;
   opacity: 1;
 }
@@ -144,13 +140,14 @@ input::placeholder{
 <!--  				<span class="to-right-underline"><input class="cancelBtn" type="button" value="취소하기"></span>  -->
 			</form>
 		</div>
-		<a id="editEnd" href="${pageContext.request.contextPath }/member/out.do?userId=${sessionScope.userId}">탈퇴하기</a>
+		<a id="editEndJJin" href="${pageContext.request.contextPath }/member/out.do?userId=${sessionScope.userId}">탈퇴하기</a>
 	</div>
 
 	<script>
 		$(".editBtn").click(function(){
 			let pwd = document.getElementById("pwd").value;
 			let nickname = document.getElementById("nickName").value;
+			let addImg= '<img src="${pageContext.request.contextPath }/image/user.png" style="width:20px">';
 			
 			if(pwd.length>0 && nickname.length>0){
 				$.ajax({
@@ -165,6 +162,7 @@ input::placeholder{
 						document.getElementById("nickName").placeholder=result.nickname;
 						$("#editResult").html("수정 완료 !_!");
 						$("#editResult").css("color","#FEDD54");
+						$("#nickname2").html(nickname);
 						
 					},
 					error : function(req, status, error){
@@ -173,6 +171,7 @@ input::placeholder{
 				})	;	
 			} else{
 				$("#editResult").html("빈 값이 입력되었습니다.");
+				$("#editResult").css("color","#EF7953");
 			}
 				
 		});

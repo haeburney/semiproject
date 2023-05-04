@@ -159,6 +159,7 @@ if(flag && flag === 'true'){
       <div id="allList">
          <div id="follow">
          <span id="nickname">
+         	<img src="${pageContext.request.contextPath }/image/user.png" style="width:20px">
             ${vo.userId }
          </span>
          
@@ -221,7 +222,7 @@ $().ready(function () {
          
          
             <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
-               <div>
+               <div class="listHeight">
                   <div class="listPlus">
                      찜목록
                      <a href="${pageContext.request.contextPath }/detail/otherWishView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
@@ -229,12 +230,12 @@ $().ready(function () {
                   <c:if test="${not empty wishImageList }">
                      <c:forEach var="li" items="${wishImageList }">
                         
-                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
                      </c:forEach>
                   </c:if>
                </div>
                <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
-               <div>
+               <div class="listHeight">
                   <div class="listPlus">
                      별점목록
                      <a href="${pageContext.request.contextPath }/detail/starView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
@@ -242,12 +243,12 @@ $().ready(function () {
                   <c:if test="${not empty starImageList }">
                      <c:forEach var="li" items="${starImageList }">
                         
-                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
                      </c:forEach>
                   </c:if>
                </div>
                <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
-               <div>
+               <div class="listHeight">
                   <div class="listPlus">
                      코멘트목록
                      <a href="${pageContext.request.contextPath }/comments/myList.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
@@ -255,7 +256,7 @@ $().ready(function () {
                   <c:if test="${not empty commentsImageList }">
                      <c:forEach var="li" items="${commentsImageList }">
                         
-                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img src="${li.poster_path }"></a>
+                        <a href="${pageContext.request.contextPath }/movie/detail.do?id=${li.id }"><img class="pImg" src="${li.poster_path }"></a>
                      </c:forEach>
                   </c:if>
                </div>
