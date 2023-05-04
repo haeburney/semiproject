@@ -25,6 +25,9 @@ public class NextToprate implements Handler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		int pagenum= Integer.parseInt(request.getParameter("num"));
+		if (pagenum <=1) {
+			pagenum =1;
+		}
 		System.out.println(pagenum);
 		URL url;
 		
