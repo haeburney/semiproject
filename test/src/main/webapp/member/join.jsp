@@ -146,6 +146,34 @@ input::-webkit-input-placeholder {
 	color : white;
 }
 
+.yesMan{
+  position: relative;
+  font-weight: 700;
+}
+.yesMan:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0px;
+  height: 10px;
+  margin: 5px 0 0;
+  transition: all 0.2s ease-in-out;
+  transition-duration: 0.3s;
+  opacity: 0;
+  background-color: #FEDD54;
+  z-index:-1;
+}
+.yesMan:hover:after{
+  width: 100%;
+  opacity: 1;
+}
+
+.yesMan:hover{
+ transform: scale(1.05);
+  transition: transform .3s;
+}
+
 </style>
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginJoinCss.css"> --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -244,8 +272,11 @@ input::-webkit-input-placeholder {
 		<div><input type="password" name="password" id="password" placeholder="비밀번호"></div>
 		<div><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인"></div>
 		<div ><span id="spanPwd"></span></div>
+<!--          밑줄 효과주려고 새로 만든 버튼 -->
+		<span class="yesMan" id="d" onclick="idJoin()">가입완료</span>
+<!--          원래 있던 버튼 -->		
+<!-- 		<input class="button"  id="d" type="button" value="가입완료" onclick="idJoin()"> -->
 		
-		<input class="button"  id="d" type="button" value="가입완료" onclick="idJoin()">
 		<div id="f">
       	<img src="../image/close.png" style="width:30px" onclick="frameclose()">
       	</div>

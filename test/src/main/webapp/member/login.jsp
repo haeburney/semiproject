@@ -129,6 +129,35 @@ input::-webkit-input-placeholder {
 	color : white;
 }
 
+.yesMan{
+  position: relative;
+  font-weight: 700;
+  padding-right:5px;
+}
+.yesMan:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0px;
+  height: 10px;
+  margin: 5px 0 0;
+  transition: all 0.2s ease-in-out;
+  transition-duration: 0.3s;
+  opacity: 0;
+  background-color: #FEDD54;
+  z-index:-1;
+}
+.yesMan:hover:after{
+  width: 100%;
+  opacity: 1;
+}
+
+.yesMan:hover{
+ transform: scale(1.05);
+  transition: transform .3s;
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -188,8 +217,15 @@ input::-webkit-input-placeholder {
          <div><input id="c" type="password" name="password" placeholder="비밀번호"></div>
          <div>
          <div id="log"></div>
-         <input id="log2" type="button" class="button" value="로그인" onclick="loginDo()">
-         <input id="e" type="button" class="button" value="회원가입" onclick="joinDo()">
+         
+<!--          밑줄 효과주려고 새로 만든 버튼 -->
+         <span class="yesMan" id="log2" onclick="loginDo()">로그인</span>
+         <span class="yesMan" id="e" onclick="joinDo()">회원가입</span>
+         
+<!--          원래 있던 버튼 -->
+<!--          <input id="log2" type="button" class="button" value="로그인" onclick="loginDo()"> -->
+<!--          <input id="e" type="button" class="button" value="회원가입" onclick="joinDo()"> -->
+         
          </div>
       	 <div id="f" style="cursor:pointer;">
       	 <img src="../image/close.png" style="width:30px" onclick="frameclose()">
