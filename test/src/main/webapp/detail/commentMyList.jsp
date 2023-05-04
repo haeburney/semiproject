@@ -25,7 +25,14 @@
 			</div>	
 			
 			<div class="text">
-				<div style="text-overflow: ellipsis; margin-top:8px; color:#FADE6D">${li.comments }</div>
+				<div style="display: inline-block;  width: 200px; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; margin-top:8px; color:#FADE6D">${li.comments }</div>
+				
+				 
+   
+    
+				
+				
 				<div style="font-size:13px">${li.w_Date }</div>
 				<div>
 					<img src="${pageContext.request.contextPath }/image/thumbs-up.png" style="width:16px">
