@@ -10,6 +10,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/member/mypageCss.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -48,6 +50,7 @@ if(flag && flag === 'true'){
                    'src': '${pageContext.request.contextPath}/image/add-friend.png',
                     alt:'찜하기 완료'
                     
+                    
                 });
                 console.log("팔로우완료");
               } else {
@@ -74,6 +77,58 @@ if(flag && flag === 'true'){
     
      
 </script>
+
+<style>
+.write_popup {
+		display: inline;
+		width: 50%;
+		height: 50%;
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		z-index: 10;
+	}
+	
+	.dimmed {
+		background-color: #99999900;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+	
+	.dimmed::before {
+		content: '';
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba(255, 255, 255, 0.55);
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+	}
+	
+	.addpopup {
+		z-index: 3;
+		position: relative;
+		width : 150px;
+		heigth: 100px;
+		background-color: #fff;
+		box-shadow: 0 2px 55px -25px rgb(0 0 0/ 100%);
+	}
+	
+	.addpopup>.addtitle {
+		min-height: 40px;
+		color: #fff;
+		background-color: #FADE6D;
+		padding: 10px 15px;
+		box-sizing: border-box;
+		font-family: 'SUIT Variable';
+	    src: url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css') format('sans-serif');
+	    font-size: 1em;
+	}
+
+</style>
 
 </head>
 <body id="pBody">
@@ -109,12 +164,60 @@ if(flag && flag === 'true'){
          
          <!-- 팔로워 이미지 -->
          <div class="right_area">
-         <div class ="followicon">
+         <div class ="followicon" >
            <img class="followImg" src="${pageContext.request.contextPath}/image/add.png"
-           style ="width:30px; padding-top:10px; padding-bottom:10px;" alt="찜하기">
+           style ="width:30px; padding-top:10px; padding-bottom:10px;" alt="찜하기" >
              </div>
              </div>
-         </div>   
+         </div>
+
+<script>
+$().ready(function () {
+            $(".followImg").click(function () {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'center-center',
+                    className : 'swal-wide',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '요청이 완료 되었습니다👍'
+                })
+            });
+        });
+</script>
+
+			
+
+			<script> 
+     	function initCommentArea() { 
+    		$('.write_popup').hide();
+    	}
+    	
+    	jQuery.fn.center = function () {
+    	    this.css("position","absolute");
+    	    this.css("top", ( jQuery(window).height() - this.height() ) / 2+jQuery(window).scrollTop() + "px");
+    	    this.css("left", ( jQuery(window).width() - this.width() ) / 2+jQuery(window).scrollLeft() + "px");
+    	    return this;
+    	  }
+    	  
+    	jQuery(".write_popup").center();
+    	
+//     	function cancel(){
+//      		setTimeout(function() { 
+//     			$('.write_popup').hide();
+//      			}, 1000);
+//     	}
+    	
+         </script>
          
          
             <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
