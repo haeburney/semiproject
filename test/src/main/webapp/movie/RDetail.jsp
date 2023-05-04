@@ -65,7 +65,7 @@
 
 		<span class="title"> <input type="checkbox" id="popup">
 			${title} <label for="popup"><img
-				src="${pageContext.request.contextPath }/image/info.png"></label>
+				src="${pageContext.request.contextPath }/image/info.png" style="cursor:pointer;"></label>
 			<div>
 				<div>
 					<label for="popup" class="info"> 제목 : ${title}<br /> <br />
@@ -97,7 +97,7 @@
 
 		<div class="right_area">
 			<div class="icon heart">
-				<img class="emptyheart"
+				<img class="emptyheart" style="cursor:pointer;"
 					src="${pageContext.request.contextPath}/image/heart.png" alt="텅빈하트">
 				<span class="watch"> 보고싶어요 </span>
 			</div>
@@ -107,7 +107,7 @@
 			<span> <img
 				src="${pageContext.request.contextPath}/image/play.png"
 				onclick="Trailer(${movieId})"
-				style="position: relative; bottom: 3px;"> <span
+				style="position: relative; cursor:pointer; bottom: 3px;"> <span
 				class="watch">예고편 보러가기 | </span>
 
 			</span>

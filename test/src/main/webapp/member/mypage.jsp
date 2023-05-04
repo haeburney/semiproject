@@ -129,7 +129,7 @@
 					<!-- 	모달 -->
 					<input type="checkbox" id="popup2">
 					<label for="popup2">
-						<img src="../image/option.png" style="width:25px; margin-right:0px">
+						<img src="../image/option.png" style="width:25px; cursor:pointer; margin-right:0px">
 					</label>
 					<div>
 					<div>
