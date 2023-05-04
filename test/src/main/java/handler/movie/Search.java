@@ -25,13 +25,24 @@ public class Search implements Handler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String text = request.getParameter("query");
-		System.out.println("text");
+		String[] array=text.split("");
+		String text2="";
+		
+		for(int i=0; i<array.length;i++) {
+			if(array[i].equals(" ")) {
+				text2+="%20";
+			}else {
+				text2+=array[i];
+			}
+		}
+		System.out.println("검색어 :"+text2);
+		
 		URL url;
 		
 		try {
 			url = new URL(
 					"https://api.themoviedb.org/3/search/movie?api_key=c8a3d049a6a74a627e4a2fa5bfd674f6&language=ko&query="
-					+text);
+					+text2);
 			// 웹 주소로 연결
 			URLConnection conn = url.openConnection();
 			// getInputStream(): 웹페이지에서 데이터를 읽을 수 있눈 스트림 반환
