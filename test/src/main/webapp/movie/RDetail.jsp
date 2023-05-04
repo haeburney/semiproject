@@ -201,12 +201,29 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+function block(){
+	if("${sessionScope.userId}" == "" || "${sessionScope.userId}" == null) {
+        swal.fire({
+            icon: 'warning',
+            title: '로그인 후 사용해주세요',
+            confirmButtonColor : '#FADE6D',           
+            confirmButtonText : '확인',
+        }); 
+       
+	} else {	
+		document.querySelector('.write_popup').style.display = 'block'
+	}
+}
+
+</script>
+
 
 			<!-- 댓글 보여주기 -->
 			<div align="left">
 				<br/><span class="go_write">다른 조각별 보러가기</span>
 				<div class="comment_area"
-					onclick="document.querySelector('.write_popup').style.display = 'block'">
+					onclick="block();">
 					<textarea class="comment" cols="20" rows="2" maxlength="100"
 						style="text-align: center; padding-top: 18px;" readonly>내 조각별 남기기</textarea>
 				</div>
@@ -313,7 +330,7 @@ $(document).ready(function() {
 	               data : {"userId" : userId, "movieId" : movieId, "comment" : comment, "isSpolier" :isSpoiler},
 	               success : function(result) {
 	                         console.log("성공"); 
-	                         $('.write_popup').hide(); debugger
+	                         $('.write_popup').hide();
 	                         $('.comment').text(comment);
 	                      },
 	                  	error : function(req, status, error) {

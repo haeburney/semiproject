@@ -33,7 +33,7 @@ window.onload = function() {
       
          setTimeout(function(){
            location.href = "${pageContext.request.contextPath }/main/page.jsp";
-         }, 4850); // 5초 후에 이동할 페이지 주소를 입력하세요.
+         }, 4830); // 5초 후에 이동할 페이지 주소를 입력하세요.
     
 }
 </script>
