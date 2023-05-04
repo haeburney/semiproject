@@ -97,21 +97,23 @@
 					<div>
 						<label for="popup3"></label>
 						<div id="abc"><img src="/test/image/logo4.png" width="100"></div>
-						<span id="follist">
+						<div id="follist">
+						<br/>
 						<c:if test="${not empty americano }">
 							<c:forEach var="li" items="${americano }">
-							<br/>
-								<img src="../image/icon_profile.png" style=width:45px>
+						
+								<img src="../image/icon_profile.png" style="width:30px; margin:10px">
 								<a class="follow_name" href="${pageContext.request.contextPath }/member/otherUser.do?userId=${sessionScope.userId }&followedId=${li.followedId }">
 										 ${li.followedId }
-							   </a><br/>
+							   </a>
+							   <br/>
 							</c:forEach>
 						</c:if>
 						
 <!-- 						<div id="f"> -->
 <!--       					<img src="../image/close.png" style="width:30px" onclick="fclose()"> -->
 <!--       					</div> -->
-						</span>
+						</div>
 					</div>
 
 					<label for="popup3">
@@ -129,12 +131,12 @@
 					<!-- 	모달 -->
 					<input type="checkbox" id="popup2">
 					<label for="popup2">
-						<img src="../image/option.png" style="width:25px; cursor:pointer; margin-right:0px">
+						<img src="../image/option.png" style="width:25px; cursor:pointer; margin-left:10px">
 					</label>
 					<div>
 					<div>
 						<label for="popup2"></label>
-						팔로우
+						
 						<%@include file="/member/edit.jsp" %>
 					</div>
 
@@ -152,7 +154,7 @@
 			
 				<div class="listHeight">
 					<div class="listPlus">
-						<span>찜목록</span>
+						<span class="choco">Wish List</span>
 						<a href="${pageContext.request.contextPath }/detail/myWishView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
 					</div>
 					<c:if test="${not empty wishImageList }">
@@ -165,7 +167,7 @@
 				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div class="listHeight">
 					<div class="listPlus">
-						<span>별점목록</span>
+						<span class="choco">Star List</span>
 						<a href="${pageContext.request.contextPath }/detail/starView.do?userId=${sessionScope.userId}"><img class="plustImg" src="../image/plus.png"></a>
 					</div>
 					<c:if test="${not empty starImageList }">
@@ -178,7 +180,7 @@
 				<hr style="border: solid 0.5px #cecece; opacity:1; margin:0px"/>
 				<div class="listHeight">
 					<div class="listPlus">
-						<span>코멘트목록</span>
+						<span class="choco">Comments List</span>
 						<a href="${pageContext.request.contextPath }/comments/myList.do?userId=${sessionScope.userId }"><img class="plustImg" src="../image/plus.png"></a>
 					</div>
 					<c:if test="${not empty commentsImageList }">

@@ -142,7 +142,7 @@ if(flag && flag === 'true'){
       <!-- 한 줄 소개가 없다면 -->
       <c:if test="${empty vo.introLine }">
          <form name="addForm" action="${pageContext.request.contextPath }/member/introLineadd.do?userId=${sessionScope.userId}" method="post">
-            <div id="addLine">아직 한 줄 소개가 없습니다.</div>
+            <div id="addLine" style="text-align:center">아직 한 줄 소개가 없습니다.</div>
          </form>
       </c:if>
    
@@ -224,7 +224,7 @@ $().ready(function () {
             <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
                <div class="listHeight">
                   <div class="listPlus">
-                     찜목록
+                     <span class="choco">Wish List</span>
                      <a href="${pageContext.request.contextPath }/detail/otherWishView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
                   </div>
                   <c:if test="${not empty wishImageList }">
@@ -237,7 +237,7 @@ $().ready(function () {
                <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
                <div class="listHeight">
                   <div class="listPlus">
-                     별점목록
+                     <span class="choco">Star List</span>
                      <a href="${pageContext.request.contextPath }/detail/starView.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
                   </div>
                   <c:if test="${not empty starImageList }">
@@ -250,7 +250,7 @@ $().ready(function () {
                <hr style="border: solid 1px #cecece; opacity:1; margin:0px"/>
                <div class="listHeight">
                   <div class="listPlus">
-                     코멘트목록
+                     <span class="choco">Comments List</span>
                      <a href="${pageContext.request.contextPath }/comments/myList.do?userId=${vo.userId}"><img class="plustImg" src="../image/plus.png"></a>
                   </div>
                   <c:if test="${not empty commentsImageList }">
