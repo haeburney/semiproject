@@ -229,7 +229,7 @@ input::-webkit-input-placeholder {
 <body>
 <!-- <div class="login_popup" align="center"> -->
    <div id="pop">
-      <div id="a"><img src="/test/image/logo4.png" width="100"></div>
+      <div id="a"><img src="/test/image/logo4.png" width="100" ></div>
       <form action="${pageContext.request.contextPath }/member/join.do" method="post">
          <div><input id="b" type="text" name="userId" placeholder="아이디"></div>
          <div><input id="c" type="password" name="password" placeholder="비밀번호"></div>
@@ -237,8 +237,8 @@ input::-webkit-input-placeholder {
          <div id="log"></div>
          
 <!--          밑줄 효과주려고 새로 만든 버튼 -->
-         <span class="yesMan" id="log2" onclick="loginDo()">로그인</span>
-         <span class="yesMan" id="e" onclick="joinDo()">회원가입</span>
+         <span class="yesMan" id="log2" style="cursor:pointer;" onclick="loginDo()">로그인</span>
+         <span class="yesMan" id="e" style="cursor:pointer;" onclick="joinDo()">회원가입</span>
          
 <!--          원래 있던 버튼 -->
 <!--          <input id="log2" type="button" class="button" value="로그인" onclick="loginDo()"> -->

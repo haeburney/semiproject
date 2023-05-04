@@ -273,12 +273,12 @@ input::-webkit-input-placeholder {
 		<div><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인"></div>
 		<div ><span id="spanPwd"></span></div>
 <!--          밑줄 효과주려고 새로 만든 버튼 -->
-		<span class="yesMan" id="d" onclick="idJoin()">가입완료</span>
+		<span class="yesMan" id="d" style="cursor:pointer;" onclick="idJoin()">가입완료</span>
 <!--          원래 있던 버튼 -->		
 <!-- 		<input class="button"  id="d" type="button" value="가입완료" onclick="idJoin()"> -->
 		
 		<div id="f">
-      	<img src="../image/close.png" style="width:30px" onclick="frameclose()">
+      	<img src="../image/close.png" style="width:30px; cursor:pointer" onclick="frameclose()">
       	</div>
 	</form>
 	</div>
