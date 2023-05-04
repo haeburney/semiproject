@@ -397,6 +397,10 @@ input[id="popup3"]:checked+label+div {
 	font-size:25px;
 }
 
+#editLine{
+	text-align:center;
+}
+
 
 /* 실험 */
 .loveYou {
@@ -430,4 +434,8 @@ input[id="popup3"]:checked+label+div {
 
 .choco{
 	margin-top : 20px;
+}
+
+#aForm{
+	text-align : center;
 }
