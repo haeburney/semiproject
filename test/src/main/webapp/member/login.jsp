@@ -133,6 +133,7 @@ input::-webkit-input-placeholder {
   position: relative;
   font-weight: 700;
   padding-right:5px;
+  cursor:pointer;
 }
 .yesMan:after{
   content: "";
@@ -180,20 +181,37 @@ input::-webkit-input-placeholder {
 			dataType : "json",
 			success : function(result) {
 				if(result.flag == true) {
-					$.ajax({
-						url : '${pageContext.request.contextPath }/member/login.do',
-						type : "post",
-						data : {"userId": userId, "password" : password},
-						success : function(result) {
-							$("#popUp").hide();
-							$("#popUpParent").css("backdrop-filter","blur(0px)");
-							$("#popUpParent").css("background","rgba(169 ,169, 169,0)");
-							$("#personCircle").show();
-						},
-						error : function(req, status, error){
-							console.log(status);
-						}
-					});
+					//location.href='${pageContext.request.contextPath }/member/login.do?userId='+userId+'&password='+password;
+					
+					var form=document.createElement('form');
+					var objs;
+					objs = document.createElement('form');
+					objs.setAttribute('userId',userId);
+					objs.setAttribute('password',password);
+					form.appendChild(objs);
+					form.setAttribute('method','post');
+					form.setAttribute('action','${pageContext.request.contextPath }/member/login.do');
+					document.body.appendChild(form);
+					form.submit();
+					
+					$("#popUp").hide();
+					$("#popUpParent").css("backdrop-filter","blur(0px)");
+					$("#popUpParent").css("background","rgba(169 ,169, 169,0)");
+					$("#personCircle").show();
+// 					$.ajax({
+// 						url : '${pageContext.request.contextPath }/member/login.do',
+// 						type : "post",
+// 						data : {"userId": userId, "password" : password},
+// 						success : function(result) {
+// 							$("#popUp").hide();
+// 							$("#popUpParent").css("backdrop-filter","blur(0px)");
+// 							$("#popUpParent").css("background","rgba(169 ,169, 169,0)");
+// 							$("#personCircle").show();
+// 						},
+// 						error : function(req, status, error){
+// 							console.log(status);
+// 						}
+// 					});
 				} else {
 					console.log("비밀번호 불일치");
 					$("#log").html("비밀번호 불일치");				

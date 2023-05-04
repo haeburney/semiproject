@@ -33,7 +33,8 @@ public class Login implements Handler {
 				return msg;
 			}
 		}
-		return "/main/page.do";  
+		//return "/main/page.do";  
+		return "/main/page.jsp";
 		
 	}
 
