@@ -91,7 +91,11 @@ public class moviedetail implements Handler {
 			
 			StarService sservice = new StarService(); 
 			int star = sservice.starNum(userId,movienum);
+			
 			double avg = sservice.getAvgStar(movienum);
+			String num = String.format("%.2f", avg);
+			float staravg = Float.parseFloat(num);
+			
 			System.out.println(avg);
 			String form = String.format("%.2f", avg);
 			float avgg = Float.parseFloat(form);

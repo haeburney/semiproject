@@ -28,7 +28,7 @@ public class Add implements Handler {
 			} else {
 				service.follow(new followVo(userId, followedId));
 			}
-			
+			return "/member/otherUser.jsp";
 		}
 		return null;
 		
