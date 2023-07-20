@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../submain/navcss.css">
-<link rel="stylesheet" href="RDetailcss.css">
+<link rel="stylesheet" href="RDetail.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -455,7 +455,7 @@ function block(){
         }  
         else {
 
-        if (flag && flag === 'false' && $likeBtn.hasClass('active')) {          
+        if (isWished && isWished === 'false' && $likeBtn.hasClass('active')) {          
             $(this).find('img').attr({
                 'src': '${pageContext.request.contextPath}/image/yellowheart.png',
                 alt: '노란하트'
