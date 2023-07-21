@@ -5,7 +5,7 @@
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/c13bc245-1717-49e6-b15a-f71342278315)
 <br><br/>
 ## 🔗 Link
-- **deploy site :** 배포사이트 업로드 미정
+- **Deploy site :** 배포사이트 업로드 미정
 
 - **Github Repository :** 
 https://github.com/hennie-yun/semiproject.git
@@ -20,6 +20,7 @@ https://github.com/hennie-yun/semiproject.git
 >  - [🛠 Stack](#-stack)
 >  - [💿 Installation](#-installation)  
 >  - [📸 Site Screenshot](#-site-screenshot)
+
 
 #
 * * *
@@ -114,19 +115,76 @@ clone 한 프로젝트를 import
 #### 4️⃣ _Eclipse_ > Tomcat Configure 설정 후 > Run
 <br><br/>
 
+## 📸 Site Screenshot
 
-
-# **시연**
-[회원가입]
+**[회원가입]**
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/9b8005ac-28ad-48b3-962c-92d771a25071)
-[로그인]
-![image](https://github.com/hennie-yun/semiproject/assets/129652734/1fc5c859-c111-4590-8a2d-3c656dcc374c)
+<br><br/>
 
-[작품 제목으로 검색]
+**[로그인]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/1fc5c859-c111-4590-8a2d-3c656dcc374c)
+<br><br/>
+
+**[작품 제목으로 검색]**
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/5583438d-b04d-411c-baba-6f98ec748995)
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/43477558-f349-4698-afec-467bfd0c4744)
+<br><br/>
 
-[장르별로 검색]
+**[장르별로 검색]**
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/b8cb9346-86e7-4525-bcd2-ac53be8324af)
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/ce14d018-5884-42ee-bc96-ef35f4321617)
+<br><br/>
+
+**[영화리스트]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/80626f87-38f8-459f-b407-59c3fbac59aa)
+<br><br/>
+
+**[영화 리스트 정렬]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/bb6e39c8-712d-4fdb-88c7-1473640ca74d)
+<br><br/>
+
+**[영화 디테일 페이지]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/af6dfad3-6992-4efe-a4db-ca414847e585)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/763c6319-996e-49a9-8a6f-b888eb6a8d42)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/7bc09e26-b4f7-4960-9238-2a77ede8fbe0)
+<br><br/>
+
+**[댓글 보러가기]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/243b3f4b-4007-46e1-a871-ca8301eea5ba)
+<br><br/>
+
+**[스포일러 기능]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/c5380df2-4fc4-4fed-8ca2-42c2ed59f30f)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/be805a13-b310-4a42-a9ca-8964964a2c0a)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/b98acfdb-34f8-4a00-a177-b10e2279d744)
+<br><br/>
+
+**[마이페이지]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/64793897-aa4c-4503-b2bd-7a5b25280293)
+<br><br/>
+
+**[Wish List]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/e0c06e11-f5a2-475c-9855-0fc6668b8d89)
+<br><br/>
+
+**[Star list]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/6691ffd6-9000-4a8c-a7e3-63de62826fef)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/fc3c7f56-4b36-4647-9620-2e1d656573bb)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/37f7fa1b-4fdf-4b3e-837c-818b1fa11b49)
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/400a125e-60bf-4c27-9ad3-9ab945e5a181)
+<br><br/>
+
+**[Comment List]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/3c081d1b-3acc-4441-8b5c-f1047bbb480f)
+<br><br/>
+
+**[Follow]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/f80a1857-3978-40d7-ad59-33fcc845fc1f)
+<br><br/>
+
+**[edit info]**
+![image](https://github.com/hennie-yun/semiproject/assets/129652734/70b9e646-496a-49dd-bc45-80c5758f0a52)
+<br><br/>
+
+**-Fin-**
 
