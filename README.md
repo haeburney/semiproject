@@ -27,7 +27,7 @@ https://github.com/hennie-yun/semiproject.git
 #
 # Introduce Project
 조각별은 은 KOSTA 257기 세미 프로젝트로 진행 되었으며 
-2023.04.19 ~ 2021.05.04 총 16일간 설계 및 개발하였으며, 5명의 팀원이 함께 하였습니다.
+2023.04.19 ~ 2023.05.04 총 16일간 설계 및 개발하였으며, 5명의 팀원이 함께 하였습니다.
 <br><br/>
 ## 💡 Motivation
 
