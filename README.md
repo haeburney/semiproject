@@ -1,5 +1,5 @@
 # **조각별** 
-영화추천 서비스
+영화 리뷰작성 및 추천 서비스
 * * *
 <br><br/>
 ![image](https://github.com/hennie-yun/semiproject/assets/129652734/c13bc245-1717-49e6-b15a-f71342278315)
